@@ -4251,6 +4251,30 @@ namespace Evade
 
             #endregion Xerath
 
+            #region Warwick
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Warwick",
+                    SpellName = "WarwickR",
+                    Slot = SpellSlot.Q,
+                    Type = SkillShotType.SkillshotMissileLine,
+                    Delay = 250,
+                    Range = 1300,
+                    Radius = 90,
+                    MissileSpeed = 2175,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 5,
+                    IsDangerous = true,
+                    MissileSpellName = "WarwickRMissile",
+                    EarlyEvade = new[] {EarlyObjects.Allies, EarlyObjects.AllyObjects},
+                    CollisionObjects = new[] {CollisionObjectTypes.YasuoWall, CollisionObjectTypes.Champions}
+                });
+
+            #endregion Warwick
+                
             #region Yasuo 
 
             Spells.Add(
