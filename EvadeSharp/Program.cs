@@ -368,6 +368,15 @@ namespace Evade
                         DetectedSkillshots.Add(skillshotToAdd);
                     }
 
+                    if (skillshot.SpellData.SpellName == "GalioQ")
+                    {
+                        var skillshotToAdd = new Skillshot(
+                        skillshot.DetectionType, SpellDatabase.GetByName("GalioQ"), skillshot.StartTick, skillshot.Start, skillshot.End,
+                        skillshot.Unit);
+
+                        DetectedSkillshots.Add(skillshotToAdd);
+                    }
+
                     if (skillshot.SpellData.SpellName == "ZiggsQ")
                     {
                         var d1 = skillshot.Start.Distance(skillshot.End);
@@ -522,7 +531,7 @@ namespace Evade
                 return;
             }
 
-            if (ObjectManager.Player.Spellbook.IsAutoAttacking && !Orbwalker.IsAutoAttacking)
+            if (Utility.PlayerWindingUp && !Orbwalking.IsAutoAttack(ObjectManager.Player.LastCastedSpellName()))
             {
                 Evading = false;
                 return;

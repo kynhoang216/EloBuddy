@@ -89,8 +89,8 @@ namespace Evade
                     Type = SkillShotType.SkillshotCircle,
                     Delay = 600,
                     Range = 650,
-                    Radius = 250,
-                    MissileSpeed = 2000,
+                    Radius = 285,
+                    MissileSpeed = 3050,
                     FixedRange = false,
                     AddHitbox = true,
                     DangerValue = 3,
@@ -107,7 +107,7 @@ namespace Evade
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
                     Range = 1075,
-                    Radius = 35,
+                    Radius = 60,
                     MissileSpeed = 1250,
                     FixedRange = true,
                     AddHitbox = true,
@@ -151,11 +151,11 @@ namespace Evade
                     SpellName = "AhriOrbReturn",
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotMissileLine,
-                    Delay = 250,
-                    Range = 1000,
+                    Delay = 0,
+                    Range = 20000,
                     Radius = 100,
                     MissileSpeed = 60,
-                    MissileAccel = 1900,
+                    MissileAccel = 1000,
                     MissileMinSpeed = 60,
                     MissileMaxSpeed = 2600,
                     FixedRange = true,
@@ -177,9 +177,9 @@ namespace Evade
                     Slot = SpellSlot.E,
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
-                    Range = 975,
+                    Range = 1000,
                     Radius = 60,
-                    MissileSpeed = 1600,
+                    MissileSpeed = 1550,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 3,
@@ -193,6 +193,28 @@ namespace Evade
                 });
 
             #endregion Ahri
+
+            #region Akali
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Akali",
+                    SpellName = "AkaliShadowSwipe",
+                    Slot = SpellSlot.E,
+                    Type = SkillShotType.SkillshotCircle,
+                    Delay = 250,
+                    Range = 0,
+                    Radius = 325,
+                    MissileSpeed = int.MaxValue,
+                    FixedRange = false,
+                    AddHitbox = false,
+                    DangerValue = 2,
+                    IsDangerous = false,
+                    MissileSpellName = "",
+                });
+
+            #endregion Akali
 
             #region Amumu
 
@@ -622,7 +644,7 @@ namespace Evade
                 });
 
             #endregion Caitlyn
-                
+
             #region Camile
 
             Spells.Add(
@@ -703,7 +725,7 @@ namespace Evade
                     ExtraDuration = 5000,
                     DontCross = true,
                     CanBeRemoved = false,
-                    CollisionObjects = new [] { CollisionObjectTypes.YasuoWall}
+                    CollisionObjects = new[] { CollisionObjectTypes.YasuoWall }
                 });
 
 
@@ -1189,19 +1211,20 @@ namespace Evade
                     ChampionName = "Fizz",
                     SpellName = "FizzR",
                     Slot = SpellSlot.R,
-                    Type = SkillShotType.SkillshotMissileLine,
+                    //Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
                     Range = 1275,
-                    Radius = 110,
+                    Radius = 200,
                     MissileSpeed = 1300,
                     FixedRange = false,
                     AddHitbox = true,
                     DangerValue = 5,
                     IsDangerous = true,
                     MissileSpellName = "FizzRMissile",
+                    ToggleParticleName = "Fizz_.+_R_OrbitFish",
                     ExtraDuration = 2300,
-                    EarlyEvade = new[] {EarlyObjects.Allies},
-                    CollisionObjects = new[] {CollisionObjectTypes.Champions, CollisionObjectTypes.YasuoWall},
+                    EarlyEvade = new[] { EarlyObjects.Allies },
+                    CollisionObjects = new[] { CollisionObjectTypes.Champions, CollisionObjectTypes.YasuoWall },
                     CanBeRemoved = true,
                 });
 
@@ -1222,7 +1245,7 @@ namespace Evade
                     IsDangerous = true,
                     MissileSpellName = "",
                 });
-            
+
             Spells.Add(
                 new SpellData
                 {
@@ -1249,57 +1272,78 @@ namespace Evade
                 new SpellData
                 {
                     ChampionName = "Galio",
-                    SpellName = "GalioResoluteSmite",
+                    SpellName = "GalioQ",
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotCircle,
                     Delay = 250,
-                    Range = 900,
-                    Radius = 200,
+                    Range = 930,
+                    Radius = 250,
                     MissileSpeed = 1300,
                     FixedRange = false,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "GalioResoluteSmite",
+                    MissileSpellName = "GalioQ",
+                    ExtraDuration = 1500,
+                    DontCross = true,
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
                 });
+
+            /*Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Galio",
+                    SpellName = "GalioQ",
+                    Slot = SpellSlot.Q,
+                    Type = SkillShotType.SkillshotArc,
+                    Delay = 250,
+                    Range = 930,
+                    Radius = 250,
+                    MissileSpeed = 1300,
+                    FixedRange = false,
+                    AddHitbox = true,
+                    DangerValue = 2,
+                    IsDangerous = false,
+                    MissileSpellName = "GalioQ",
+                    EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
+                });*/
 
             Spells.Add(
                 new SpellData
                 {
                     ChampionName = "Galio",
-                    SpellName = "GalioRighteousGust",
+                    SpellName = "GalioE",
                     Slot = SpellSlot.E,
                     Type = SkillShotType.SkillshotMissileLine,
-                    Delay = 250,
-                    Range = 1200,
-                    Radius = 120,
-                    MissileSpeed = 1200,
+                    Delay = 300,
+                    Range = 700,
+                    Radius = 160,
+                    MissileSpeed = 1500,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "GalioRighteousGust",
+                    MissileSpellName = "GalioEMissile",
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall },
                 });
 
-            Spells.Add(
+            /*Spells.Add(
                 new SpellData
                 {
                     ChampionName = "Galio",
-                    SpellName = "GalioIdolOfDurand",
+                    SpellName = "GalioR",
                     Slot = SpellSlot.R,
                     Type = SkillShotType.SkillshotCircle,
-                    Delay = 250,
-                    Range = 0,
+                    Delay = 1000,
+                    Range = 20000,
                     Radius = 550,
                     MissileSpeed = int.MaxValue,
-                    FixedRange = true,
-                    AddHitbox = false,
+                    FixedRange = false,
+                    AddHitbox = true,
                     DangerValue = 5,
                     IsDangerous = true,
-                    MissileSpellName = "",
-                });
+                    MissileSpellName = "GalioR",
+                });*/
 
             #endregion Galio
 
@@ -2368,7 +2412,7 @@ namespace Evade
                     DangerValue = 3,
                     IsDangerous = true,
                     MissileSpellName = "LeblancE",
-                    EarlyEvade = new[] {EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects},
+                    EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
                     CanBeRemoved = true,
                     CollisionObjects =
                         new[]
@@ -4329,12 +4373,12 @@ namespace Evade
                     DangerValue = 5,
                     IsDangerous = true,
                     MissileSpellName = "WarwickRMissile",
-                    EarlyEvade = new[] {EarlyObjects.Allies, EarlyObjects.AllyObjects},
-                    CollisionObjects = new[] {CollisionObjectTypes.YasuoWall, CollisionObjectTypes.Champions}
+                    EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.AllyObjects },
+                    CollisionObjects = new[] { CollisionObjectTypes.YasuoWall, CollisionObjectTypes.Champions }
                 });
 
             #endregion Warwick
-                
+
             #region Yasuo 
 
             Spells.Add(
