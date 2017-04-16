@@ -1008,17 +1008,39 @@ namespace Evade
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
-                    Range = 1075,
+                    Range = 950,
                     Radius = 60,
                     MissileSpeed = 1650,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 4,
                     IsDangerous = true,
-                    MissileSpellName = "ekkoqmis",
+                    MissileSpellName = "EkkoQmis",
                     CanBeRemoved = true,
-                    CollisionObjects =
-                        new[] { CollisionObjectTypes.Champions, CollisionObjectTypes.YasuoWall }
+                    /*CollisionObjects =
+                        new[] { CollisionObjectTypes.Champions, CollisionObjectTypes.YasuoWall }*/
+                });
+            
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Ekko",
+                    SpellName = "EkkoQReturn",
+                    Slot = SpellSlot.Q,
+                    Type = SkillShotType.SkillshotMissileLine,
+                    Delay = 250,
+                    Range = 20000,
+                    Radius = 100,
+                    MissileSpeed = 2300,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 4,
+                    IsDangerous = true,
+                    MissileSpellName = "EkkoQReturn",
+                    CanBeRemoved = true,
+                    MissileFollowsUnit = true,
+                    /*CollisionObjects =
+                        new[] { CollisionObjectTypes.Champions, CollisionObjectTypes.YasuoWall }*/
                 });
 
             Spells.Add(
@@ -1028,17 +1050,18 @@ namespace Evade
                     SpellName = "EkkoW",
                     Slot = SpellSlot.W,
                     Type = SkillShotType.SkillshotCircle,
-                    Delay = 3750,
+                    Delay = 2250 + 1050,
                     Range = 1600,
                     Radius = 375,
                     MissileSpeed = 1650,
                     FixedRange = false,
-                    DisabledByDefault = true,
+                    DisabledByDefault = false,
                     AddHitbox = false,
                     DangerValue = 3,
                     IsDangerous = false,
-                    MissileSpellName = "EkkoW",
-                    CanBeRemoved = true
+                    MissileSpellName = "EkkoWMis",
+                    ExtraDuration = 1500,
+                    CanBeRemoved = false,
                 });
 
             Spells.Add(
@@ -1052,13 +1075,13 @@ namespace Evade
                     Range = 1600,
                     Radius = 375,
                     MissileSpeed = 1650,
-                    FixedRange = true,
+                    FixedRange = false,
                     AddHitbox = true,
-                    DangerValue = 3,
-                    IsDangerous = false,
-                    MissileSpellName = "EkkoR",
-                    CanBeRemoved = true,
-                    FromObjects = new[] { "Ekko_Base_R_TrailEnd.troy" }
+                    DangerValue = 5,
+                    IsDangerous = true,
+                    MissileSpellName = "",
+                    CanBeRemoved = false,
+                    //FromObjects = new[] { "Ekko_Base_R_TrailEnd.troy" }
                 });
 
             #endregion Ekko
@@ -1122,7 +1145,7 @@ namespace Evade
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
-                    Range = 1150,
+                    Range = 1200,
                     Radius = 60,
                     MissileSpeed = 2000,
                     FixedRange = true,
@@ -1147,9 +1170,9 @@ namespace Evade
                     Slot = SpellSlot.W,
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
-                    Range = 1000,
+                    Range = 1050,
                     Radius = 80,
-                    MissileSpeed = 1550,
+                    MissileSpeed = 1600,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
@@ -1165,8 +1188,8 @@ namespace Evade
                     SpellName = "EzrealTrueshotBarrage",
                     Slot = SpellSlot.R,
                     Type = SkillShotType.SkillshotMissileLine,
-                    Delay = 1000,
-                    Range = 20000,
+                    Delay = 1500,
+                    Range = 25000,
                     Radius = 160,
                     MissileSpeed = 2000,
                     FixedRange = true,
@@ -1190,7 +1213,7 @@ namespace Evade
                     Slot = SpellSlot.W,
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 500,
-                    Range = 800,
+                    Range = 770,
                     Radius = 70,
                     MissileSpeed = 3200,
                     FixedRange = true,
@@ -1211,7 +1234,7 @@ namespace Evade
                     ChampionName = "Fizz",
                     SpellName = "FizzR",
                     Slot = SpellSlot.R,
-                    //Type = SkillShotType.SkillshotMissileLine,
+                    Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
                     Range = 1275,
                     Radius = 200,
