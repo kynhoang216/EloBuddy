@@ -1299,20 +1299,20 @@ namespace Evade
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotCircle,
                     Delay = 250,
-                    Range = 930,
-                    Radius = 250,
-                    MissileSpeed = 1300,
+                    Range = 825,
+                    Radius = 200,
+                    MissileSpeed = 1600,
                     FixedRange = false,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "GalioQ",
+                    MissileSpellName = "",
                     ExtraDuration = 1500,
                     DontCross = true,
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
                 });
 
-            /*Spells.Add(
+            Spells.Add(
                 new SpellData
                 {
                     ChampionName = "Galio",
@@ -1320,16 +1320,19 @@ namespace Evade
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotArc,
                     Delay = 250,
-                    Range = 930,
-                    Radius = 250,
-                    MissileSpeed = 1300,
+                    Range = 825,
+                    Radius = 80,
+                    MissileSpeed = 1600,
                     FixedRange = false,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "GalioQ",
+                    MissileSpellName = "",
+                    MultipleAngle = (float)Math.PI / 180,
+                    MultipleNumber = 2,
+                    DontCross = true,
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
-                });*/
+                });
             
             Spells.Add(
                 new SpellData
