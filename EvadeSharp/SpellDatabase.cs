@@ -1339,7 +1339,7 @@ namespace Evade
                 {
                     ChampionName = "Galio",
                     SpellName = "GalioW",
-                    Slot = SpellSlot.E,
+                    Slot = SpellSlot.W,
                     Type = SkillShotType.SkillshotCircle,
                     Delay = 0,
                     Range = 500,
