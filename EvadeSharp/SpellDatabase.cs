@@ -1371,7 +1371,7 @@ namespace Evade
                     DangerValue = 2,
                     IsDangerous = false,
                     MissileSpellName = "",
-                    MissileFollowsUnit = true,
+                    //MissileFollowsUnit = true,
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall },
                 });
             
