@@ -1300,7 +1300,7 @@ namespace Evade
                     Type = SkillShotType.SkillshotCircle,
                     Delay = 250,
                     Range = 825,
-                    Radius = 200,
+                    Radius = 250,
                     MissileSpeed = 1600,
                     FixedRange = false,
                     AddHitbox = true,
@@ -1328,7 +1328,7 @@ namespace Evade
                     DangerValue = 2,
                     IsDangerous = false,
                     MissileSpellName = "",
-                    MultipleAngle = (float)Math.PI / 180,
+                    MultipleAngle = 180 * (float)Math.PI / 180,
                     MultipleNumber = 2,
                     DontCross = true,
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
@@ -1351,6 +1351,8 @@ namespace Evade
                     IsDangerous = true,
                     MissileFollowsUnit = true,
                     TakeClosestPath = true,
+                    ExtraDuration = 2000,
+                    DontCross = true,
                     MissileSpellName = "",
                 });
 
