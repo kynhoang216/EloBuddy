@@ -1330,6 +1330,27 @@ namespace Evade
                     MissileSpellName = "GalioQ",
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
                 });*/
+            
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Galio",
+                    SpellName = "GalioW",
+                    Slot = SpellSlot.E,
+                    Type = SkillShotType.SkillshotCircle,
+                    Delay = 0,
+                    Range = 500,
+                    Radius = 500,
+                    MissileSpeed = int.MaxValue,
+                    FixedRange = false,
+                    AddHitbox = true,
+                    DangerValue = 3,
+                    IsDangerous = true,
+                    MissileFollowsUnit = true,
+                    TakeClosestPath = true,
+                    MissileSpellName = "",
+                });
+
 
             Spells.Add(
                 new SpellData
@@ -1338,35 +1359,54 @@ namespace Evade
                     SpellName = "GalioE",
                     Slot = SpellSlot.E,
                     Type = SkillShotType.SkillshotMissileLine,
-                    Delay = 300,
-                    Range = 700,
-                    Radius = 160,
-                    MissileSpeed = 1500,
+                    Delay = 250,
+                    Range = 600,
+                    Radius = 150,
+                    MissileSpeed = 2000,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "GalioEMissile",
+                    MissileSpellName = "",
+                    MissileFollowsUnit = true,
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall },
                 });
+            
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Galio",
+                    SpellName = "GalioE2",
+                    Slot = SpellSlot.E,
+                    Type = SkillShotType.SkillshotMissileLine,
+                    Delay = 250,
+                    Range = 600,
+                    Radius = 150,
+                    MissileSpeed = 2000,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 2,
+                    IsDangerous = false,
+                    MissileSpellName = "",
+                });
 
-            /*Spells.Add(
+            Spells.Add(
                 new SpellData
                 {
                     ChampionName = "Galio",
                     SpellName = "GalioR",
                     Slot = SpellSlot.R,
                     Type = SkillShotType.SkillshotCircle,
-                    Delay = 1000,
+                    Delay = int.MaxValue,
                     Range = 20000,
-                    Radius = 550,
+                    Radius = 600,
                     MissileSpeed = int.MaxValue,
                     FixedRange = false,
                     AddHitbox = true,
                     DangerValue = 5,
                     IsDangerous = true,
-                    MissileSpellName = "GalioR",
-                });*/
+                    MissileSpellName = "",
+                });
 
             #endregion Galio
 
