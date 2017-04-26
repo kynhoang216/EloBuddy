@@ -4342,6 +4342,87 @@ namespace Evade
                 });
 
             #endregion Viktor
+                
+            #region Xayah
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Xayah",
+                    SpellName = "XayahQ",
+                    Slot = SpellSlot.Q,
+                    Type = SkillShotType.SkillshotMissileLine,
+                    Delay = 250,
+                    Range = 1100,
+                    Radius = 50,
+                    MissileSpeed = 1400,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 2,
+                    IsDangerous = false,
+                    MissileSpellName = "",
+                    ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
+                });
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Xayah",
+                    SpellName = "XayahW",
+                    Slot = SpellSlot.W,
+                    Delay = 250,
+                    Range = int.MaxValue,
+                    Radius = int.MaxValue,
+                    MissileSpeed = 1500,
+                    AddHitbox = true,
+                    FixedRange = true,
+                    DangerValue = 1,
+                    IsDangerous = false,
+                    MissileSpellName = "",
+                    ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
+                });
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Xayah",
+                    SpellName = "XayahE",
+                    Slot = SpellSlot.E,
+                    Type = SkillShotType.SkillshotLine,
+                    Delay = 250,
+                    Range = 1100,
+                    Radius = int.MaxValue,
+                    MissileSpeed = 2000,
+                    Invert = true,
+                    MissileFollowsUnit = true,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 2,
+                    IsDangerous = true,
+                    MissileSpellName = "",
+                    ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
+                });
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Xayah",
+                    SpellName = "XayahR",
+                    Slot = SpellSlot.R,
+                    Type = SkillShotType.SkillshotCone,
+                    Delay = 250,
+                    Range = 1100,
+                    Radius = 200,
+                    MissileSpeed = 2000,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 5,
+                    IsDangerous = true,
+                    MissileSpellName = "",
+                    ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
+                });
+
+            #endregion Xayah
 
             #region Xerath
 
