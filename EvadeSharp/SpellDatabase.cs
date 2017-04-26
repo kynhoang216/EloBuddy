@@ -1300,16 +1300,17 @@ namespace Evade
                     Type = SkillShotType.SkillshotCircle,
                     Delay = 250,
                     Range = 825,
-                    Radius = 250,
+                    Radius = 200,
                     MissileSpeed = 1600,
                     FixedRange = false,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "",
+                    MissileSpellName = "GalioQ",
+                    ExtraMissileNames = new[] { "GalioArcArc" },
                     ExtraDuration = 1500,
                     DontCross = true,
-                    EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
+                    //EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
                 });
 
             Spells.Add(
@@ -1323,15 +1324,15 @@ namespace Evade
                     Range = 825,
                     Radius = 80,
                     MissileSpeed = 1600,
-                    FixedRange = false,
+                    FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "",
-                    MultipleAngle = 180 * (float)Math.PI / 180,
-                    MultipleNumber = 2,
+                    MissileSpellName = "GalioQ",
+                    ExtraMissileNames = new[] { "GalioArcArc" },
+                    DontCheckForDuplicates = true,
                     DontCross = true,
-                    EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
+                    //EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
                 });
             
             Spells.Add(
