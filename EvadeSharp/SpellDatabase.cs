@@ -484,6 +484,7 @@ namespace Evade
                     MissileSpellName = "RocketGrabMissile",
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
                     CanBeRemoved = true,
+                    DontCross = true,
                     CollisionObjects =
                         new[]
                         {CollisionObjectTypes.Champions, CollisionObjectTypes.Minion, CollisionObjectTypes.YasuoWall}
@@ -2898,7 +2899,7 @@ namespace Evade
                      Radius = 275,
                      MissileSpeed = int.MaxValue,
                      FixedRange = false,
-                     AddHitbox = true,
+                     AddHitbox = false,
                      DangerValue = 2,
                      IsDangerous = false,
                      MissileSpellName = "",
