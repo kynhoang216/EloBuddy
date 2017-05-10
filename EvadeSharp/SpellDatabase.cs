@@ -152,7 +152,7 @@ namespace Evade
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 0,
-                    Range = 20000,
+                    Range = 1000,
                     Radius = 100,
                     MissileSpeed = 60,
                     MissileAccel = 1000,
@@ -2559,6 +2559,7 @@ namespace Evade
                     IsDangerous = true,
                     TakeClosestPath = true,
                     MissileSpellName = "LeonaZenithBladeMissile",
+                    DontCross = true,
                     EarlyEvade = new[] { EarlyObjects.Allies },
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall },
                 });
@@ -2662,6 +2663,7 @@ namespace Evade
                     DangerValue = 2,
                     IsDangerous = false,
                     MissileSpellName = "LucianQ",
+                    DontCross = true,
                 });
 
             Spells.Add(
