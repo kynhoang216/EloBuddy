@@ -1302,19 +1302,19 @@ namespace Evade
                     Delay = 250,
                     Range = 825,
                     Radius = 200,
-                    MissileSpeed = 1600,
+                    MissileSpeed = 1400,
                     FixedRange = false,
-                    AddHitbox = true,
+                    AddHitbox = false,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "GalioQ",
+                    MissileSpellName = "GalioQMissile",
                     ExtraMissileNames = new[] { "GalioArcArc" },
                     ExtraDuration = 1500,
                     DontCross = true,
                     //EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
                 });
 
-            Spells.Add(
+            /*Spells.Add(
                 new SpellData
                 {
                     ChampionName = "Galio",
@@ -1334,7 +1334,7 @@ namespace Evade
                     DontCheckForDuplicates = true,
                     DontCross = true,
                     //EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
-                });
+                });*/
             
             Spells.Add(
                 new SpellData
@@ -1367,14 +1367,14 @@ namespace Evade
                     Slot = SpellSlot.E,
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
-                    Range = 600,
-                    Radius = 150,
-                    MissileSpeed = 2000,
+                    Range = 850,
+                    Radius = 250,
+                    MissileSpeed = 1400,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "",
+                    MissileSpellName = "GalioE",
                     //MissileFollowsUnit = true,
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall },
                 });
@@ -1387,17 +1387,17 @@ namespace Evade
                     Slot = SpellSlot.E,
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
-                    Range = 600,
-                    Radius = 150,
+                    Range = 850,
+                    Radius = 250,
                     MissileSpeed = 2000,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "",
+                    MissileSpellName = "GalioE2",
                 });
 
-            Spells.Add(
+            /*Spells.Add(
                 new SpellData
                 {
                     ChampionName = "Galio",
@@ -1413,7 +1413,7 @@ namespace Evade
                     DangerValue = 5,
                     IsDangerous = true,
                     MissileSpellName = "",
-                });
+                });*/
 
             #endregion Galio
 
@@ -4363,11 +4363,12 @@ namespace Evade
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "",
+                    MissileSpellName = "XayahQMissile1",
+                    ExtraMissileNames = new[] { "XayahQMissile2" },
                     ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
                 });
 
-            Spells.Add(
+            /*Spells.Add(
                 new SpellData
                 {
                     ChampionName = "Xayah",
@@ -4383,7 +4384,7 @@ namespace Evade
                     IsDangerous = false,
                     MissileSpellName = "",
                     ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
-                });
+                });*/
 
             Spells.Add(
                 new SpellData
@@ -4391,18 +4392,18 @@ namespace Evade
                     ChampionName = "Xayah",
                     SpellName = "XayahE",
                     Slot = SpellSlot.E,
-                    Type = SkillShotType.SkillshotLine,
+                    Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
                     Range = 1100,
-                    Radius = int.MaxValue,
-                    MissileSpeed = 2000,
+                    Radius = 60,
+                    MissileSpeed = 1200,
                     Invert = true,
                     MissileFollowsUnit = true,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = true,
-                    MissileSpellName = "",
+                    MissileSpellName = "XayahEMissileSFX",
                     ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
                 });
 
@@ -4413,15 +4414,16 @@ namespace Evade
                     SpellName = "XayahR",
                     Slot = SpellSlot.R,
                     Type = SkillShotType.SkillshotCone,
-                    Delay = 250,
+                    Delay = 1000,
                     Range = 1100,
                     Radius = 200,
-                    MissileSpeed = 2000,
+                    MissileSpeed = 4000,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 5,
                     IsDangerous = true,
                     MissileSpellName = "",
+                    MissileFollowsUnit = true,
                     ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
                 });
 
@@ -4433,18 +4435,18 @@ namespace Evade
                 new SpellData
                 {
                     ChampionName = "Xerath",
-                    SpellName = "xeratharcanopulse2",
+                    SpellName = "Xeratharcanopulse2",
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotLine,
                     Delay = 600,
                     Range = 1600,
-                    Radius = 95,
+                    Radius = 100,
                     MissileSpeed = int.MaxValue,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "xeratharcanopulse2",
+                    MissileSpellName = "Xeratharcanopulse2",
                 });
 
             Spells.Add(
@@ -4454,9 +4456,9 @@ namespace Evade
                     SpellName = "XerathArcaneBarrage2",
                     Slot = SpellSlot.W,
                     Type = SkillShotType.SkillshotCircle,
-                    Delay = 700,
-                    Range = 1000,
-                    Radius = 200,
+                    Delay = 780,
+                    Range = 1100,
+                    Radius = 260,
                     MissileSpeed = int.MaxValue,
                     FixedRange = false,
                     AddHitbox = true,
@@ -4472,7 +4474,7 @@ namespace Evade
                     SpellName = "XerathMageSpear",
                     Slot = SpellSlot.E,
                     Type = SkillShotType.SkillshotMissileLine,
-                    Delay = 200,
+                    Delay = 250,
                     Range = 1150,
                     Radius = 60,
                     MissileSpeed = 1400,
@@ -4492,18 +4494,19 @@ namespace Evade
                 new SpellData
                 {
                     ChampionName = "Xerath",
-                    SpellName = "xerathrmissilewrapper",
+                    SpellName = "Xerathrmissilewrapper",
                     Slot = SpellSlot.R,
                     Type = SkillShotType.SkillshotCircle,
-                    Delay = 700,
+                    Delay = 650,
                     Range = 5600,
-                    Radius = 130,
+                    Radius = 200,
                     MissileSpeed = int.MaxValue,
                     FixedRange = false,
                     AddHitbox = true,
                     DangerValue = 3,
                     IsDangerous = true,
-                    MissileSpellName = "xerathrmissilewrapper",
+                    MissileDelayed = true,
+                    MissileSpellName = "XerathLocusPulse",
                 });
 
             #endregion Xerath
@@ -4516,7 +4519,7 @@ namespace Evade
                     ChampionName = "Warwick",
                     SpellName = "WarwickR",
                     Slot = SpellSlot.Q,
-                    Type = SkillShotType.SkillshotMissileLine,
+                    Type = SkillShotType.SkillshotLine,
                     Delay = 250,
                     Range = 1300,
                     Radius = 90,
@@ -4532,7 +4535,26 @@ namespace Evade
 
             #endregion Warwick
 
-            #region Yasuo 
+            #region Yasuo
+
+            /*Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Yasuo",
+                    SpellName = "YasuoQ",
+                    Slot = SpellSlot.Q,
+                    Type = SkillShotType.SkillshotLine,
+                    Delay = 400,
+                    Range = 550,
+                    Radius = 55,
+                    MissileSpeed = int.MaxValue,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 2,
+                    IsDangerous = true,
+                    MissileSpellName = "yasuoQ2",
+                    Invert = true,
+                });*/
 
             Spells.Add(
                 new SpellData
@@ -4569,6 +4591,25 @@ namespace Evade
                     DangerValue = 3,
                     IsDangerous = true,
                     MissileSpellName = "yasuoq3w",
+                    CollisionObjects = new[] { CollisionObjectTypes.YasuoWall }
+                });
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Yasuo",
+                    SpellName = "YasuoQ3",
+                    Slot = SpellSlot.Q,
+                    Type = SkillShotType.SkillshotMissileLine,
+                    Delay = 300,
+                    Range = 1150,
+                    Radius = 90,
+                    MissileSpeed = 1200,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 3,
+                    IsDangerous = true,
+                    MissileSpellName = "YasuoQ3Mis",
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall }
                 });
 
