@@ -518,7 +518,7 @@ namespace Evade
             //Avoid sending move/cast packets while dead.
             if (ObjectManager.Player.IsDead)
             {
-                Evading = true;
+                Evading = false;
                 EvadeToPoint = Vector2.Zero;
                 return;
             }
@@ -533,7 +533,7 @@ namespace Evade
 
             if (ObjectManager.Player.IsAttackingPlayer && !Orbwalker.IsAutoAttacking)
             {
-                Evading = true;
+                Evading = false;
                 return;
             }
 
