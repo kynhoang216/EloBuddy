@@ -2863,6 +2863,32 @@ namespace Evade
                 });
 
             #endregion Malzahar
+                
+            #region Maokai
+                
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Maokai",
+                    SpellName = "MaokaiTrunkLine",
+                    Slot = SpellSlot.Q,
+                    Type = SkillShotType.SkillshotLine,
+                    Delay = 400,
+                    Range = 650,
+                    Radius = 110 + 360,
+                    MissileSpeed = 1800,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 3,
+                    IsDangerous = true,
+                    MissileSpellName = "MaokaiTrunkLineMissile",
+                    //EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
+                    CanBeRemoved = true,
+                    DontCross = true,
+                    //CollisionObjects = new[] {CollisionObjectTypes.Champions, CollisionObjectTypes.Minion, CollisionObjectTypes.YasuoWall},
+                });
+                
+            #endregion Maokai
 
             #region Morgana
 
@@ -4652,6 +4678,26 @@ namespace Evade
                     DangerValue = 2,
                     IsDangerous = false,
                     MissileSpellName = "ZacQ",
+                    DontCross = true,
+                });
+            
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Zac",
+                    SpellName = "ZacE2",
+                    Slot = SpellSlot.Q,
+                    Type = SkillShotType.SkillshotCircle,
+                    Delay = 0,
+                    Range = 1800,
+                    Radius = 250,
+                    MissileSpeed = 1350,
+                    FixedRange = false,
+                    AddHitbox = true,
+                    DangerValue = 2,
+                    IsDangerous = false,
+                    MissileSpellName = "ZacE2",
+                    DontCross = true,
                 });
 
             #endregion Zac
@@ -4826,7 +4872,7 @@ namespace Evade
                     FixedRange = false,
                     AddHitbox = true,
                     DangerValue = 2,
-                    IsDangerous = false,
+                    IsDangerous = true,
                     MissileSpellName = "ZileanQMissile",
                     ToggleParticleName = "Zilean_.+_Q_TimeBombGround(Green|Red)",
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall }
