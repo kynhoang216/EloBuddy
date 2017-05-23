@@ -531,7 +531,7 @@ namespace Evade
                 return;
             }
 
-            if (Utility.PlayerWindingUp && !Orbwalker.IsAutoAttacking)
+            if (ObjectManager.Player.IsAttackingPlayer && !Orbwalker.IsAutoAttacking)
             {
                 Evading = false;
                 return;
