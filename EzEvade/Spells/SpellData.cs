@@ -87,5 +87,10 @@ namespace ezEvade
             this.dangerlevel = dangerlevel;
             this.spellType = spellType;
         }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
     }
 }

@@ -566,15 +566,16 @@ namespace ezEvade
             Spells.Add(
             new SpellData
             {
+                angle = 10,
                 charName = "Cassiopeia",
                 dangerlevel = 1,
                 name = "Miasama",
                 missileName = "CassiopeiaWMissile",
                 projectileSpeed = 3000,
-                radius = 200,
+                radius = 195,
                 range = 900,
-                spellDelay = 250,
-                extraEndTime = 500,
+                spellDelay = 0,
+                extraEndTime = 5000,
                 spellKey = SpellSlot.W,
                 spellName = "CassiopeiaW",
                 spellType = SpellType.Circular,
@@ -2380,7 +2381,8 @@ namespace ezEvade
                 spellType = SpellType.Circular,
                 trapTroyName = "lux_base_e_tar_aoe_" + Situation.EmitterColor() + ".troy",
                 extraDrawHeight = -100,
-                hasTrap = true
+                hasTrap = true,
+                
             });
 
             Spells.Add(
@@ -2591,14 +2593,14 @@ namespace ezEvade
             {
                 charName = "Nami",
                 dangerlevel = 3,
-                missileName = "namiqmissile",
+                missileName = "NamiQMissile",
                 name = "Aqua Prison",
                 projectileSpeed = 2500,
-                radius = 200,
-                range = 875,
-                spellDelay = 450,
+                radius = 150,
+                range = 1625,
+                spellDelay = 950,
                 spellKey = SpellSlot.Q,
-                spellName = "namiq",
+                spellName = "NamiQ",
                 spellType = SpellType.Circular
             });
 

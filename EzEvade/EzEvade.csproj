@@ -33,28 +33,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EloBuddy">
-      <HintPath>..\..\..\AppData\Roaming\EloBuddy\Addons\Libraries\EloBuddy.dll</HintPath>
+      <HintPath>..\..\AppData\Roaming\EloBuddy\Addons\Libraries\EloBuddy.dll</HintPath>
     </Reference>
     <Reference Include="EloBuddy.Fedora">
-      <HintPath>..\..\..\AppData\Roaming\EloBuddy\Addons\Libraries\EloBuddy.Fedora.dll</HintPath>
+      <HintPath>..\..\AppData\Roaming\EloBuddy\Addons\Libraries\EloBuddy.Fedora.dll</HintPath>
     </Reference>
     <Reference Include="EloBuddy.Sandbox">
-      <HintPath>..\..\..\AppData\Roaming\EloBuddy\Addons\Libraries\EloBuddy.Sandbox.dll</HintPath>
+      <HintPath>..\..\AppData\Roaming\EloBuddy\Addons\Libraries\EloBuddy.Sandbox.dll</HintPath>
     </Reference>
     <Reference Include="EloBuddy.SDK">
-      <HintPath>..\..\..\AppData\Roaming\EloBuddy\Addons\Libraries\EloBuddy.SDK.dll</HintPath>
+      <HintPath>..\..\AppData\Roaming\EloBuddy\Addons\Libraries\EloBuddy.SDK.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\AppData\Roaming\EloBuddy\Addons\Libraries\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\AppData\Roaming\EloBuddy\Addons\Libraries\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>..\..\..\AppData\Roaming\EloBuddy\Addons\Libraries\SharpDX.dll</HintPath>
+      <HintPath>..\..\AppData\Roaming\EloBuddy\Addons\Libraries\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D9">
-      <HintPath>..\..\..\AppData\Roaming\EloBuddy\Addons\Libraries\SharpDX.Direct3D9.dll</HintPath>
+      <HintPath>..\..\AppData\Roaming\EloBuddy\Addons\Libraries\SharpDX.Direct3D9.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.XInput">
-      <HintPath>..\..\..\AppData\Roaming\EloBuddy\Addons\Libraries\SharpDX.XInput.dll</HintPath>
+      <HintPath>..\..\AppData\Roaming\EloBuddy\Addons\Libraries\SharpDX.XInput.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -108,6 +108,7 @@
     <Compile Include="SpecialSpells\Yasuo.cs" />
     <Compile Include="SpecialSpells\Zed.cs" />
     <Compile Include="SpecialSpells\Ziggs.cs" />
+    <Compile Include="SpecialSpells\Zilean.cs" />
     <Compile Include="Spells\ObjectTracker.cs" />
     <Compile Include="Spells\Spell.cs" />
     <Compile Include="Spells\SpellData.cs" />

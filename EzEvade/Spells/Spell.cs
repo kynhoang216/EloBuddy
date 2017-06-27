@@ -255,6 +255,35 @@ namespace ezEvade
 
             spell.dangerlevel = spell.GetSpellDangerLevel();
             //spell.radius = spell.GetSpellRadius();
+            if (spell.info.name == "TaricE")
+            {
+                var taric = EntityManager.Heroes.Enemies.FirstOrDefault(x => x.ChampionName == "Taric");
+                if (taric != null)
+                {
+                    spell.currentSpellPosition = taric.ServerPosition.To2D();
+                    spell.endPos = taric.ServerPosition.To2D() + spell.direction * spell.info.range;
+                }
+            }
+
+            if (spell.info.name == "TaliyahQ")
+            {
+                var taliyah = EntityManager.Heroes.Enemies.FirstOrDefault(x => x.ChampionName == "Taliyah");
+                if (taliyah != null)
+                {
+                    spell.currentSpellPosition = taliyah.ServerPosition.To2D();
+                    spell.endPos = taliyah.ServerPosition.To2D() + spell.direction * spell.info.range;
+                }
+            }
+
+            if (spell.info.name == "TaricE2")
+            {
+                var partner = EntityManager.Heroes.Enemies.FirstOrDefault(x => x.HasBuff("taricwleashactive") && x.ChampionName != "Taric");
+                if (partner != null)
+                {
+                    spell.currentSpellPosition = partner.ServerPosition.To2D();
+                    spell.endPos = partner.ServerPosition.To2D() + spell.direction * spell.info.range;
+                }
+            }
         }
 
         public static Vector2 GetCurrentSpellPosition(this Spell spell, bool allowNegative = false, float delay = 0, 

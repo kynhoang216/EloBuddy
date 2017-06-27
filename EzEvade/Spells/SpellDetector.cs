@@ -440,6 +440,12 @@ namespace ezEvade
                     endPosition = startPosition + reverse * startPosition.Distance(endPosition);
                 }
 
+                if (spellData.isPerpendicular)
+                {
+                    startPosition = spellEndPos.To2D() - direction.Perpendicular() * spellData.secondaryRadius;
+                    endPosition = spellEndPos.To2D() + direction.Perpendicular() * spellData.secondaryRadius;
+                }
+
 
                 endTick += extraEndTick;
 
