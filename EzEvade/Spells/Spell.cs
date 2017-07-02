@@ -25,6 +25,9 @@ namespace ezEvade
         public GameObject spellObject = null;
         public SpellType spellType;
 
+        public Vector2 cnLeft;
+        public Vector2 cnRight;
+        public Vector2 cnStart;
         public Vector2 currentSpellPosition = Vector2.Zero;
         public Vector2 currentNegativePosition = Vector2.Zero;
         public Vector2 predictedEndPos = Vector2.Zero;

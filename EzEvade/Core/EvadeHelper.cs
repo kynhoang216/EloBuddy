@@ -815,6 +815,38 @@ namespace ezEvade
             return sumIntersectDist;
         }
 
+        public static Vector3 GetNearWallPoint(Vector3 start, Vector3 end)
+        {
+            var direction = (end - start).Normalized();
+            var distance = start.Distance(end);
+            for (var i = 20; i < distance; i += 20)
+            {
+                var v = end - direction * i;
+                if (!v.IsWall())
+                {
+                    return v;
+                }
+            }
+
+            return Vector3.Zero;
+        }
+
+        public static Vector3 GetNearWallPoint(Vector2 start, Vector2 end)
+        {
+            var direction = (end - start).Normalized();
+            var distance = start.Distance(end);
+            for (var i = 20; i < distance; i += 20)
+            {
+                var v = end - direction * i;
+                if (!v.IsWall())
+                {
+                    return v.To3D();
+                }
+            }
+
+            return Vector3.Zero;
+        }
+
         public static float GetIntersectDistance(Spell spell, Vector2 start, Vector2 end)
         {
             if (spell == null)
@@ -980,14 +1012,31 @@ namespace ezEvade
                         return 0;
                     }
 
-                    if (tHeroPos.Distance(spell.endPos) >= spell.radius)
+                    /*if (tHeroPos.Distance(spell.endPos) >= spell.radius)
                     {
                         return Math.Max(0, tHeroPos.Distance(spell.endPos) - midRadius - wallRadius);
                     }
                     else
                     {
                         return Math.Max(0, midRadius - tHeroPos.Distance(spell.endPos) - wallRadius);
+                    }*/
+                    return tHeroPos.Distance(spell.endPos) >= spell.radius
+                       ? Math.Max(0, tHeroPos.Distance(spell.endPos) - midRadius - wallRadius)
+                       : Math.Max(0, midRadius - tHeroPos.Distance(spell.endPos) - wallRadius);
+                }
+
+                if (spell.info.spellName == "DariusCleave")
+                {
+                    var wallRadius = 115;
+                    var midRadius = spell.radius - wallRadius;
+
+                    if (spellHitTime == 0)
+                    {
+                        return 0;
                     }
+                    return tHeroPos.Distance(spell.endPos) >= spell.radius
+                        ? Math.Max(0, tHeroPos.Distance(spell.endPos) - midRadius - wallRadius)
+                        : Math.Max(0, midRadius - tHeroPos.Distance(spell.endPos) - wallRadius);
                 }
 
                 var closestDist = Math.Max(0, tHeroPos.Distance(spell.endPos) - (spell.radius + extraDist));
@@ -1208,6 +1257,11 @@ namespace ezEvade
                                 from, dir * ObjectCache.myHeroCache.moveSpeed, 1,
                                 spell.endPos, new Vector2(0, 0), spell.radius,
                                 out cHeroPos, out cSpellPos);
+
+                            if (spell.info.spellName.Contains("_trap") && !(cpa2 < spell.radius + 10))
+                            {
+                                continue;
+                            }
 
                             var cHeroPosProjection = cHeroPos.ProjectOn(from, movePos);
 

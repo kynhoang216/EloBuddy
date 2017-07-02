@@ -103,17 +103,17 @@ namespace ezEvade
                 ObjectCache.menuCache.AddMenuToCache(menu);
 
                 Menu mainMenu = menu.AddSubMenuEx("Main", "Main");
-                mainMenu.Add("DodgeSkillShots",new KeyBind("Dodge SkillShots", true, KeyBind.BindTypes.PressToggle, 'K'));
-                mainMenu.Add("ActivateEvadeSpells",new KeyBind("Use Evade Spells", true, KeyBind.BindTypes.PressToggle, 'K'));
+                mainMenu.Add("DodgeSkillShots",new KeyBind("Dodge SkillShots", true, KeyBind.BindTypes.PressToggle));
+                mainMenu.Add("ActivateEvadeSpells",new KeyBind("Use Evade Spells", true, KeyBind.BindTypes.PressToggle));
                 mainMenu.AddSeparator();
                 mainMenu.Add("DodgeDangerous", new CheckBox("Dodge Only Dangerous", false));
-                mainMenu.Add("ChaseModeMinHP", new CheckBox("Check Ignored HP %(ChaseMode)"));
+                mainMenu.Add("DodgeIgnoreHP", new CheckBox("Check Ignored HP %(ChaseMode)"));
                 mainMenu.Add("DodgeFOWSpells", new CheckBox("Dodge FOW SkillShots", true));
                 mainMenu.Add("DodgeCircularSpells", new CheckBox("Dodge Circular SkillShots", true));
                 mainMenu.AddSeparator();
                 mainMenu.Add("DodgeDangerousKeyEnabled", new CheckBox("Enable Dodge Only Dangerous Keys", false));
-                mainMenu.Add("DodgeDangerousKey",new KeyBind("Dodge Only Dangerous Key", false, KeyBind.BindTypes.HoldActive, 32));
-                mainMenu.Add("DodgeDangerousKey2",new KeyBind("Dodge Only Dangerous Key 2", false, KeyBind.BindTypes.HoldActive, 'V'));
+                mainMenu.Add("DodgeDangerousKey",new KeyBind("Dodge Only Dangerous Key", false, KeyBind.BindTypes.HoldActive));
+                mainMenu.Add("DodgeDangerousKey2",new KeyBind("Dodge Only Dangerous Key 2", false, KeyBind.BindTypes.HoldActive));
                 mainMenu.AddSeparator();
                 //   mainMenu.Add("ChaseMode.MinHP", new Slider("Chase Mode enable if my health >= (&)", 20, 0, 100));
                 mainMenu.AddGroupLabel("Evade Mode");
