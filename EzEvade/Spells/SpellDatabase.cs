@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -757,7 +757,7 @@ namespace ezEvade
                 dangerlevel = 2,
                 missileName = "InfectedCleaverMissile",
                 name = "Infected Cleaver",
-                projectileSpeed = 1850,
+                projectileSpeed = 2000,
                 radius = 60,
                 range = 1050,
                 spellDelay = 250,
