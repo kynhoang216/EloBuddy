@@ -579,7 +579,7 @@ namespace ezEvade
                 spellName = "CassiopeiaW",
                 spellType = SpellType.Circular,
                 trapTroyName = "cassiopeia_base_w_wcircle_tar_" + Situation.EmitterTeam() + ".troy",
-                updatePosition = false,
+                //updatePosition = false,
                 hasTrap = true
             });
 
