@@ -569,7 +569,7 @@ namespace ezEvade
                 angle = 10,
                 charName = "Cassiopeia",
                 dangerlevel = 1,
-                name = "Miasama",
+                name = "CassiopeiaW",
                 missileName = "CassiopeiaWMissile",
                 projectileSpeed = 3000,
                 radius = 195,
@@ -579,7 +579,7 @@ namespace ezEvade
                 spellKey = SpellSlot.W,
                 spellName = "CassiopeiaW",
                 spellType = SpellType.Circular,
-                trapTroyName = "cassiopeia_base_w_wcircle_tar_" + Situation.EmitterTeam() + ".troy",
+                //trapTroyName = "cassiopeia_base_w_wcircle_tar_" + Situation.EmitterTeam() + ".troy",
                 updatePosition = false,
                 hasTrap = true
             });
