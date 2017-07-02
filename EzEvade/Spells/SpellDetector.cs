@@ -939,9 +939,9 @@ namespace ezEvade
                                 trapMenu.Add(trapSpellName + "DodgeSpell", new CheckBox("Dodge Trap", enableSpell));
                                 trapMenu.Add(trapSpellName + "DrawSpell", new CheckBox("Draw Trap", enableSpell));
                                 trapMenu.Add(trapSpellName + "SpellRadius", new Slider("Trap Radius", (int)spell.radius, (int)spell.radius - 100, (int)spell.radius + 100));
-                                spellMenu.Add(trapSpellName + "FastEvade", new CheckBox("Force Fast Evade", spell.dangerlevel == 4));
+                                trapMenu.Add(trapSpellName + "FastEvade", new CheckBox("Force Fast Evade", spell.dangerlevel == 4));
                                 trapMenu.Add(trapSpellName + "DodgeIgnoreHP", new Slider("Ignore above HP %", spell.dangerlevel == 1 ? 80 : 100));
-                                var slider = trapMenu.Add(spell.spellName + "DangerLevel",
+                                var slider = trapMenu.Add(trapSpellName + "DangerLevel",
                                     new Slider("Danger Level", spell.dangerlevel - 1, 0, 3));
                                 var array = new[] { "Low", "Normal", "High", "Extreme" };
                                 slider.OnValueChange +=

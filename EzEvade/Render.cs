@@ -17,6 +17,8 @@ namespace EzEvade
             {
                 EloBuddy.SDK.Rendering.Circle.Draw(new ColorBGRA(color.R, color.G, color.B, 255), radius, width, pos);
             }
+
         }
+
     }
 }

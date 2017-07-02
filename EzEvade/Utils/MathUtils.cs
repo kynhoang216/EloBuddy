@@ -79,13 +79,10 @@ namespace ezEvade
          * //from leaguesharp.commons
                 var spellPos = spell.GetCurrentSpellPosition(true);
                 var sol = Geometry.VectorMovementCollision(spellPos, spell.endPos, spell.info.projectileSpeed, heroPos, ObjectCache.myHeroCache.moveSpeed);
-
                 var startTime = 0f;
                 var endTime = spellPos.Distance(spell.endPos) / spell.info.projectileSpeed;
-
                 var time = (float) sol[0];
                 var pos = (Vector2) sol[1];
-
                 if (pos.IsValid() && time >= startTime && time <= startTime + endTime)
                 {
                     return true;
@@ -240,7 +237,7 @@ namespace ezEvade
 
             return float.MaxValue;
         }
-        
+
         //http://csharphelper.com/blog/2014/09/determine-where-a-line-intersects-a-circle-in-c/
         // Find the points of intersection.
         public static int FindLineCircleIntersections(

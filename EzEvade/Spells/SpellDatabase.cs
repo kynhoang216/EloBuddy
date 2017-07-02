@@ -567,11 +567,11 @@ namespace ezEvade
             new SpellData
             {
                 charName = "Cassiopeia",
-                dangerlevel = 1,
+                dangerlevel = 3,
                 name = "CassiopeiaW",
                 missileName = "CassiopeiaWMissile",
                 projectileSpeed = 3000,
-                radius = 195,
+                radius = 200,
                 range = 900,
                 spellDelay = 0,
                 extraEndTime = 5000,
@@ -579,7 +579,7 @@ namespace ezEvade
                 spellName = "CassiopeiaW",
                 spellType = SpellType.Circular,
                 //trapTroyName = "cassiopeia_base_w_wcircle_tar_" + Situation.EmitterTeam() + ".troy",
-                //updatePosition = false,
+                //pdatePosition = false,
                 //hasTrap = true
             });
 
