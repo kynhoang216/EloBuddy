@@ -566,7 +566,6 @@ namespace ezEvade
             Spells.Add(
             new SpellData
             {
-                angle = 10,
                 charName = "Cassiopeia",
                 dangerlevel = 1,
                 name = "CassiopeiaW",
@@ -579,7 +578,7 @@ namespace ezEvade
                 spellKey = SpellSlot.W,
                 spellName = "CassiopeiaW",
                 spellType = SpellType.Circular,
-                //trapTroyName = "cassiopeia_base_w_wcircle_tar_" + Situation.EmitterTeam() + ".troy",
+                trapTroyName = "cassiopeia_base_w_wcircle_tar_" + Situation.EmitterTeam() + ".troy",
                 updatePosition = false,
                 hasTrap = true
             });
