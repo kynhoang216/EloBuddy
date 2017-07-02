@@ -757,7 +757,7 @@ namespace ezEvade
                 dangerlevel = 2,
                 missileName = "InfectedCleaverMissile",
                 name = "Infected Cleaver",
-                projectileSpeed = 2000,
+                projectileSpeed = 1850,
                 radius = 60,
                 range = 1050,
                 spellDelay = 250,
