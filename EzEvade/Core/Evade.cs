@@ -132,7 +132,15 @@ namespace ezEvade
                 spellDetector = new SpellDetector(menu);
                 evadeSpell = new EvadeSpell(menu);
 
-          
+                Menu keyMenu = menu.AddSubMenuEx("Key Settings", "KeySettings");
+                keyMenu.Add("DodgeDangerousKeyEnabled", new CheckBox("Enable Dodge Only Dangerous Keys", false));
+                keyMenu.Add("DodgeDangerousKey", new KeyBind("Dodge Only Dangerous Key", false, KeyBind.BindTypes.PressToggle));
+                keyMenu.Add("DodgeDangerousKey2",new KeyBind("Dodge Only Dangerous Key 2", false, KeyBind.BindTypes.HoldActive));
+                keyMenu.Add("DodgeOnlyOnComboKeyEnabled", new CheckBox("Enable Dodge Only On Combo Key", false));
+                keyMenu.Add("DodgeComboKey", new KeyBind("Dodge Only Combo Key", false, KeyBind.BindTypes.PressToggle));
+                keyMenu.Add("DontDodgeKeyEnabled", new CheckBox("Enable Don't Dodge Key", false));
+                keyMenu.Add("DontDodgeKey", new KeyBind("Don't Dodge Key", false, KeyBind.BindTypes.PressToggle));
+                //menu.AddSubMenu(keyMenu);
 
                 Menu miscMenu = menu.AddSubMenuEx("Misc Settings", "MiscSettings");
                 miscMenu.Add("HigherPrecision", new CheckBox("Enhanced Dodge Precision", false));
@@ -159,7 +167,7 @@ namespace ezEvade
                 Menu fastEvadeMenu = menu.AddSubMenuEx("Fast Evade", "FastEvade");
                 fastEvadeMenu.Add("FastMovementBlock", new CheckBox("Fast Movement Block", false));
                 fastEvadeMenu.Add("FastEvadeActivationTime", new Slider("FastEvade Activation Time", 65, 0, 500));
-                fastEvadeMenu.Add("SpellActivationTime", new Slider("Spell Activation Time", 200, 0, 1000));
+                fastEvadeMenu.Add("SpellActivationTime", new Slider("Spell Activation Time", 400, 0, 1000));
                 fastEvadeMenu.Add("RejectMinDistance", new Slider("Collision Distance Buffer", 10, 0, 100));
 
                 /*Menu evadeSpellSettingsMenu = new Menu("Evade Spell", "EvadeSpellMisc");
@@ -171,9 +179,9 @@ namespace ezEvade
                 bufferMenu.Add("ExtraPingBuffer", new Slider("Extra Ping Buffer", 65, 0, 200));
                 bufferMenu.Add("ExtraCPADistance", new Slider("Extra Collision Distance", 10, 0, 150));
                 bufferMenu.Add("ExtraSpellRadius", new Slider("Extra Spell Radius", 0, 0, 100));
-                bufferMenu.Add("ExtraEvadeDistance", new Slider("Extra Evade Distance", 0, 0, 300));
+                bufferMenu.Add("ExtraEvadeDistance", new Slider("Extra Evade Distance", 100, 0, 300));
                 bufferMenu.Add("ExtraAvoidDistance", new Slider("Extra Avoid Distance", 50, 0, 300));
-                bufferMenu.Add("MinComfortZone", new Slider("Min Distance to Champion", 1000, 0, 1000));
+                bufferMenu.Add("MinComfortZone", new Slider("Min Distance to Champion", 550, 0, 1000));
 
 
            //     Menu resetMenu = menu.AddSubMenuEx("Reset Config", "ResetConfig");
@@ -181,9 +189,9 @@ namespace ezEvade
            //     resetMenu.Add("ResetConfig200", new CheckBox("Set Patch Config", true));
 
 
-             //   Menu loadTestMenu = menu.AddSubMenuEx("Tests", "LoadTests");
-           //     loadTestMenu.Add("LoadPingTester", new CheckBox("Load Ping Tester", false)).OnValueChange += OnLoadPingTesterChange;
-            //    loadTestMenu.Add("LoadSpellTester", new CheckBox("Load Spell Tester", false)).OnValueChange += OnLoadSpellTesterChange;
+                //Menu loadTestMenu = menu.AddSubMenuEx("Tests", "LoadTests");
+                //loadTestMenu.Add("LoadPingTester", new CheckBox("Load Ping Tester", false)).OnValueChange += OnLoadPingTesterChange;
+                //loadTestMenu.Add("LoadSpellTester", new CheckBox("Load Spell Tester", false)).OnValueChange += OnLoadSpellTesterChange;
 
                 spellDrawer = new SpellDrawer(menu);
 
@@ -197,13 +205,14 @@ namespace ezEvade
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e);
+                Console.WriteLine(e);
             }
         }
 
-        public static void ResetConfig()
+
+        public static void ResetConfig(bool kappa = true)
         {
-           // TODO
+            //TODO
           //  menu["DodgeSkillShots"].Cast<CheckBox>().CurrentValue = false;
             
             //menu.Item("DodgeSkillShots").SetValue(new KeyBind('K', KeyBindType.Toggle, true));
@@ -243,6 +252,8 @@ namespace ezEvade
             //menu.Item("ExtraEvadeDistance").SetValue(new Slider(100, 0, 300));
             //menu.Item("ExtraAvoidDistance").SetValue(new Slider(50, 0, 300));
             //menu.Item("MinComfortZone").SetValue(new Slider(550, 0, 1000));
+
+
         }
 
         public static void SetPatchConfig()
@@ -252,12 +263,23 @@ namespace ezEvade
             //menu.Item("TickLimiter").SetValue(new Slider(100, 0, 500));
         }
 
-        private void OnEvadeModeChange(ValueBase<int> sender, ValueBase<int>.ValueChangeArgs changeArgs)
+        private void OnEvadeModeChange(ValueBase<int> sender, ValueBase<int>.ValueChangeArgs changeArgs )
         {
             var mode = sender.DisplayName;
 
-            if (mode == "Very Smooth")
+            if (mode == "Fastest")
             {
+                ResetConfig(false);
+                menu["FastMovementBlock"].Cast<CheckBox>().CurrentValue = true;
+                menu["FastEvadeActivationTime"].Cast<Slider>().CurrentValue = 120;
+                menu["RejectMinDistance"].Cast<Slider>().CurrentValue = 25;
+                menu["ExtraCPADistance"].Cast<Slider>().CurrentValue = 25;
+                menu["ExtraPingBuffer"].Cast<Slider>().CurrentValue = 80;
+            }
+
+            else if (mode == "Very Smooth")
+            {
+                ResetConfig(false);
                 menu["FastEvadeActivationTime"].Cast<Slider>().CurrentValue = 0;
                 menu["RejectMinDistance"].Cast<Slider>().CurrentValue = 0;
                 menu["ExtraCPADistance"].Cast<Slider>().CurrentValue = 0;
@@ -265,6 +287,7 @@ namespace ezEvade
             }
             else if (mode == "Smooth")
             {
+                ResetConfig(false);
                 menu["FastEvadeActivationTime"].Cast<Slider>().CurrentValue = 65;
                 menu["RejectMinDistance"].Cast<Slider>().CurrentValue = 10;
                 menu["ExtraCPADistance"].Cast<Slider>().CurrentValue = 10;

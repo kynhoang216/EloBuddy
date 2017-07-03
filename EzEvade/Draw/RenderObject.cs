@@ -35,7 +35,7 @@ namespace ezEvade.Draw
         private static void Render()
         {
             foreach (RenderObject obj in objects)
-            {                
+            {
                 if (obj.endTime - EvadeUtils.TickCount > 0)
                 {
                     obj.Draw(); //weird after draw

@@ -22,9 +22,10 @@ namespace ezEvade
     {
         EnemyChampions,
         EnemyMinions,
+        YasuoWall
     }
 
-    public class SpellData
+    public class SpellData : ICloneable
     {
         public string charName;
         public SpellSlot spellKey = SpellSlot.Q;
@@ -66,7 +67,7 @@ namespace ezEvade
 
         public SpellData()
         {
-        
+
         }
 
         public SpellData(
@@ -76,7 +77,7 @@ namespace ezEvade
             int range,
             int radius,
             int dangerlevel,
-            SpellType spellType            
+            SpellType spellType
             )
         {
             this.charName = charName;
