@@ -9,13 +9,12 @@ using EloBuddy.SDK;
 using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using SharpDX;
-using EzEvade;
 
 namespace ezEvade
 {
     public static class Situation
     {
-        private static AIHeroClient myHero => ObjectManager.Player;
+        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
         static Situation()
         {
@@ -89,7 +88,7 @@ namespace ezEvade
                 var turret = entry.Value;
                 if (turret == null || !turret.IsValid || turret.IsDead)
                 {
-                    DelayAction.Add(1, () => ObjectCache.turrets.Remove(entry.Key));
+                    Core.DelayAction(() => ObjectCache.turrets.Remove(entry.Key), 1000);
                     continue;
                 }
 
@@ -110,12 +109,6 @@ namespace ezEvade
 
         public static bool ShouldDodge()
         {
-            if (ObjectCache.menuCache.cache["DontDodgeKeyEnabled"].Cast<CheckBox>().CurrentValue &&
-                ObjectCache.menuCache.cache["DontDodgeKey"].Cast<KeyBind>().CurrentValue)
-            {
-                return false;
-            }
-
             if (ObjectCache.menuCache.cache["DodgeSkillShots"].Cast<KeyBind>().CurrentValue == false
                 || CommonChecks()
                 )
@@ -136,17 +129,13 @@ namespace ezEvade
                 return false;
             }
 
+
+
             return true;
         }
 
         public static bool ShouldUseEvadeSpell()
         {
-            if (ObjectCache.menuCache.cache["DontDodgeKeyEnabled"].Cast<CheckBox>().CurrentValue &&
-                ObjectCache.menuCache.cache["DontDodgeKey"].Cast<KeyBind>().CurrentValue)
-            {
-                return false;
-            }
-
             if (ObjectCache.menuCache.cache["ActivateEvadeSpells"].Cast<KeyBind>().CurrentValue == false
                 || CommonChecks()
                 || Evade.lastWindupTime - EvadeUtils.TickCount > 0
@@ -163,14 +152,12 @@ namespace ezEvade
             return
 
                 Evade.isChanneling
-                || (ObjectCache.menuCache.cache["DodgeOnlyOnComboKeyEnabled"].Cast<CheckBox>().CurrentValue == true &&
-                    ObjectCache.menuCache.cache["DodgeComboKey"].Cast<KeyBind>().CurrentValue == false)
                 || myHero.IsDead
                 || myHero.IsInvulnerable
                 || myHero.IsTargetable == false
                 || HasSpellShield(myHero)
                 || ChampionSpecificChecks()
-                || myHero.IsDashing()
+                || Player.Instance.IsDashing()
                 || Evade.hasGameEnded == true;
         }
 
@@ -200,23 +187,24 @@ namespace ezEvade
                 return true;
             }
 
-            //Sivir E
-            if (unit.LastCastedSpellName() == "SivirE" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
-            {
-                return true;
-            }
+            //TODO:
+            ////Sivir E
+            //if (unit.LastCastedSpellName() == "SivirE" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
+            //{
+            //    return true;
+            //}
 
-            //Morganas E
-            if (unit.LastCastedSpellName() == "BlackShield" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
-            {
-                return true;
-            }
+            ////Morganas E
+            //if (unit.LastCastedSpellName() == "BlackShield" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
+            //{
+            //    return true;
+            //}
 
-            //Nocturnes E
-            if (unit.LastCastedSpellName() == "NocturneShit" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
-            {
-                return true;
-            }
+            ////Nocturnes E
+            //if (unit.LastCastedSpellName() == "NocturneShit" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
+            //{
+            //    return true;
+            //}
 
             return false;
         }
