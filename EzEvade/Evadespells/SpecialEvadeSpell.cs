@@ -25,7 +25,68 @@ namespace ezEvade
             {
                 spellData.useSpellFunc = UseEkkoR;
             }
+
+            if (spellData.spellName == "EliseSpiderEInitial")
+            {
+                spellData.useSpellFunc = UseRappel;
+            }
+
+            if (spellData.spellName == "Pounce")
+            {
+                spellData.useSpellFunc = UsePounce;
+            }
+
+            if (spellData.spellName == "RivenTriCleave")
+            {
+                spellData.useSpellFunc = UseBrokenWings;
+            }
         }
+
+        public static bool UseRappel(EvadeSpellData evadeSpell, bool process = true)
+        {
+            if (myHero.CharData.BaseSkinName != "Elise")
+            {
+                EvadeSpell.CastEvadeSpell(() => EvadeCommand.CastSpell(evadeSpell, myHero), process);
+                return true;
+            }
+
+            if (myHero.CharData.BaseSkinName == "Elise")
+            {
+                if (myHero.Spellbook.CanUseSpell(SpellSlot.R) == SpellState.Ready)
+                    myHero.Spellbook.CastSpell(SpellSlot.R);
+            }
+
+            return false;
+        }
+
+        public static bool UsePounce(EvadeSpellData evadeSpell, bool process = true)
+        {
+            if (myHero.CharData.BaseSkinName != "Nidalee")
+            {
+                var posInfo = EvadeHelper.GetBestPositionDash(evadeSpell);
+                if (posInfo != null)
+                {
+                    EvadeSpell.CastEvadeSpell(() => EvadeCommand.CastSpell(evadeSpell), process);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool UseBrokenWings(EvadeSpellData evadeSpell, bool process = false)
+        {
+            var posInfo = EvadeHelper.GetBestPositionDash(evadeSpell);
+            if (posInfo != null)
+            {
+                EvadeCommand.MoveTo(posInfo.position);
+                DelayAction.Add(50, () => EvadeSpell.CastEvadeSpell(() => EvadeCommand.CastSpell(evadeSpell), process));
+                return true;
+            }
+
+            return false;
+        }
+
 
         public static bool UseEkkoE2(EvadeSpellData evadeSpell, bool process = true)
         {

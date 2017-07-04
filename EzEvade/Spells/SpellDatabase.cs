@@ -3961,6 +3961,24 @@ namespace ezEvade
 
             #endregion Vladimir
 
+            #region Xayah
+
+            Spells.Add(
+                new SpellData
+                {
+                    charName = "Xayah",
+                    dangerlevel = 2,
+                    spellName = "XayahQ",
+                    name = "XayahQ",
+                    spellType = SpellType.Line,
+                    spellKey = SpellSlot.Q,
+                    range = 1100,
+                    radius = 50,
+                    projectileSpeed = 1400,
+                });
+
+            #endregion Xayah
+
             #region Xerath
 
             Spells.Add(
@@ -4223,10 +4241,29 @@ namespace ezEvade
             new SpellData
             {
                 charName = "Ziggs",
+                dangerlevel = 2,
+                name = "ZiggsQBounce",
+                missileName = "ZiggsQSpell2",
+                projectileSpeed = 1600,
+                radius = 150,
+                range = 1100,
+                spellDelay = 400,
+                spellKey = SpellSlot.Q,
+                spellName = "ZiggsQBounce",
+                spellType = SpellType.Circular,
+                isSpecial = true,
+                noProcess = true,
+                
+            });
+
+            Spells.Add(
+            new SpellData
+            {
+                charName = "Ziggs",
                 dangerlevel = 4,
-                missileName = "ZiggsR",
-                name = "Mega Inferno Bomb",
-                projectileSpeed = 1550,
+                missileName = "ZiggsRBoom",
+                name = "ZiggsR",
+                projectileSpeed = 1500,
                 radius = 500,
                 range = 5300,
                 spellDelay = 400,
@@ -4316,16 +4353,16 @@ namespace ezEvade
             {
                 charName = "Zyra",
                 dangerlevel = 4,
-                name = "Stranglethorns",
+                name = "ZyraR",
                 radius = 525,
                 range = 700,
-                extraEndTime = 2000,
-                spellDelay = 500,
+                //extraEndTime = 2000,
+                spellDelay = 2200,
                 spellKey = SpellSlot.R,
                 spellName = "ZyraR",
                 extraSpellNames = new[] { "ZyraBrambleZone" },
                 spellType = SpellType.Circular,
-                defaultOff = true
+                //defaultOff = true
             });
 
             #endregion Zyra
