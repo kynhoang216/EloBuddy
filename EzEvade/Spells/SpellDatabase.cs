@@ -391,7 +391,7 @@ namespace ezEvade
             {
                 charName = "Blitzcrank",
                 dangerlevel = 3,
-                extraDelay = 75,
+                //extraDelay = 75,
                 missileName = "RocketGrabMissile",
                 name = "Rocket Grab",
                 projectileSpeed = 1800,
