@@ -14,7 +14,7 @@ namespace ezEvade
 {
     public static class Situation
     {
-        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
+        private static AIHeroClient myHero => ObjectManager.Player;
 
         static Situation()
         {
@@ -54,7 +54,7 @@ namespace ezEvade
             {
                 var curDistToEnemies = ObjectCache.myHeroCache.serverPos2D.GetDistanceToChampions();
                 var posDistToEnemies = pos.GetDistanceToChampions();
-
+                
                 if (curDistToEnemies < distance)
                 {
                     if (curDistToEnemies > posDistToEnemies)
@@ -73,7 +73,7 @@ namespace ezEvade
 
             return false;
         }
-
+                
         public static bool IsUnderTurret(this Vector2 pos, bool checkEnemy = true)
         {
             if (!ObjectCache.menuCache.cache["PreventDodgingUnderTower"].Cast<CheckBox>().CurrentValue)

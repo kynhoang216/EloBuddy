@@ -25,12 +25,11 @@ namespace ezEvade
 
         public EvadeSpell(Menu mainMenu)
         {
-            menu = mainMenu;
-
-            //Game.OnUpdate += Game_OnGameUpdate;
-
             evadeSpellMenu = mainMenu;
+
+            Game.OnUpdate += Game_OnGameUpdate;
             evadeSpellMenu = mainMenu.AddSubMenuEx("Evade Spells", "EvadeSpells");
+            //  evadeSpellMenu = menu.IsSubMenu ? menu.Parent.AddSubMenuEx("Evade Spells", "EvadeSpells") : menu.AddSubMenuEx("Evade Spells", "EvadeSpells");
 
             LoadEvadeSpellList();
             DelayAction.Add(100, () => CheckForItems());
@@ -38,7 +37,7 @@ namespace ezEvade
 
         private void Game_OnGameUpdate(EventArgs args)
         {
-            //CheckDashing();
+         //   CheckDashing();
         }
 
         public static void CheckDashing()
@@ -46,8 +45,6 @@ namespace ezEvade
             if (EvadeUtils.TickCount - lastSpellEvadeCommand.timestamp < 250 && myHero.IsDashing()
                 && lastSpellEvadeCommand.evadeSpellData.evadeType == EvadeType.Dash)
             {
-                var dashInfo = myHero.GetDashInfo();
-
                 //Console.WriteLine("" + dashInfo.EndPos.Distance(lastSpellEvadeCommand.targetPosition));
                 lastSpellEvadeCommand.targetPosition = Player.Instance.GetDashInfo().EndPos.To2D();
             }
@@ -184,14 +181,16 @@ namespace ezEvade
 
                 if (ObjectCache.menuCache.cache[evadeSpell.name + "UseEvadeSpell"].Cast<CheckBox>().CurrentValue == false
                     || GetSpellDangerLevel(evadeSpell) > spell.GetSpellDangerLevel()
-                    || (evadeSpell.isItem == false && myHero.Spellbook.CanUseSpell(evadeSpell.spellKey) != SpellState.Ready)
-                    || (evadeSpell.isItem && !Items.CanUseItem((int)evadeSpell.itemID))
-                    || (evadeSpell.checkSpellName && myHero.Spellbook.GetSpell(evadeSpell.spellKey).Name != evadeSpell.spellName))
+                    || (evadeSpell.isItem == false && !(myHero.Spellbook.CanUseSpell(evadeSpell.spellKey) == SpellState.Ready))
+                    || (evadeSpell.isItem == true && !(Items.CanUseItem((int)evadeSpell.itemID)))
+                    || (evadeSpell.checkSpellName == true && myHero.Spellbook.GetSpell(evadeSpell.spellKey).Name != evadeSpell.spellName))
+
                 {
                     continue; //can't use spell right now               
                 }
 
-                float evadeTime, spellHitTime;
+
+                float evadeTime, spellHitTime = 0;
                 spell.CanHeroEvade(myHero, out evadeTime, out spellHitTime);
 
                 float finalEvadeTime = (spellHitTime - evadeTime);
@@ -215,7 +214,7 @@ namespace ezEvade
                 }
                 else
                 {
-                    //if (ObjectCache.menuCache.cache[evadeSpell.name + "LastResort"].GetValue<bool>())
+                    //if (ObjectCache.menuCache.cache[evadeSpell.name + "LastResort"].Cast<CheckBox>().CurrentValue)
                     if (evadeSpell.spellDelay <= 50 && evadeSpell.evadeType != EvadeType.Dash)
                     {
                         var path = myHero.Path;
@@ -243,7 +242,7 @@ namespace ezEvade
                     }
                 }
 
-                if (evadeSpell.isSpecial)
+                if (evadeSpell.isSpecial == true)
                 {
                     if (evadeSpell.useSpellFunc != null)
                     {
@@ -328,55 +327,23 @@ namespace ezEvade
                         CastEvadeSpell(() => Items.UseItem((int)evadeSpell.itemID), processSpell);
                         return true;
                     }
-
-                    if (evadeSpell.castType == CastType.Target)
+                    else
                     {
-                        CastEvadeSpell(() => EvadeCommand.CastSpell(evadeSpell, myHero), processSpell);
-                        return true;
-                    }
-
-                    if (evadeSpell.castType == CastType.Self)
-                    {
-                        CastEvadeSpell(() => EvadeCommand.CastSpell(evadeSpell), processSpell);
-                        return true;
+                        if (evadeSpell.castType == CastType.Target)
+                        {
+                            CastEvadeSpell(() => EvadeCommand.CastSpell(evadeSpell, myHero), processSpell);
+                            return true;
+                        }
+                        else if (evadeSpell.castType == CastType.Self)
+                        {
+                            CastEvadeSpell(() => EvadeCommand.CastSpell(evadeSpell), processSpell);
+                            return true;
+                        }
                     }
                 }
                 else if (evadeSpell.evadeType == EvadeType.MovementSpeedBuff)
                 {
-                    if (evadeSpell.isItem)
-                    {
-                        var posInfo = EvadeHelper.GetBestPosition();
-                        if (posInfo != null)
-                        {
-                            CastEvadeSpell(() => Items.UseItem((int)evadeSpell.itemID), processSpell);
-                            DelayAction.Add(5, () => EvadeCommand.MoveTo(posInfo.position));
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        if (evadeSpell.castType == CastType.Self)
-                        {
-                            var posInfo = EvadeHelper.GetBestPosition();
-                            if (posInfo != null)
-                            {
-                                CastEvadeSpell(() => EvadeCommand.CastSpell(evadeSpell), processSpell);
-                                DelayAction.Add(5, () => EvadeCommand.MoveTo(posInfo.position));
-                                return true;
-                            }
-                        }
 
-                        else if (evadeSpell.castType == CastType.Position)
-                        {
-                            var posInfo = EvadeHelper.GetBestPosition();
-                            if (posInfo != null)
-                            {
-                                CastEvadeSpell(() => EvadeCommand.CastSpell(evadeSpell, posInfo.position), processSpell);
-                                DelayAction.Add(5, () => EvadeCommand.MoveTo(posInfo.position));
-                                return true;
-                            }
-                        }
-                    }
                 }
             }
 
@@ -427,7 +394,8 @@ namespace ezEvade
 
 
             /*float activationTime = Evade.menu.SubMenu("MiscSettings").SubMenu("EvadeSpellMisc").Item("EvadeSpellActivationTime")
-                .GetValue<Slider>().Value + ObjectCache.gamePing;
+                .Cast<Slider>().CurrentValue + ObjectCache.gamePing;
+
             if (spell.spellHitTime != float.MinValue && activationTime > spell.spellHitTime - spell.evadeTime)
             {
                 return true;
@@ -459,21 +427,21 @@ namespace ezEvade
         {
             var dangerStr = ObjectCache.menuCache.cache[spell.name + "EvadeSpellDangerLevel"].Cast<Slider>().DisplayName;
 
-            var dangerlevel = 1;
+            int dangerlevel;
 
             switch (dangerStr)
             {
                 case "Low":
-                    dangerlevel = 1;
+                    dangerlevel = 0;
                     break;
                 case "High":
-                    dangerlevel = 3;
+                    dangerlevel = 2;
                     break;
                 case "Extreme":
-                    dangerlevel = 4;
+                    dangerlevel = 3;
                     break;
                 default:
-                    dangerlevel = 2;
+                    dangerlevel = 1;
                     break;
             }
 
@@ -527,7 +495,7 @@ namespace ezEvade
 
                 evadeSpells.Add(spell);
 
-                var newSpellMenu = CreateEvadeSpellMenu(spell);
+                var evadeSpellMenu = CreateEvadeSpellMenu(spell);
             }
 
             evadeSpells.Sort((a, b) => a.dangerlevel.CompareTo(b.dangerlevel));

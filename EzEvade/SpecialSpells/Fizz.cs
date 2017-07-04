@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using EloBuddy;
 using EloBuddy.SDK;
 using SharpDX;
@@ -64,6 +63,7 @@ namespace ezEvade.SpecialSpells
                 specialSpellArgs.noProcess = true;
             }
         }
+
 
         private static void OnDeleteObj_FizzMarinerDoom(GameObject obj, EventArgs args, SpellData spellData)
         {

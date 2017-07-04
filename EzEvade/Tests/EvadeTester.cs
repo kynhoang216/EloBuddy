@@ -23,7 +23,7 @@ namespace ezEvade
         public static Menu menu;
         public static Menu testMenu;
 
-        public static AIHeroClient myHero { get { return ObjectManager.Player; } }
+        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
         private static Vector2 circleRenderPos;
 

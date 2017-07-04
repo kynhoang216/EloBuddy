@@ -168,23 +168,17 @@ namespace ezEvade
 
         /*public void SpellMissile_OnCreateOld(GameObject obj, EventArgs args)
         {
-
             if (obj.GetType() != typeof (MissileClient) || !((MissileClient) obj).IsValidMissile())
                 return;
-
             var missile = (MissileClient) obj;
-
             SpellData spellData;
-
             if (missile.SpellCaster != null && missile.SpellCaster.Team != myHero.Team &&
                 missile.SData.Name != null && onMissileSpells.TryGetValue(missile.SData.Name, out spellData)
                 && missile.StartPosition != null && missile.EndPosition != null)
             {
-
                 if (missile.StartPosition.Distance(myHero.Position) < spellData.range + 1000)
                 {
                     var hero = missile.SpellCaster;
-
                     if (hero.IsVisible)
                     {
                         if (spellData.usePackets)
@@ -192,13 +186,10 @@ namespace ezEvade
                             CreateSpellData(hero, missile.StartPosition, missile.EndPosition, spellData, obj);
                             return;
                         }
-
                         foreach (KeyValuePair<int, Spell> entry in spells)
                         {
                             Spell spell = entry.Value;
-
                             var dir = (missile.EndPosition.To2D() - missile.StartPosition.To2D()).Normalized();
-
                             if (spell.info.missileName == missile.SData.Name
                                 && spell.heroID == missile.SpellCaster.NetworkId
                                 && dir.AngleBetween(spell.direction) < 10)
@@ -220,15 +211,12 @@ namespace ezEvade
                 }
             }
         }
-
         public void SpellMissile_OnDeleteOld(GameObject obj, EventArgs args)
         {
             if (obj.GetType() != typeof (MissileClient) || !((MissileClient) obj).IsValidMissile())
                 return;
-
             var missile = (MissileClient) obj;
             //SpellData spellData;
-
             foreach (var spell in spells.Values.ToList().Where(
                 s => (s.spellObject != null && s.spellObject.NetworkId == obj.NetworkId))) //isAlive
             {

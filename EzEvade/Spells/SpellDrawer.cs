@@ -80,24 +80,6 @@ namespace ezEvade
             Drawing.DrawLine(lEndPos, rEndPos, width, color);
         }
 
-        private void DrawLineTriangle(Vector2 start, Vector2 end, int radius, int width, Color color)
-        {
-            var dir = (end - start).Normalized();
-            var pDir = dir.Perpendicular();
-
-            var initStartPos = start + dir;
-            var rightEndPos = end + pDir * radius;
-            var leftEndPos = end - pDir * radius;
-
-            var iStartPos = Drawing.WorldToScreen(new Vector3(initStartPos.X, initStartPos.Y, myHero.Position.Z));
-            var rEndPos = Drawing.WorldToScreen(new Vector3(rightEndPos.X, rightEndPos.Y, myHero.Position.Z));
-            var lEndPos = Drawing.WorldToScreen(new Vector3(leftEndPos.X, leftEndPos.Y, myHero.Position.Z));
-
-            Drawing.DrawLine(iStartPos, rEndPos, width, color);
-            Drawing.DrawLine(iStartPos, lEndPos, width, color);
-            Drawing.DrawLine(rEndPos, lEndPos, width, color);
-        }
-
         private void DrawEvadeStatus()
         {
             if (ObjectCache.menuCache.cache["ShowStatus"].Cast<CheckBox>().CurrentValue)
@@ -211,9 +193,10 @@ namespace ezEvade
                         }
                     }
                     else if (spell.spellType == SpellType.Arc)
-                    {
+                    {                      
                         /*var spellRange = spell.startPos.Distance(spell.endPos);
                         var midPoint = spell.startPos + spell.direction * (spellRange / 2);
+
                         Render.Circle.DrawCircle(new Vector3(midPoint.X, midPoint.Y, myHero.Position.Z), (int)spell.radius, spellDrawingConfig.Color, spellDrawingWidth);
                         
                         Drawing.DrawLine(Drawing.WorldToScreen(spell.startPos.To3D()),
@@ -222,7 +205,7 @@ namespace ezEvade
                     }
                     else if (spell.spellType == SpellType.Cone)
                     {
-                        DrawLineTriangle(spell.startPos, spell.endPos, (int)spell.radius, spellDrawingWidth, Color.Yellow);
+
                     }
                 }
             }

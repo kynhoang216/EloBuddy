@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -391,7 +391,7 @@ namespace ezEvade
             {
                 charName = "Blitzcrank",
                 dangerlevel = 3,
-                //extraDelay = 75,
+                extraDelay = 75,
                 missileName = "RocketGrabMissile",
                 name = "Rocket Grab",
                 projectileSpeed = 1800,
@@ -567,20 +567,20 @@ namespace ezEvade
             new SpellData
             {
                 charName = "Cassiopeia",
-                dangerlevel = 3,
+                dangerlevel = 1,
                 name = "CassiopeiaW",
                 missileName = "CassiopeiaWMissile",
                 projectileSpeed = 3000,
-                radius = 180,
-                range = 850,
+                radius = 200,
+                range = 900,
                 spellDelay = 250,
                 extraEndTime = 5000,
                 spellKey = SpellSlot.W,
                 spellName = "CassiopeiaW",
                 spellType = SpellType.Circular,
-                //trapTroyName = "cassiopeia_base_w_wcircle_tar_" + Situation.EmitterTeam() + ".troy",
-                //pdatePosition = false,
-                //hasTrap = true
+             //   trapTroyName = "cassiopeia_base_w_wcircle_tar_" + Situation.EmitterTeam() + ".troy",
+                //updatePosition = false,
+            //    hasTrap = true
             });
 
             Spells.Add(
@@ -2380,8 +2380,7 @@ namespace ezEvade
                 spellType = SpellType.Circular,
                 trapTroyName = "lux_base_e_tar_aoe_" + Situation.EmitterColor() + ".troy",
                 extraDrawHeight = -100,
-                hasTrap = true,
-                
+                hasTrap = true
             });
 
             Spells.Add(
@@ -2592,14 +2591,14 @@ namespace ezEvade
             {
                 charName = "Nami",
                 dangerlevel = 3,
-                missileName = "NamiQMissile",
+                missileName = "namiqmissile",
                 name = "Aqua Prison",
                 projectileSpeed = 2500,
-                radius = 150,
-                range = 1625,
-                spellDelay = 950,
+                radius = 200,
+                range = 875,
+                spellDelay = 450,
                 spellKey = SpellSlot.Q,
-                spellName = "NamiQ",
+                spellName = "namiq",
                 spellType = SpellType.Circular
             });
 
@@ -2630,13 +2629,13 @@ namespace ezEvade
                 charName = "Nautilus",
                 dangerlevel = 3,
                 missileName = "NautilusAnchorDragMissile",
-                name = "NautilusQ",
+                name = "Dredge Line",
                 projectileSpeed = 2000,
-                radius = 130,
+                radius = 90,
                 range = 1150,
                 spellDelay = 250,
                 spellKey = SpellSlot.Q,
-                spellName = "NautilusAnchorDragMissile",
+                spellName = "NautilusAnchorDrag",
                 spellType = SpellType.Line,
                 collisionObjects = new[] { CollisionObjectType.EnemyChampions, CollisionObjectType.EnemyMinions },
                 fixedRange = true

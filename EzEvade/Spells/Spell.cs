@@ -229,23 +229,25 @@ namespace ezEvade
             var heroPos = hero.ServerPosition.To2D();
             float evadeTime = 0;
             float spellHitTime = 0;
+            float speed = hero.MoveSpeed;
+            float delay = 0;
 
             var moveBuff = EvadeSpell.evadeSpells.OrderBy(s => s.dangerlevel).FirstOrDefault(s => s.evadeType == EvadeType.MovementSpeedBuff);
             if (moveBuff != null && EvadeSpell.ShouldUseMovementBuff(spell))
             {
-                //hero.MoveSpeed += hero.MoveSpeed * moveBuff.speedArray[ObjectManager.Player.GetSpellDataFromName(moveBuff.spellKey).Level - 1] / 100;
+                //speed += speed * moveBuff.speedArray[ObjectManager.Player.GetSpellSlotFromName(moveBuff.spellKey.).Level - 1] / 100;
                 //delay += (moveBuff.spellDelay > 50 ? moveBuff.spellDelay : 0) + ObjectCache.gamePing;
             }
 
             if (spell.spellType == SpellType.Line)
             {
                 var projection = heroPos.ProjectOn(spell.startPos, spell.endPos).SegmentPoint;
-                evadeTime = 1000 * (spell.radius - heroPos.Distance(projection) + hero.BoundingRadius) / hero.MoveSpeed;
+                evadeTime = 1000 * (spell.radius - heroPos.Distance(projection) + hero.BoundingRadius) / speed;
                 spellHitTime = spell.GetSpellHitTime(projection);
             }
             else if (spell.spellType == SpellType.Circular)
             {
-                evadeTime = 1000 * (spell.radius - heroPos.Distance(spell.endPos)) / hero.MoveSpeed;
+                evadeTime = 1000 * (spell.radius - heroPos.Distance(spell.endPos)) / speed;
                 spellHitTime = spell.GetSpellHitTime(heroPos);
             }
             else if (spell.spellType == SpellType.Cone)
@@ -258,14 +260,14 @@ namespace ezEvade
                 };
 
                 var p = sides.OrderBy(x => x.Distance(x)).First();
-                evadeTime = 1000 * (spell.info.range / 2 - heroPos.Distance(p) + hero.BoundingRadius) / hero.MoveSpeed;
+                evadeTime = 1000 * (spell.info.range / 2 - heroPos.Distance(p) + hero.BoundingRadius) / speed;
                 spellHitTime = spell.GetSpellHitTime(heroPos);
             }
 
             rEvadeTime = evadeTime;
             rSpellHitTime = spellHitTime;
 
-            return spellHitTime > evadeTime;
+            return spellHitTime - delay > evadeTime;
         }
 
         public static BoundingBox GetLinearSpellBoundingBox(this Spell spell)
