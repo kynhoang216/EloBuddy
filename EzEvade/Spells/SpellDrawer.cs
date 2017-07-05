@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -78,6 +78,24 @@ namespace ezEvade
             Drawing.DrawLine(lStartPos, lEndPos, width, color);
             Drawing.DrawLine(rStartPos, lStartPos, width, color);
             Drawing.DrawLine(lEndPos, rEndPos, width, color);
+        }
+
+        private void DrawLineTriangle(Vector2 start, Vector2 end, int radius, int width, Color color)
+        {
+            var dir = (end - start).Normalized();
+            var pDir = dir.Perpendicular();
+
+            var initStartPos = start + dir;
+            var rightEndPos = end + pDir * radius;
+            var leftEndPos = end - pDir * radius;
+
+            var iStartPos = Drawing.WorldToScreen(new Vector3(initStartPos.X, initStartPos.Y, myHero.Position.Z));
+            var rEndPos = Drawing.WorldToScreen(new Vector3(rightEndPos.X, rightEndPos.Y, myHero.Position.Z));
+            var lEndPos = Drawing.WorldToScreen(new Vector3(leftEndPos.X, leftEndPos.Y, myHero.Position.Z));
+
+            Drawing.DrawLine(iStartPos, rEndPos, width, color);
+            Drawing.DrawLine(iStartPos, lEndPos, width, color);
+            Drawing.DrawLine(rEndPos, lEndPos, width, color);
         }
 
         private void DrawEvadeStatus()
@@ -185,11 +203,15 @@ namespace ezEvade
                     }
                     else if (spell.spellType == SpellType.Circular)
                     {
-                        Render.Circle.DrawCircle(new Vector3(spell.endPos.X, spell.endPos.Y, spell.height), (int)spell.radius, Color.White, spellDrawingWidth);
+                        Render.Circle.DrawCircle(new Vector3(spell.endPos.X, spell.endPos.Y, spell.height), (int)spell.radius, Color.Yellow, spellDrawingWidth);
 
                         if (spell.info.spellName == "VeigarEventHorizon")
                         {
-                            Render.Circle.DrawCircle(new Vector3(spell.endPos.X, spell.endPos.Y, spell.height), (int)spell.radius - 125, Color.White, spellDrawingWidth);
+                            Render.Circle.DrawCircle(new Vector3(spell.endPos.X, spell.endPos.Y, spell.height), (int)spell.radius - 125, Color.Yellow, spellDrawingWidth);
+                        }
+                        else if (spell.info.spellName == "DariusCleave")
+                        {
+                            Render.Circle.DrawCircle(new Vector3(spell.endPos.X, spell.endPos.Y, spell.height), (int)spell.radius - 220, Color.Yellow, spellDrawingWidth);
                         }
                     }
                     else if (spell.spellType == SpellType.Arc)
@@ -205,7 +227,7 @@ namespace ezEvade
                     }
                     else if (spell.spellType == SpellType.Cone)
                     {
-
+                        DrawLineTriangle(spell.startPos, spell.endPos, (int)spell.radius, spellDrawingWidth, Color.Yellow);
                     }
                 }
             }
