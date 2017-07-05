@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -1013,8 +1013,23 @@ namespace ezEvade
                     }
 
                     return tHeroPos.Distance(spell.endPos) >= spell.radius
-                         ? Math.Max(0, tHeroPos.Distance(spell.endPos) - midRadius - wallRadius)
-                         : Math.Max(0, midRadius - tHeroPos.Distance(spell.endPos) - wallRadius);
+                        ? Math.Max(0, tHeroPos.Distance(spell.endPos) - midRadius - wallRadius)
+                        : Math.Max(0, midRadius - tHeroPos.Distance(spell.endPos) - wallRadius);
+                }
+
+                if (spell.info.spellName == "DariusCleave")
+                {
+                    var wallRadius = 115;
+                    var midRadius = spell.radius - wallRadius;
+
+                    if (spellHitTime == 0)
+                    {
+                        return 0;
+                    }
+
+                    return tHeroPos.Distance(spell.endPos) >= spell.radius
+                        ? Math.Max(0, tHeroPos.Distance(spell.endPos) - midRadius - wallRadius)
+                        : Math.Max(0, midRadius - tHeroPos.Distance(spell.endPos) - wallRadius);
                 }
 
                 var closestDist = Math.Max(0, tHeroPos.Distance(spell.endPos) - (spell.radius + extraDist));
