@@ -131,7 +131,7 @@ namespace ezEvade
             new SpellData
             {
                 charName = "Alistar",
-                defaultOff = true,
+                //defaultOff = true,
                 dangerlevel = 3,
                 name = "Pulverize",
                 radius = 365,
@@ -3794,7 +3794,7 @@ namespace ezEvade
                 spellKey = SpellSlot.E,
                 spellName = "VeigarEventHorizon",
                 spellType = SpellType.Circular,
-                defaultOff = true
+                //defaultOff = true
             });
 
             #endregion Veigar
@@ -3938,7 +3938,7 @@ namespace ezEvade
                 spellKey = SpellSlot.W,
                 spellName = "ViktorGravitonField",
                 spellType = SpellType.Circular,
-                defaultOff = true,
+                //defaultOff = true,
             });
 
             #endregion Viktor
@@ -4271,7 +4271,7 @@ namespace ezEvade
                 spellKey = SpellSlot.R,
                 spellName = "ZiggsR",
                 spellType = SpellType.Circular,
-                defaultOff = true,
+                //defaultOff = true,
                 isSpecial = true
             });
             #endregion Ziggs
