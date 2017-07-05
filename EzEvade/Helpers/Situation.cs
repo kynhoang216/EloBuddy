@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using EloBuddy;
+﻿using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
@@ -164,14 +158,14 @@ namespace ezEvade
         public static bool ChampionSpecificChecks()
         {
             return (myHero.ChampionName == "Sion" && myHero.HasBuff("SionR"))
-                ;
+                
 
             //Untargetable
-            //|| (myHero.ChampionName == "KogMaw" && myHero.HasBuff("kogmawicathiansurprise"))
-            //|| (myHero.ChampionName == "Karthus" && myHero.HasBuff("KarthusDeathDefiedBuff"))
+            || (myHero.ChampionName == "KogMaw" && myHero.HasBuff("Kogmawicathiansurprise"))
+            || (myHero.ChampionName == "Karthus" && myHero.HasBuff("KarthusDeathDefiedBuff"))
 
             //Invulnerable
-            //|| myHero.HasBuff("kalistarallyspelllock"); 
+            || myHero.HasBuff("Kalistarallyspelllock"); 
         }
 
         //from Evade by Esk0r
@@ -188,23 +182,23 @@ namespace ezEvade
             }
 
             //TODO:
-            ////Sivir E
-            //if (unit.LastCastedSpellName() == "SivirE" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
-            //{
-            //    return true;
-            //}
+            //Sivir E
+            if (unit.LastCastedSpellName() == "SivirE" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
+            {
+                return true;
+            }
 
-            ////Morganas E
-            //if (unit.LastCastedSpellName() == "BlackShield" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
-            //{
-            //    return true;
-            //}
+            //Morganas E
+            if (unit.LastCastedSpellName() == "BlackShield" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
+            {
+                return true;
+            }
 
-            ////Nocturnes E
-            //if (unit.LastCastedSpellName() == "NocturneShit" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
-            //{
-            //    return true;
-            //}
+            //Nocturnes E
+            if (unit.LastCastedSpellName() == "NocturneShit" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
+            {
+                return true;
+            }
 
             return false;
         }
