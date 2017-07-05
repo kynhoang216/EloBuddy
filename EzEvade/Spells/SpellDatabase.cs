@@ -524,7 +524,7 @@ namespace ezEvade
                 spellName = "CaitlynYordleTrap",
                 trapBaseName = "CaitlynTrap",
                 spellType = SpellType.Circular,
-                hasTrap = true
+                hasTrap = true,
                 trapTroyName = "Caitlyn_.+_yordleTrap_" + Situation.EmitterColor() + ".troy",    
             });
 
