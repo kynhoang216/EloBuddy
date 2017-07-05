@@ -517,7 +517,7 @@ namespace ezEvade
             {
                 charName = "Caitlyn",
                 dangerlevel = 3,
-                name = "Yordle Trap",
+                name = "CaitlynW",
                 radius = 75,
                 range = 800,
                 spellKey = SpellSlot.W,
@@ -525,6 +525,7 @@ namespace ezEvade
                 trapBaseName = "CaitlynTrap",
                 spellType = SpellType.Circular,
                 hasTrap = true
+                trapTroyName = "Caitlyn_.+_yordleTrap_" + Situation.EmitterColor() + ".troy",    
             });
 
             Spells.Add(
@@ -1707,7 +1708,7 @@ namespace ezEvade
                 //projectileSpeed = 2300,
                 radius = 120,
                 range = 900,
-                spellDelay = 1200,
+                spellDelay = 350,
                 spellKey = SpellSlot.E,
                 spellName = "JinxE",
                 spellType = SpellType.Circular,
