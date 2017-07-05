@@ -39,7 +39,7 @@ namespace ezEvade
             if (spellbook.Owner.IsMe)
             {
                 LastCastPacketSent = new LastCastPacketSentEntry(
-                        args.Slot, Environment.TickCount, (args.Target is Obj_AI_Base) ? args.Target.NetworkId : 0);
+                        args.Slot, Utils.TickCount, (args.Target is Obj_AI_Base) ? args.Target.NetworkId : 0);
             }
         }
 
@@ -52,7 +52,7 @@ namespace ezEvade
         {
             if (sender is AIHeroClient)
             {
-                var entry = new LastCastedSpellEntry(args.SData.Name, Environment.TickCount, ObjectManager.Player);
+                var entry = new LastCastedSpellEntry(args.SData.Name, Utils.TickCount, ObjectManager.Player);
                 if (CastedSpells.ContainsKey(sender.NetworkId))
                 {
                     CastedSpells[sender.NetworkId] = entry;
@@ -71,7 +71,7 @@ namespace ezEvade
         /// <returns></returns>
         public static int LastCastedSpellT(this AIHeroClient unit)
         {
-            return CastedSpells.ContainsKey(unit.NetworkId) ? CastedSpells[unit.NetworkId].Tick : (Environment.TickCount > 0 ? 0 : int.MinValue);
+            return CastedSpells.ContainsKey(unit.NetworkId) ? CastedSpells[unit.NetworkId].Tick : (Utils.TickCount > 0 ? 0 : int.MinValue);
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EzEvade
+namespace ezEvade
 {
     public static class Utils
     {
