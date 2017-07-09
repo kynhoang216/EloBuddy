@@ -47,7 +47,7 @@ namespace Evade.Pathfinding
                     return new List<Vector2> { start, end };
                 }
 
-                outerPolygons.Add(new Geometry.Polygon { Points = new List<Vector2> { start, end } });
+                //outerPolygons.Add(new Geometry.Polygon { Points = new List<Vector2> { start, end } });
 
                 var nodes = new List<Node>();
 
