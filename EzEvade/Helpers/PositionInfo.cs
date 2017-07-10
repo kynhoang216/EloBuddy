@@ -117,7 +117,7 @@ namespace ezEvade
                 0,
                 dodgeableSpells,
                 undodgeableSpells);
-        }        
+        }
     }
 
     public static class PositionInfoExtensions

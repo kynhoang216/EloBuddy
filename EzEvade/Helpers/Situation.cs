@@ -17,12 +17,12 @@ namespace ezEvade
 
         public static bool CheckTeam(this Obj_AI_Base unit)
         {
-            return unit.Team != myHero.Team || Evade.devModeOn;
+            return unit.Team != Player.Instance.Team || Evade.devModeOn;
         }
 
         public static bool CheckTeam(this GameObject unit)
         {
-            return unit.Team != myHero.Team || Evade.devModeOn;
+            return unit.Team != Player.Instance.Team || Evade.devModeOn;
         }
 
         public static bool CheckTeam(this Obj_GeneralParticleEmitter emitter)
@@ -48,7 +48,7 @@ namespace ezEvade
             {
                 var curDistToEnemies = ObjectCache.myHeroCache.serverPos2D.GetDistanceToChampions();
                 var posDistToEnemies = pos.GetDistanceToChampions();
-                
+
                 if (curDistToEnemies < distance)
                 {
                     if (curDistToEnemies > posDistToEnemies)
@@ -67,7 +67,7 @@ namespace ezEvade
 
             return false;
         }
-                
+
         public static bool IsUnderTurret(this Vector2 pos, bool checkEnemy = true)
         {
             if (!ObjectCache.menuCache.cache["PreventDodgingUnderTower"].Cast<CheckBox>().CurrentValue)
@@ -82,7 +82,7 @@ namespace ezEvade
                 var turret = entry.Value;
                 if (turret == null || !turret.IsValid || turret.IsDead)
                 {
-                    Core.DelayAction(() => ObjectCache.turrets.Remove(entry.Key), 1000);
+                    DelayAction.Add(1, () => ObjectCache.turrets.Remove(entry.Key));
                     continue;
                 }
 
@@ -103,6 +103,7 @@ namespace ezEvade
 
         public static bool ShouldDodge()
         {
+
             if (ObjectCache.menuCache.cache["DodgeSkillShots"].Cast<KeyBind>().CurrentValue == false
                 || CommonChecks()
                 )
@@ -123,13 +124,12 @@ namespace ezEvade
                 return false;
             }
 
-
-
             return true;
         }
 
         public static bool ShouldUseEvadeSpell()
         {
+
             if (ObjectCache.menuCache.cache["ActivateEvadeSpells"].Cast<KeyBind>().CurrentValue == false
                 || CommonChecks()
                 || Evade.lastWindupTime - EvadeUtils.TickCount > 0
@@ -146,9 +146,9 @@ namespace ezEvade
             return
 
                 Evade.isChanneling
-                || myHero.IsDead
-                || myHero.IsInvulnerable
-                || myHero.IsTargetable == false
+                || Player.Instance.IsDead
+                || Player.Instance.IsInvulnerable
+                || Player.Instance.IsTargetable == false
                 || HasSpellShield(myHero)
                 || ChampionSpecificChecks()
                 || Player.Instance.IsDashing()
@@ -157,15 +157,15 @@ namespace ezEvade
 
         public static bool ChampionSpecificChecks()
         {
-            return (myHero.ChampionName == "Sion" && myHero.HasBuff("SionR"))
-                
+            return (Player.Instance.ChampionName == "Sion" && myHero.HasBuff("SionR"));
+
 
             //Untargetable
-            || (myHero.ChampionName == "KogMaw" && myHero.HasBuff("Kogmawicathiansurprise"))
-            || (myHero.ChampionName == "Karthus" && myHero.HasBuff("KarthusDeathDefiedBuff"))
+            //|| (myHero.ChampionName == "KogMaw" && myHero.HasBuff("kogmawicathiansurprise"))
+            //|| (myHero.ChampionName == "Karthus" && myHero.HasBuff("KarthusDeathDefiedBuff"))
 
             //Invulnerable
-            || myHero.HasBuff("Kalistarallyspelllock"); 
+            //|| myHero.HasBuff("kalistarallyspelllock");
         }
 
         //from Evade by Esk0r
@@ -181,7 +181,6 @@ namespace ezEvade
                 return true;
             }
 
-            //TODO:
             //Sivir E
             if (unit.LastCastedSpellName() == "SivirE" && (EvadeUtils.TickCount - Evade.lastSpellCastTime) < 300)
             {

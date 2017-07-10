@@ -6,6 +6,7 @@ using System.Text;
 using System.Reflection;
 using System.Reflection.Emit;
 
+using Color = SharpDX.Color;
 using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Menu;
@@ -29,7 +30,6 @@ namespace ezEvade
         public delegate void OnProcessSpecialSpellHandler(Obj_AI_Base hero, GameObjectProcessSpellCastEventArgs args,
             SpellData spellData, SpecialSpellEventArgs specialSpellArgs);
         public static event OnProcessSpecialSpellHandler OnProcessSpecialSpell;
-
 
         //public static event OnDeleteSpellHandler OnDeleteSpell;
 
@@ -801,21 +801,18 @@ namespace ezEvade
 
             spellMenu.AddGroupLabel(menuName);
             Menu newSpellMenu = spellMenu.IsSubMenu ? spellMenu.Parent.AddSubMenuEx(menuName, spell.charName + spell.spellName + "Settings") : spellMenu.AddSubMenuEx(menuName, spell.charName + spell.spellName + "Settings");
+            
+            
 
+            
+            //spellMenu.Add(spell.spellName + "DodgeSpell", new CheckBox("Dodge Spell [Beta]", enableSpell))
             spellMenu.Add(spell.spellName + "DodgeSpell", new CheckBox("Dodge Spell", enableSpell));
+            
             spellMenu.Add(spell.spellName + "DrawSpell", new CheckBox("Draw Spell", enableSpell));
             spellMenu.Add(spell.spellName + "SpellRadius", new Slider("Spell Radius", (int)spell.radius, (int)spell.radius - 100, (int)spell.radius + 100));
             spellMenu.Add(spell.spellName + "FastEvade", new CheckBox("Force Fast Evade", spell.dangerlevel == 4));
             spellMenu.Add(spell.spellName + "DodgeIgnoreHP", new Slider("Ignore above HP %", spell.dangerlevel == 1 ? 80 : 100));
-            var slider = spellMenu.Add(spell.spellName + "DangerLevel",
-                new Slider("Danger Level", spell.dangerlevel - 1, 0, 3));
-            var array = new[] { "Low", "Normal", "High", "Extreme" };
-            slider.OnValueChange += delegate (ValueBase<int> sender, ValueBase<int>.ValueChangeArgs args)
-            {
-                sender.DisplayName = array[args.NewValue];
-            };
-            slider.DisplayName = array[slider.CurrentValue];
-
+            spellMenu.AddStringList(spell.spellName + "DangerLevel", "Danger Level", new[] { "Low", "Normal", "High", "Extreme" }, spell.dangerlevel - 1);
             ObjectCache.menuCache.AddMenuToCache(spellMenu);
         }
 
@@ -924,21 +921,14 @@ namespace ezEvade
 
                                 trapMenu.AddGroupLabel(menuName);
                                 //Menu newSpellMenu = trapMenu.IsSubMenu ? trapMenu.Parent.AddSubMenuEx(menuName, spell.charName + trapSpellName + "Settings") : spellMenu.AddSubMenuEx(menuName, spell.charName + spell.spellName + "Settings");
+                                
                                 trapMenu.Add(trapSpellName + "DodgeSpell", new CheckBox("Dodge Trap", enableSpell));
                                 trapMenu.Add(trapSpellName + "DrawSpell", new CheckBox("Draw Trap", enableSpell));
                                 trapMenu.Add(trapSpellName + "SpellRadius", new Slider("Trap Radius", (int)spell.radius, (int)spell.radius - 100, (int)spell.radius + 100));
                                 trapMenu.Add(trapSpellName + "FastEvade", new CheckBox("Force Fast Evade", spell.dangerlevel == 4));
                                 trapMenu.Add(trapSpellName + "DodgeIgnoreHP", new Slider("Ignore above HP %", spell.dangerlevel == 1 ? 80 : 100));
-                                var slider = trapMenu.Add(trapSpellName + "DangerLevel",
-                                    new Slider("Danger Level", spell.dangerlevel - 1, 0, 3));
-                                var array = new[] { "Low", "Normal", "High", "Extreme" };
-                                slider.OnValueChange +=
-                                    delegate (ValueBase<int> sender, ValueBase<int>.ValueChangeArgs args)
-                                    {
-                                        sender.DisplayName = array[args.NewValue];
-                                    };
-                                slider.DisplayName = array[slider.CurrentValue];
-
+                                trapMenu.AddStringList(trapSpellName + "DangerLevel", "Danger Level", new[] { "Low", "Normal", "High", "Extreme" }, Math.Max(0, spell.dangerlevel - 1));
+                                
                             }
                         }
                     }
@@ -1000,15 +990,8 @@ namespace ezEvade
                                 spellMenu.Add(spell.spellName + "SpellRadius", new Slider("Spell Radius", (int)spell.radius, (int)spell.radius - 100, (int)spell.radius + 100));
                                 spellMenu.Add(spell.spellName + "FastEvade", new CheckBox("Force Fast Evade", spell.dangerlevel == 4));
                                 spellMenu.Add(spell.spellName + "DodgeIgnoreHP", new Slider("Ignore above HP %", spell.dangerlevel == 1 ? 80 : 100));
-                                var slider = spellMenu.Add(spell.spellName + "DangerLevel",
-                                    new Slider("Danger Level", spell.dangerlevel - 1, 0, 3));
-                                var array = new[] { "Low", "Normal", "High", "Extreme" };
-                                slider.OnValueChange +=
-                                    delegate (ValueBase<int> sender, ValueBase<int>.ValueChangeArgs args)
-                                    {
-                                        sender.DisplayName = array[args.NewValue];
-                                    };
-                                slider.DisplayName = array[slider.CurrentValue];
+                                spellMenu.AddStringList(spell.spellName + "DangerLevel", "Danger Level", new[] { "Low", "Normal", "High", "Extreme" }, spell.dangerlevel - 1);
+                                
                             }
                         }
                     }

@@ -56,11 +56,12 @@ namespace ezEvade
             //Drawing.OnDraw += Game_OnDraw;
 
             Menu autoSetPingMenu = mainMenu.IsSubMenu ? mainMenu.Parent.AddSubMenuEx("AutoSetPing", "AutoSetPingMenu") : mainMenu.AddSubMenuEx("AutoSetPing", "AutoSetPingMenu");
-            autoSetPingMenu.Add("AutoSetPingOn", new CheckBox("Auto Set Ping", true));
+            autoSetPingMenu.Add("AutoSetPingOn", new CheckBox("Auto Set Ping"));
             autoSetPingMenu.Add("AutoSetPercentile", new Slider("Auto Set Percentile", 75, 0, 100));
 
-
             //autoSetPingMenu.AddItem(new MenuItem("TestSkillshotDelay", "TestSkillshotDelay").SetValue<bool>(false));
+
+            //mainMenu.AddSubMenu(autoSetPingMenu);
 
             menu = mainMenu;
         }
@@ -260,16 +261,15 @@ namespace ezEvade
 
                                     var percentile = ObjectCache.menuCache.cache["AutoSetPercentile"].Cast<Slider>().CurrentValue;
                                     int percentIndex = (int)Math.Floor(pingList.Count() * (percentile / 100f)) - 1;
-                                    maxExtraDelayTime = Math.Max(pingList.ElementAt(percentIndex) - Game.Ping,0);
-                                    ObjectCache.menuCache.cache["ExtraPingBuffer"].Cast<Slider>().CurrentValue =
-                                        (int) maxExtraDelayTime;
+                                    maxExtraDelayTime = Math.Max(pingList.ElementAt(percentIndex) - Game.Ping, 0);
+                                    ObjectCache.menuCache.cache["ExtraPingBuffer"].Cast<Slider>().CurrentValue = (int)maxExtraDelayTime;
 
                                     pingList.Clear();
 
                                     Console.WriteLine("Max Extra Delay: " + maxExtraDelayTime);
                                 }
 
-                                Console.WriteLine("Extra Delay: " + Math.Max(moveTime - Game.Ping,0));
+                                Console.WriteLine("Extra Delay: " + Math.Max(moveTime - Game.Ping, 0));
                             }
                         }
                     }

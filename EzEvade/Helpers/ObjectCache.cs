@@ -10,6 +10,18 @@ using EloBuddy.SDK.Menu;
 using EloBuddy.SDK.Menu.Values;
 using SharpDX;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using EloBuddy;
+using EloBuddy.SDK;
+using EloBuddy.SDK.Menu;
+using EloBuddy.SDK.Menu.Values;
+using SharpDX;
+
 namespace ezEvade
 {
     public class HeroInfo
@@ -36,7 +48,7 @@ namespace ezEvade
 
         public void UpdateInfo()
         {
-            var extraDelayBuffer = 30; //ObjectCache.menuCache.cache["ExtraPingBuffer"].Cast<Slider>().CurrentValue;
+            var extraDelayBuffer = 30;
 
             serverPos2D = hero.ServerPosition.To2D(); //CalculatedPosition.GetPosition(hero, Game.Ping);
             serverPos2DExtra = EvadeUtils.GetGamePosition(hero, Game.Ping + extraDelayBuffer);
@@ -49,7 +61,7 @@ namespace ezEvade
         }
     }
 
-    public class CacheDictionary 
+    public class CacheDictionary
     {
         private List<Menu> list = new List<Menu>();
 
@@ -170,3 +182,4 @@ namespace ezEvade
         }
     }
 }
+

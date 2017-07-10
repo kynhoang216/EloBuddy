@@ -235,8 +235,8 @@ namespace ezEvade
             var moveBuff = EvadeSpell.evadeSpells.OrderBy(s => s.dangerlevel).FirstOrDefault(s => s.evadeType == EvadeType.MovementSpeedBuff);
             if (moveBuff != null && EvadeSpell.ShouldUseMovementBuff(spell))
             {
-                //speed += speed * moveBuff.speedArray[ObjectManager.Player.GetSpellSlotFromName(moveBuff.spellKey.).Level - 1] / 100;
-                //delay += (moveBuff.spellDelay > 50 ? moveBuff.spellDelay : 0) + ObjectCache.gamePing;
+                speed += speed * moveBuff.speedArray[ObjectManager.Player.Spellbook.GetSpell(moveBuff.spellKey).Level - 1] / 100;
+                delay += (moveBuff.spellDelay > 50 ? moveBuff.spellDelay : 0) + ObjectCache.gamePing;
             }
 
             if (spell.spellType == SpellType.Line)

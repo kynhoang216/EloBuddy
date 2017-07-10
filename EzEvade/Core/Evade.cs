@@ -100,8 +100,8 @@ namespace ezEvade
                 ObjectCache.menuCache.AddMenuToCache(menu);
 
                 Menu mainMenu = menu.AddSubMenuEx("Main", "Main");
-                mainMenu.Add("DodgeSkillShots",new KeyBind("Dodge SkillShots", true, KeyBind.BindTypes.PressToggle, 'K'));
-                mainMenu.Add("ActivateEvadeSpells",new KeyBind("Use Evade Spells", true, KeyBind.BindTypes.PressToggle, 'K'));
+                mainMenu.Add("DodgeSkillShots", new KeyBind("Dodge SkillShots", true, KeyBind.BindTypes.PressToggle));
+                mainMenu.Add("ActivateEvadeSpells", new KeyBind("Use Evade Spells", true, KeyBind.BindTypes.PressToggle));
                 mainMenu.AddSeparator();
                 mainMenu.Add("DodgeDangerous", new CheckBox("Dodge Only Dangerous", false));
                 mainMenu.Add("ChaseModeMinHP", new CheckBox("Check Ignored HP %(ChaseMode)"));
@@ -109,23 +109,15 @@ namespace ezEvade
                 mainMenu.Add("DodgeCircularSpells", new CheckBox("Dodge Circular SkillShots", true));
                 mainMenu.AddSeparator();
                 mainMenu.Add("DodgeDangerousKeyEnabled", new CheckBox("Enable Dodge Only Dangerous Keys", false));
-                mainMenu.Add("DodgeDangerousKey",new KeyBind("Dodge Only Dangerous Key", false, KeyBind.BindTypes.HoldActive, 32));
-                mainMenu.Add("DodgeDangerousKey2",new KeyBind("Dodge Only Dangerous Key 2", false, KeyBind.BindTypes.HoldActive, 'V'));
+                mainMenu.Add("DodgeDangerousKey",new KeyBind("Dodge Only Dangerous Key", false, KeyBind.BindTypes.HoldActive));
+                mainMenu.Add("DodgeDangerousKey2",new KeyBind("Dodge Only Dangerous Key 2", false, KeyBind.BindTypes.HoldActive));
                 mainMenu.AddSeparator();
                 //   mainMenu.Add("ChaseMode.MinHP", new Slider("Chase Mode enable if my health >= (&)", 20, 0, 100));
                 mainMenu.AddGroupLabel("Evade Mode");
-                var sliderEvadeMode = mainMenu.Add("EvadeMode", new Slider("Smooth", 0, 0, 2));
-                var modeArray = new[] { "Smooth", "Fastest", "Very Smooth" };
-                sliderEvadeMode.DisplayName = modeArray[sliderEvadeMode.CurrentValue];
-                sliderEvadeMode.OnValueChange +=
-                    delegate (ValueBase<int> sender, ValueBase<int>.ValueChangeArgs changeArgs)
-                    {
-                        sender.DisplayName = modeArray[changeArgs.NewValue];
-                        OnEvadeModeChange(sender, changeArgs);
-                    };
+                mainMenu.AddStringList("EvadeMode", "Evade Profile", new[] { "Smooth", "Very Smooth", "Fastest", "Hawk", "Kurisu", "GuessWho" }, 0);
                 //var keyBind = mainMenu.Item("DodgeSkillShots").GetValue<KeyBind>();
                 //mainMenu.Item("DodgeSkillShots").SetValue(new KeyBind(keyBind.Key, KeyBindType.Toggle, true));
-
+                
                 spellDetector = new SpellDetector(menu);
                 evadeSpell = new EvadeSpell(menu);
 
@@ -249,9 +241,9 @@ namespace ezEvade
             //menu.Item("TickLimiter").SetValue(new Slider(100, 0, 500));
         }
 
-        private void OnEvadeModeChange(ValueBase<int> sender, ValueBase<int>.ValueChangeArgs changeArgs)
+        private void OnEvadeModeChange(object sender, PlayerSwapItemEventArgs e)
         {
-            var mode = sender.DisplayName;
+            var mode = e.ToString();
 
             if (mode == "Very Smooth")
             {

@@ -39,6 +39,7 @@ namespace ezEvade
             drawMenu.Add("ShowStatus", new CheckBox("Show Evade Status", true));
             drawMenu.Add("DrawSpellPos", new CheckBox("Draw Spell Position", true));
             drawMenu.Add("DrawEvadePosition", new CheckBox("Draw Evade Position", false));
+            drawMenu.Add("DrawDangerPolygon", new CheckBox("DrawDangerPolygon", true));
 
             Menu dangerMenu = drawMenu.Parent.AddSubMenuEx("DangerLevel Drawings", "DangerLevelDrawings");
             Menu lowDangerMenu = dangerMenu.Parent.AddSubMenuEx("Low", "LowDrawing");
@@ -184,6 +185,8 @@ namespace ezEvade
                             Render.Circle.DrawCircle(new Vector3(hero.ServerPosition.X, hero.ServerPosition.Y, myHero.Position.Z), (int)spell.radius, Color.Red, 5);
                         }*/
 
+
+
                         if (ObjectCache.menuCache.cache["DrawSpellPos"].Cast<CheckBox>().CurrentValue)// && spell.spellObject != null)
                         {
                             //spellPos = SpellDetector.GetCurrentSpellPosition(spell, true, ObjectCache.gamePing);
@@ -193,7 +196,7 @@ namespace ezEvade
                                 var spellPos2 = spell.startPos + spell.direction * spell.info.projectileSpeed * (Evade.GetTickCount - spell.startTime - spell.info.spellDelay) / 1000 + spell.direction * spell.info.projectileSpeed * ((float)ObjectCache.gamePing / 1000);
                                 Render.Circle.DrawCircle(new Vector3(spellPos2.X, spellPos2.Y, myHero.Position.Z), (int)spell.radius, Color.Red, 8);
                             }*/
-
+                            
                             /*if (spell.spellObject != null && spell.spellObject.IsValid && spell.spellObject.IsVisible &&
                                   spell.spellObject.Position.To2D().Distance(ObjectCache.myHeroCache.serverPos2D) < spell.info.range + 1000)*/
 

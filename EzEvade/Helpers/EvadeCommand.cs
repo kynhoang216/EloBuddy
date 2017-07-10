@@ -7,6 +7,7 @@ using EloBuddy;
 using EloBuddy.SDK;
 using SharpDX;
 
+
 namespace ezEvade
 {
     public enum EvadeOrderCommand
@@ -107,7 +108,7 @@ namespace ezEvade
                 isProcessed = false
             };
 
-            myHero.Spellbook.CastSpell(spellData.spellKey,false);
+            myHero.Spellbook.CastSpell(spellData.spellKey, false);
         }
     }
 }
