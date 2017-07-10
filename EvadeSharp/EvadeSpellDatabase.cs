@@ -443,7 +443,19 @@ namespace Evade
 
             if (ObjectManager.Player.ChampionName == "Lucian")
             {
-                spell = new DashData("Lucian E", SpellSlot.E, 425, false, 100, 1350, 2);
+                spell = new DashData("Lucian E", SpellSlot.E, 425, false, 50, 1350, 2);
+                spell.CheckSpellName = "LucianE";
+                Spells.Add(spell);
+            }
+
+            #endregion
+
+            #region MasterYi
+
+            if (ObjectManager.Player.ChampionName == "MasterYi")
+            {
+                spell = new DashData("MasterYi Q", SpellSlot.Q, 600, false, 100, int.MaxValue, 2);
+                spell.CheckSpellName = "AlphaStrike";
                 Spells.Add(spell);
             }
 
@@ -453,7 +465,7 @@ namespace Evade
 
             if (ObjectManager.Player.ChampionName == "Nidalee")
             {
-                spell = new DashData("Nidalee W", SpellSlot.W, 375, true, 250, 943, 3);
+                spell = new DashData("Nidalee W", SpellSlot.W, 375, true, 150, 1750, 3);
                 spell.CheckSpellName = "Pounce";
                 Spells.Add(spell);
             }
@@ -489,7 +501,8 @@ namespace Evade
 
             if (ObjectManager.Player.ChampionName == "Tristana")
             {
-                spell = new DashData("Tristana W", SpellSlot.W, 900, true, 300, 800, 5);
+                spell = new DashData("Tristana W", SpellSlot.W, 900, true, 500, 1100, 5);
+                spell.CheckSpellName = "RocketJump";
                 Spells.Add(spell);
             }
 
@@ -509,7 +522,8 @@ namespace Evade
 
             if (ObjectManager.Player.ChampionName == "Vayne")
             {
-                spell = new DashData("Vayne Q", SpellSlot.Q, 300, true, 100, 910, 2);
+                spell = new DashData("Vayne Q", SpellSlot.Q, 300, true, 50, 900, 2);
+                spell.CheckSpellName = "VayneTumble";
                 Spells.Add(spell);
             }
 
@@ -638,14 +652,15 @@ namespace Evade
             #endregion
 
             //Flash
-            if (ObjectManager.Player.GetSpellSlotFromName("SummonerFlash") != SpellSlot.Unknown)
+            if (ObjectManager.Player.GetSpellSlotFromName("summonerflash") != SpellSlot.Unknown)
             {
-                spell = new BlinkData("Flash", ObjectManager.Player.GetSpellSlotFromName("SummonerFlash"), 400, 100, 5, true);
+                spell = new BlinkData("Flash", ObjectManager.Player.GetSpellSlotFromName("summonerflash"), 400, 100, 5, true);
                 Spells.Add(spell);
             }
 
             //Zhonyas
             spell = new EvadeSpellData("Zhonyas", 5);
+            spell.CheckSpellName = "ZhonyasHourglass";
             Spells.Add(spell);
 
             #region Champion Shields
