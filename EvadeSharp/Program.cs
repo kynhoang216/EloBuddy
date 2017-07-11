@@ -532,7 +532,7 @@ namespace Evade
                 return;
             }
 
-            if (Utility.PlayerWindingUp && !Orbwalking.IsAutoAttack(ObjectManager.Player.LastCastedSpellName()))
+            if (ObjectManager.Player.Spellbook.IsAutoAttacking && !Orbwalker.IsAutoAttacking)//(ObjectManager.Player.LastCastedSpellName()))
             {
                 Evading = false;
                 return;
