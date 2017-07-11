@@ -21,8 +21,8 @@ namespace ezEvade.SpecialSpells
         {
             if (spellData.spellName == "YasuoQW" || spellData.spellName == "YasuoQ3W")
             {
-                var hero = EntityManager.Heroes.Enemies.FirstOrDefault(h => h.ChampionName == "Yasuo");
-                if (hero != null)
+                var hero = EntityManager.Heroes.AllHeroes.FirstOrDefault(h => h.ChampionName == "Yasuo");
+                if (hero != null && hero.CheckTeam())
                 {
                     AIHeroClient.OnProcessSpellCast += (sender, args) => ProcessSpell_YasuoQW(sender, args, spellData);
                 }
@@ -31,9 +31,9 @@ namespace ezEvade.SpecialSpells
 
         private static void ProcessSpell_YasuoQW(Obj_AI_Base hero, GameObjectProcessSpellCastEventArgs args, SpellData spellData)
         {
-            if (hero.IsEnemy && args.SData.Name == "YasuoQ")
+            if (Player.Instance.IsEnemy && args.SData.Name == "YasuoQ")
             {
-                var castTime = (hero.Spellbook.CastTime - Game.Time) * 1000;
+                var castTime = (Player.Instance.Spellbook.CastTime - Game.Time) * 1000;
 
                 if (castTime > 0)
                 {

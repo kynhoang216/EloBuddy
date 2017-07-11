@@ -48,11 +48,11 @@ namespace ezEvade.SpecialSpells
                         info.usePosition = false;
                         info.objList.Add(obj.NetworkId, obj);
 
-                        DelayAction.Add(8900, () =>
+                        Core.DelayAction(() =>
                         {
                             if (info.objList.ContainsKey(obj.NetworkId))
                                 info.objList.Remove(obj.NetworkId);
-                        });
+                        }, 8900);
                     }
                 }
             }

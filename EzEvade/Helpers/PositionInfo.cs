@@ -66,7 +66,7 @@ namespace ezEvade
 
         public static PositionInfo SetAllDodgeable()
         {
-            return SetAllDodgeable(myHero.Position.To2D());
+            return SetAllDodgeable(Player.Instance.Position.To2D());
         }
 
         public static PositionInfo SetAllDodgeable(Vector2 position)
@@ -110,7 +110,7 @@ namespace ezEvade
             }
 
             return new PositionInfo(
-                myHero.Position.To2D(),
+                Player.Instance.Position.To2D(),
                 posDangerLevel,
                 posDangerCount,
                 true,
@@ -152,7 +152,7 @@ namespace ezEvade
         public static bool isBetterMovePos(this PositionInfo newPosInfo)
         {
             PositionInfo posInfo = null;
-            var path = myHero.Path;
+            var path = Player.Instance.Path;
             if (path.Length > 0)
             {
                 var movePos = path[path.Length - 1].To2D();
@@ -174,7 +174,7 @@ namespace ezEvade
         public static PositionInfo CompareLastMovePos(this PositionInfo newPosInfo)
         {
             PositionInfo posInfo = null;
-            var path = myHero.Path;
+            var path = Player.Instance.Path;
             if (path.Length > 0)
             {
                 var movePos = path[path.Length - 1].To2D();

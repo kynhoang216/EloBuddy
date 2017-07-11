@@ -45,7 +45,7 @@ namespace ezEvade.SpecialSpells
 
                     foreach (ObjectTrackerInfo gameObj in objList)
                     {
-                        DelayAction.Add(1, () => ObjectTracker.objTracker.Remove(gameObj.obj.NetworkId));
+                        Core.DelayAction(() => ObjectTracker.objTracker.Remove(gameObj.obj.NetworkId), 1);
                     }
                 }
             }

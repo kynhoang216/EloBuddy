@@ -61,7 +61,7 @@ namespace ezEvade
             objTracker.Add(objTrackerID, new ObjectTrackerInfo(name, position));
 
             int trackerID = objTrackerID; //store the id for deletion
-            DelayAction.Add((int)timeExpires, () => objTracker.Remove(objTrackerID));
+            Core.DelayAction(() => objTracker.Remove(objTrackerID), (int)timeExpires);
 
             objTrackerID += 1;
         }
@@ -76,7 +76,7 @@ namespace ezEvade
                 if (minion.BaseSkinName.Contains("testcube"))
                 {
                     ObjectTracker.objTracker.Add(obj.NetworkId, new ObjectTrackerInfo(obj, "hiu"));
-                    DelayAction.Add(250, () => ObjectTracker.objTracker.Remove(obj.NetworkId));
+                    Core.DelayAction(() => ObjectTracker.objTracker.Remove(obj.NetworkId), 250);
                 }
             }
         }

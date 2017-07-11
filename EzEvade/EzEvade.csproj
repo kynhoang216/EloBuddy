@@ -54,7 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DelayAction.cs" />
     <Compile Include="EzEvade.cs" />
     <Compile Include="Core\Evade.cs" />
     <Compile Include="Core\EvadeHelper.cs" />

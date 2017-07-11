@@ -241,9 +241,9 @@ namespace ezEvade
             //menu.Item("TickLimiter").SetValue(new Slider(100, 0, 500));
         }
 
-        private void OnEvadeModeChange(object sender, PlayerSwapItemEventArgs e)
+        private void OnEvadeModeChange(ValueBase<int> sender, ValueBase<int>.ValueChangeArgs changeArgs)
         {
-            var mode = e.ToString();
+            var mode = sender.DisplayName;
 
             if (mode == "Very Smooth")
             {

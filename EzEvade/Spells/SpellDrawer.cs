@@ -32,7 +32,7 @@ namespace ezEvade
         private void Game_OnGameLoad()
         {
             //Console.WriteLine("SpellDrawer loaded");
-
+            
 
             Menu drawMenu = menu.IsSubMenu ? menu.Parent.AddSubMenuEx("Draw", "Draw") : menu.AddSubMenuEx("Draw", "Draw");
             drawMenu.Add("DrawSkillShots", new CheckBox("Draw SkillShots", true));
@@ -42,17 +42,17 @@ namespace ezEvade
             drawMenu.Add("DrawDangerPolygon", new CheckBox("DrawDangerPolygon", true));
 
             Menu dangerMenu = drawMenu.Parent.AddSubMenuEx("DangerLevel Drawings", "DangerLevelDrawings");
-            Menu lowDangerMenu = dangerMenu.Parent.AddSubMenuEx("Low", "LowDrawing");
-            lowDangerMenu.Add("LowWidth", new Slider("Line Width", 1, 1, 15));
+            dangerMenu.AddLabel("LowDrawing");
+            dangerMenu.Add("LowWidth", new Slider("Line Width", 1, 1, 15));
 
-            Menu normalDangerMenu = dangerMenu.Parent.AddSubMenuEx("Normal", "NormalDrawing");
-            normalDangerMenu.Add("NormalWidth", new Slider("Line Width", 2, 1, 15));
+            dangerMenu.AddLabel("NormalDrawing");
+            dangerMenu.Add("NormalWidth", new Slider("Line Width", 2, 1, 15));
 
-            Menu highDangerMenu = dangerMenu.Parent.AddSubMenuEx("High", "HighDrawing");
-            highDangerMenu.Add("HighWidth", new Slider("Line Width", 3, 1, 15));
+            dangerMenu.AddLabel("HighDrawing");
+            dangerMenu.Add("HighWidth", new Slider("Line Width", 3, 1, 15));
 
-            Menu extremeDangerMenu = dangerMenu.Parent.AddSubMenuEx("Extreme", "ExtremeDrawing");
-            extremeDangerMenu.Add("ExtremeWidth", new Slider("Line Width", 4, 1, 15));
+            dangerMenu.AddLabel("ExtremeDrawing");
+            dangerMenu.Add("ExtremeWidth", new Slider("Line Width", 4, 1, 15));
 
             /*
             Menu undodgeableDangerMenu = new Menu("Undodgeable", "Undodgeable");

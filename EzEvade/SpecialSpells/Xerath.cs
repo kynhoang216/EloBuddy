@@ -21,7 +21,7 @@ namespace ezEvade.SpecialSpells
         {
             if (spellData.spellName == "xeratharcanopulse2")
             {
-                SpellDetector.OnProcessSpecialSpell += ProcessSpell_XerathArcanopulse2;
+                //SpellDetector.OnProcessSpecialSpell += ProcessSpell_XerathArcanopulse2;
             }
         }
 
@@ -29,7 +29,7 @@ namespace ezEvade.SpecialSpells
         {
             if (args.SData.Name == "XerathArcanopulseChargeUp")// || spellData.spellName == "xeratharcanopulse2")
             {
-                var castTime = -1 * (hero.Spellbook.CastTime - Game.Time) * 1000;
+                var castTime = -1 * (Player.Instance.Spellbook.CastTime - Game.Time) * 1000;
 
                 if (castTime > 0)
                 {

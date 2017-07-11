@@ -82,7 +82,7 @@ namespace ezEvade
                 var turret = entry.Value;
                 if (turret == null || !turret.IsValid || turret.IsDead)
                 {
-                    DelayAction.Add(1, () => ObjectCache.turrets.Remove(entry.Key));
+                    Core.DelayAction(() => ObjectCache.turrets.Remove(entry.Key), 1);
                     continue;
                 }
 

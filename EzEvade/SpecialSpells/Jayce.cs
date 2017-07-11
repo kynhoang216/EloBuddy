@@ -64,7 +64,7 @@ namespace ezEvade.SpecialSpells
                         {
                             SpellDetector.CreateSpellData(hero, intersection.Point.To3D(), spell.endPos.To3D(), spellData, spell.spellObject);
 
-                            DelayAction.Add(1, () => SpellDetector.DeleteSpell(entry.Key));
+                            Core.DelayAction(() => SpellDetector.DeleteSpell(entry.Key), 1);
                         }
                     }
                 }

@@ -37,7 +37,7 @@ namespace ezEvade
 
         public HeroInfo(AIHeroClient hero)
         {
-            this.hero = hero;
+            this.hero = Player.Instance;
             Game.OnUpdate += Game_OnGameUpdate;
         }
 
@@ -50,14 +50,14 @@ namespace ezEvade
         {
             var extraDelayBuffer = 30;
 
-            serverPos2D = hero.ServerPosition.To2D(); //CalculatedPosition.GetPosition(hero, Game.Ping);
-            serverPos2DExtra = EvadeUtils.GetGamePosition(hero, Game.Ping + extraDelayBuffer);
-            serverPos2DPing = EvadeUtils.GetGamePosition(hero, Game.Ping);
+            serverPos2D = Player.Instance.ServerPosition.To2D(); //CalculatedPosition.GetPosition(hero, Game.Ping);
+            serverPos2DExtra = EvadeUtils.GetGamePosition(Player.Instance, Game.Ping + extraDelayBuffer);
+            serverPos2DPing = EvadeUtils.GetGamePosition(Player.Instance, Game.Ping);
             //CalculatedPosition.GetPosition(hero, Game.Ping + extraDelayBuffer);            
-            currentPosition = hero.Position.To2D(); //CalculatedPosition.GetPosition(hero, 0); 
-            boundingRadius = hero.BoundingRadius;
-            moveSpeed = hero.MoveSpeed;
-            isMoving = hero.IsMoving;
+            currentPosition = Player.Instance.Position.To2D(); //CalculatedPosition.GetPosition(hero, 0); 
+            boundingRadius = Player.Instance.BoundingRadius;
+            moveSpeed = Player.Instance.MoveSpeed;
+            isMoving = Player.Instance.IsMoving;
         }
     }
 
@@ -154,7 +154,7 @@ namespace ezEvade
 
         private static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
-        public static HeroInfo myHeroCache = new HeroInfo(myHero);
+        public static HeroInfo myHeroCache = new HeroInfo(Player.Instance);
         public static MenuCache menuCache = new MenuCache(Evade.menu);
 
         public static float gamePing = 0;

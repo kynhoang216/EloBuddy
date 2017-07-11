@@ -99,7 +99,7 @@ namespace ezEvade.SpecialSpells
                 {
                     foreach (var entry in SpellDetector.detectedSpells.Where(x => x.Value.info.trapTroyName.ToLower() == emitter.Name.ToLower()))
                     {
-                        DelayAction.Add(1, () => SpellDetector.DeleteSpell(entry.Key));
+                        Core.DelayAction(() => SpellDetector.DeleteSpell(entry.Key), 1);
                         entry.Value.spellObject = null;
                     }
                 }
@@ -114,7 +114,7 @@ namespace ezEvade.SpecialSpells
                 {
                     foreach (var entry in SpellDetector.detectedSpells.Where(x => x.Value.info.trapBaseName.ToLower() == aiBase.CharData.BaseSkinName.ToLower()))
                     {
-                        DelayAction.Add(1, () => SpellDetector.DeleteSpell(entry.Key));
+                        Core.DelayAction(() => SpellDetector.DeleteSpell(entry.Key), 1);
                         entry.Value.spellObject = null;
                     }
                 }
@@ -133,7 +133,7 @@ namespace ezEvade.SpecialSpells
 
                 if (spell.spellObject.IsDead || !spell.spellObject.IsValid)
                 {
-                    DelayAction.Add(1, () => SpellDetector.DeleteSpell(entry.Key));
+                    Core.DelayAction(() => SpellDetector.DeleteSpell(entry.Key), 1);
                     entry.Value.spellObject = null;
                 }
             }
@@ -156,7 +156,7 @@ namespace ezEvade.SpecialSpells
                 var spell = entry.Value;
                 if (spell.info.range > 9000 /*global*/ || spell.info.spellName.Contains("_trap"))
                 {
-                    DelayAction.Add(1, () => SpellDetector.DeleteSpell(entry.Key));
+                    Core.DelayAction(() => SpellDetector.DeleteSpell(entry.Key), 1);
                     //Game.PrintChat("<b>ezEvade</b>: " + spell.info.charName + " (" + spell.info.spellKey + ") removed!");
                 }
             }

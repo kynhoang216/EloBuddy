@@ -34,17 +34,16 @@ namespace ezEvade.SpecialSpells
 
             SpellData spellData;
 
-            if (missile.SpellCaster != null && missile.SpellCaster.Team != ObjectManager.Player.Team &&
-                missile.SData.Name != null && missile.SData.Name == "ViktorEAugMissile"
-                && SpellDetector.onMissileSpells.TryGetValue("ViktorDeathRay3", out spellData)
+            if (missile.SpellCaster != null && missile.SpellCaster.CheckTeam() &&
+                missile.SData.Name != null && missile.SData.Name.ToLower() == "viktoreaugmissile"
+                && SpellDetector.onMissileSpells.TryGetValue("viktordeathray3", out spellData)
                 && missile.StartPosition != null && missile.EndPosition != null)
             {
+                var newData = (SpellData)spellData.Clone();
                 var missileDist = missile.EndPosition.To2D().Distance(missile.StartPosition.To2D());
-                var delay = missileDist / 1.5f + 600;
 
-                spellData.spellDelay = delay;
-
-                SpellDetector.CreateSpellData(missile.SpellCaster, missile.StartPosition, missile.EndPosition, spellData);
+                newData.spellDelay = missileDist / 1.5f + 1000;
+                SpellDetector.CreateSpellData(missile.SpellCaster, missile.StartPosition, missile.EndPosition, newData);
             }
         }
     }

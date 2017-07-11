@@ -45,7 +45,7 @@ namespace ezEvade.SpecialSpells
 
             if (gotObj == false)
             {
-                DelayAction.Add(5000, () => GetLuluPix());
+                Core.DelayAction(() => GetLuluPix(), 5000);
             }
         }
 

@@ -73,7 +73,7 @@ namespace ezEvade.SpecialSpells
                         {
                             if (info.usePosition == false && (info.obj == null || !info.obj.IsValid || info.obj.IsDead))
                             {
-                                DelayAction.Add(1, () => ObjectTracker.objTracker.Remove(info.obj.NetworkId));
+                                Core.DelayAction(() => ObjectTracker.objTracker.Remove(info.obj.NetworkId), 1);
                                 continue;
                             }
 

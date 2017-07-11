@@ -94,7 +94,7 @@ namespace ezEvade
                 var turret = entry.Value;
                 if (turret == null || !turret.IsValid || turret.IsDead)
                 {
-                    DelayAction.Add(1, () => ObjectCache.turrets.Remove(entry.Key));
+                    Core.DelayAction(() => ObjectCache.turrets.Remove(entry.Key), 1);
                     continue;
                 }
 
@@ -117,7 +117,7 @@ namespace ezEvade
 
             foreach (var hero in EntityManager.Heroes.Enemies)
             {
-                if (hero != null && hero.IsValid && !hero.IsDead && hero.IsVisible)
+                if (Player.Instance != null && Player.Instance.IsValid && !Player.Instance.IsDead && Player.Instance.IsVisible)
                 {
                     var heroPos = hero.ServerPosition.To2D();
                     var dist = heroPos.Distance(pos);
@@ -156,7 +156,7 @@ namespace ezEvade
 
                 foreach (var hero in EntityManager.Heroes.Enemies)
                 {
-                    if (hero != null && hero.IsValid && !hero.IsDead && hero.IsVisible)
+                    if (Player.Instance != null && Player.Instance.IsValid && !Player.Instance.IsDead && Player.Instance.IsVisible)
                     {
                         var heroPos = hero.ServerPosition.To2D();
                         var dist = heroPos.Distance(pos);

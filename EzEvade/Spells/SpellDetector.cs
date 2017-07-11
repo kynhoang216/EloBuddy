@@ -159,7 +159,7 @@ namespace ezEvade
             {
                 if (!spell.info.name.Contains("_trap"))
                 {
-                    DelayAction.Add(1, () => DeleteSpell(spell.spellID));
+                    Core.DelayAction(() => DeleteSpell(spell.spellID), 1);
                 }
             }
         }
@@ -231,7 +231,7 @@ namespace ezEvade
             foreach (var spell in spells.Values.ToList().Where(
                     s => (s.GetSpellDangerLevel() < 3)))
             {
-                DelayAction.Add(1, () => DeleteSpell(spell.spellID));
+                Core.DelayAction(() => DeleteSpell(spell.spellID), 1);
             }
         }
 
@@ -446,7 +446,7 @@ namespace ezEvade
 
                 if (extraEndTick != 1337f) // traps
                 {
-                    DelayAction.Add((int)(endTick + spellData.extraEndTime), () => DeleteSpell(spellID));
+                    Core.DelayAction(() => DeleteSpell(spellID), (int)(endTick + spellData.extraEndTime));
                 }
             }
         }
@@ -492,14 +492,14 @@ namespace ezEvade
                     if (hero.IsDead && spell.heroID == hero.NetworkId)
                     {
                         if (spell.spellObject == null)
-                            DelayAction.Add(1, () => DeleteSpell(entry.Key));
+                            Core.DelayAction(() => DeleteSpell(entry.Key), 1);
                     }
                 }
 
                 if (spell.endTime + spell.info.extraEndTime < EvadeUtils.TickCount
                     || CanHeroWalkIntoSpell(spell) == false)
                 {
-                    DelayAction.Add(1, () => DeleteSpell(entry.Key));
+                    Core.DelayAction(() => DeleteSpell(entry.Key), 1);
                 }
             }
         }
@@ -523,7 +523,7 @@ namespace ezEvade
                     if (spell.currentSpellPosition.Distance(collisionObject.ServerPosition) <
                         collisionObject.BoundingRadius + spell.radius)
                     {
-                        DelayAction.Add(1, () => DeleteSpell(entry.Key));
+                        Core.DelayAction(() => DeleteSpell(entry.Key), 1);
                     }
                 }
             }
