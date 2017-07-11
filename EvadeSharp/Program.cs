@@ -546,7 +546,7 @@ namespace Evade
             }
 
             /*Avoid evading while dashing.*/
-            if (ObjectManager.Player.IsDashing())
+            if (Player.Instance.IsDashing())
             {
                 Evading = false;
                 return;
