@@ -112,7 +112,7 @@ namespace Evade
             Drawing.OnDraw += Drawing_OnDraw;
 
             //Ondash event.
-            CustomEvents.Unit.OnDash += UnitOnOnDash;
+            Dash.OnDash += UnitOnOnDash;
 
             DetectedSkillshots.OnAdd += DetectedSkillshots_OnAdd;
 
@@ -532,7 +532,7 @@ namespace Evade
                 return;
             }
 
-            if (ObjectManager.Player.IsAttackingPlayer && !Orbwalker.IsAutoAttacking)
+            if (ObjectManager.Player.Spellbook.IsAutoAttacking && !Orbwalker.IsAutoAttacking)
             {
                 Evading = false;
                 return;
@@ -637,7 +637,7 @@ namespace Evade
                 if (!safeResult.IsSafe)
                 {
                     //Search for an evade point:
-                    TryToEvade(safeResult.SkillshotList, EvadeToPoint.IsValid() ? EvadeToPoint : Game.CursorPos.To2D());
+                    Core.DelayAction(() => TryToEvade(safeResult.SkillshotList, EvadeToPoint.IsValid() ? EvadeToPoint : Game.CursorPos.To2D()), (46));
                 }
             }
 
@@ -888,7 +888,7 @@ namespace Evade
             }
         }
 
-        private static void UnitOnOnDash(Obj_AI_Base sender, Dash.DashItem args)
+        private static void UnitOnOnDash(Obj_AI_Base sender, Dash.DashEventArgs args)
         {
             if (sender.IsMe)
             {
@@ -899,7 +899,7 @@ namespace Evade
                         args.EndPos.Distance(args.StartPos));
                 }
 
-                EvadeToPoint = args.EndPos;
+                EvadeToPoint = args.EndPos.To2D();
                 //Utility.DelayAction.Add(args.Duration, delegate { Evading = false; });
             }
         }
@@ -1207,13 +1207,9 @@ namespace Evade
                                         {
                                             ObjectManager.Player.SendMovePacket(EvadePoint);
                                             var theSpell = evadeSpell;
-                                            Utility.DelayAction.Add(
-                                                Game.Ping / 2 + 100,
-                                                delegate
-                                                {
-                                                    ObjectManager.Player.Spellbook.CastSpell(
-                                                        theSpell.Slot, EvadePoint.To3D());
-                                                });
+                                            Core.DelayAction(() => ObjectManager.Player.Spellbook.CastSpell(
+                                                theSpell.Slot, EvadePoint.To3D()), Game.Ping / 2 + 100);
+
                                         }
                                         else
                                         {

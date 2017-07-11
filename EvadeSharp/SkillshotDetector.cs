@@ -116,10 +116,7 @@ namespace Evade
                 return;
             }
 
-            Utility.DelayAction.Add(0, delegate
-            {
-                ObjSpellMissionOnOnCreateDelayed(sender, args);
-            });
+            Core.DelayAction(() => ObjSpellMissionOnOnCreateDelayed(sender, args), 0);
         }
 
         private static void ObjSpellMissionOnOnCreateDelayed(GameObject sender, EventArgs args)

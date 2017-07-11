@@ -23,6 +23,7 @@ using System.Drawing.Imaging;
 using Evade;
 using EloBuddy.SDK.Enumerations;
 using static EloBuddy.SDK.Prediction.Manager;
+using EloBuddy.SDK.Events;
 
 namespace Evade
 {
@@ -1851,7 +1852,7 @@ namespace Evade
             /// </summary>
             /// <param name="sender">The sender.</param>
             /// <param name="args">The arguments.</param>
-            public delegate void OnDashed(Obj_AI_Base sender, Dash.DashItem args);
+            public delegate void OnDashed(Obj_AI_Base sender, Dash.DashEventArgs args);
 
             /// <summary>
             ///     The delegate for <see cref="Unit.OnLevelUp" />
@@ -1901,7 +1902,7 @@ namespace Evade
             /// </summary>
             /// <param name="sender">The sender.</param>
             /// <param name="args">The arguments.</param>
-            public static void TriggerOnDash(Obj_AI_Base sender, Dash.DashItem args)
+            public static void TriggerOnDash(Obj_AI_Base sender, Dash.DashEventArgs args)
             {
                 var dashHandler = OnDash;
                 if (dashHandler != null)
@@ -1956,145 +1957,7 @@ namespace Evade
         }
     }
 
-    /// <summary>
-    ///     Gets information about dashes, and provides events.
-    /// </summary>
-    public static class Dash
-    {
-        /// <summary>
-        ///     The detected dashes
-        /// </summary>
-        private static readonly Dictionary<int, DashItem> DetectedDashes = new Dictionary<int, DashItem>();
-
-        /// <summary>
-        ///     Initializes static members of the <see cref="Dash" /> class.
-        /// </summary>
-        static Dash()
-        {
-            Obj_AI_Base.OnNewPath += ObjAiHeroOnOnNewPath;
-        }
-
-        /// <summary>
-        ///     Fired when a unit changes paths.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="GameObjectNewPathEventArgs" /> instance containing the event data.</param>
-        private static void ObjAiHeroOnOnNewPath(Obj_AI_Base sender, GameObjectNewPathEventArgs args)
-        {
-            if (sender.IsValid() && sender.IsVisible && sender.IsHPBarRendered)
-            {
-                if (!DetectedDashes.ContainsKey(sender.NetworkId))
-                {
-                    DetectedDashes.Add(sender.NetworkId, new DashItem());
-                }
-
-                if (args.IsDash)
-                {
-                    var path = new List<Vector2> { (sender.ServerPosition).To2D() };
-                    path.AddRange(args.Path.ToList().To2D());
-
-                    DetectedDashes[sender.NetworkId].StartTick = Utils.TickCount;
-                    DetectedDashes[sender.NetworkId].Speed = args.Speed;
-                    DetectedDashes[sender.NetworkId].StartPos = (sender.ServerPosition).To2D();
-                    DetectedDashes[sender.NetworkId].Unit = sender;
-                    DetectedDashes[sender.NetworkId].Path = path;
-                    DetectedDashes[sender.NetworkId].EndPos = DetectedDashes[sender.NetworkId].Path.Last();
-                    DetectedDashes[sender.NetworkId].EndTick = DetectedDashes[sender.NetworkId].StartTick +
-                                                               (int)
-                                                                   (1000 *
-                                                                    (DetectedDashes[sender.NetworkId].EndPos.Distance(
-                                                                        DetectedDashes[sender.NetworkId].StartPos) /
-                                                                     DetectedDashes[sender.NetworkId].Speed));
-                    DetectedDashes[sender.NetworkId].Duration = DetectedDashes[sender.NetworkId].EndTick -
-                                                                DetectedDashes[sender.NetworkId].StartTick;
-
-                    CustomEvents.Unit.TriggerOnDash(DetectedDashes[sender.NetworkId].Unit,
-                        DetectedDashes[sender.NetworkId]);
-                }
-                else
-                {
-                    DetectedDashes[sender.NetworkId].EndTick = 0;
-                }
-            }
-        }
-
-
-        /// <summary>
-        ///     Determines whether this instance is dashing.
-        /// </summary>
-        /// <param name="unit">The unit.</param>
-        /// <returns></returns>
-        public static bool IsDashing(this Obj_AI_Base unit)
-        {
-            if (DetectedDashes.ContainsKey(unit.NetworkId) && unit.Path.Length != 0 && unit.IsHPBarRendered && unit.IsVisible && !unit.IsDead)
-            {
-                return DetectedDashes[unit.NetworkId].EndTick != 0;
-            }
-            return false;
-        }
-
-
-        /// <summary>
-        ///     Gets the dash information.
-        /// </summary>
-        /// <param name="unit">The unit.</param>
-        /// <returns></returns>
-        public static DashItem GetDashInfo(this Obj_AI_Base unit)
-        {
-            return DetectedDashes.ContainsKey(unit.NetworkId) ? DetectedDashes[unit.NetworkId] : new DashItem();
-        }
-
-        /// <summary>
-        ///     Represents a dash.
-        /// </summary>
-        public class DashItem
-        {
-            /// <summary>
-            ///     The duration
-            /// </summary>
-            public int Duration;
-
-            /// <summary>
-            ///     The end position
-            /// </summary>
-            public Vector2 EndPos;
-
-            /// <summary>
-            ///     The end tick
-            /// </summary>
-            public int EndTick;
-
-            /// <summary>
-            ///     <c>true</c> if the dash was a blink, else <c>false</c>
-            /// </summary>
-            public bool IsBlink;
-
-            /// <summary>
-            ///     The path
-            /// </summary>
-            public List<Vector2> Path;
-
-            /// <summary>
-            ///     The speed
-            /// </summary>
-            public float Speed;
-
-            /// <summary>
-            ///     The start position
-            /// </summary>
-            public Vector2 StartPos;
-
-            /// <summary>
-            ///     The start tick
-            /// </summary>
-            public int StartTick;
-
-            /// <summary>
-            ///     The unit
-            /// </summary>
-            public Obj_AI_Base Unit;
-        }
-    }
+    
 
     /// <summary>
     ///     Provides cached heroes.
