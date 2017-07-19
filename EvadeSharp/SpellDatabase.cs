@@ -473,7 +473,7 @@ namespace Evade
                     SpellName = "RocketGrab",
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotMissileLine,
-                    Delay = 250 + 75,
+                    Delay = 250,
                     Range = 1050,
                     Radius = 70,
                     MissileSpeed = 1800,
@@ -483,7 +483,7 @@ namespace Evade
                     IsDangerous = true,
                     MissileSpellName = "RocketGrabMissile",
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
-                    //CanBeRemoved = true,
+                    CanBeRemoved = true,
                     CollisionObjects =
                         new[]
                         {CollisionObjectTypes.Champions, CollisionObjectTypes.Minion, CollisionObjectTypes.YasuoWall}
@@ -2786,7 +2786,7 @@ namespace Evade
                     Radius = 340,
                     MissileSpeed = 1300,
                     FixedRange = false,
-                    AddHitbox = false,
+                    AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
                     MissileSpellName = "LuxLightStrikeKugel",
@@ -4472,6 +4472,8 @@ namespace Evade
                     DangerValue = 2,
                     IsDangerous = false,
                     MissileSpellName = "Xeratharcanopulse2",
+                    ExtraSpellNames = new[] { "XerathArcanopulseChargeUp" },
+                    DontCross = true,
                 });
 
             Spells.Add(
@@ -4532,6 +4534,7 @@ namespace Evade
                     IsDangerous = true,
                     MissileDelayed = true,
                     MissileSpellName = "XerathLocusPulse",
+                    
                 });
 
             #endregion Xerath
@@ -4543,10 +4546,10 @@ namespace Evade
                 {
                     ChampionName = "Warwick",
                     SpellName = "WarwickR",
-                    Slot = SpellSlot.Q,
+                    Slot = SpellSlot.R,
                     Type = SkillShotType.SkillshotLine,
                     Delay = 250,
-                    Range = 1300,
+                    Range = 1300 + 500,
                     Radius = 90,
                     MissileSpeed = 2175,
                     FixedRange = true,
