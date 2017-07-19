@@ -40,7 +40,7 @@ namespace Evade
                 Spells.Add(
                     new SpellData
                     {
-                        ChampionName = ObjectManager.Player.ChampionName,
+                        ChampionName = Player.Instance.ChampionName,
                         SpellName = "TestCircleSkillShot",
                         Slot = SpellSlot.R,
                         Type = SkillShotType.SkillshotCircle,
@@ -59,7 +59,7 @@ namespace Evade
                 Spells.Add(
                     new SpellData
                     {
-                        ChampionName = ObjectManager.Player.ChampionName,
+                        ChampionName = Player.Instance.ChampionName,
                         SpellName = "TestLineSkillShot",
                         Slot = SpellSlot.R,
                         Type = SkillShotType.SkillshotMissileLine,
@@ -475,7 +475,7 @@ namespace Evade
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
                     Range = 1050,
-                    Radius = 85,
+                    Radius = 70,
                     MissileSpeed = 1800,
                     FixedRange = true,
                     AddHitbox = true,
@@ -483,8 +483,7 @@ namespace Evade
                     IsDangerous = true,
                     MissileSpellName = "RocketGrabMissile",
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
-                    //CanBeRemoved = true,
-                    //DontCross = true,
+                    CanBeRemoved = true,
                     CollisionObjects =
                         new[]
                         {CollisionObjectTypes.Champions, CollisionObjectTypes.Minion, CollisionObjectTypes.YasuoWall}

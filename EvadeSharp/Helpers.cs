@@ -12,12 +12,12 @@ namespace Evade
     {
         public static bool IsSpellShielded(this AIHeroClient unit)
         {
-            if (ObjectManager.Player.HasBuffOfType(BuffType.SpellShield))
+            if (Player.Instance.HasBuffOfType(BuffType.SpellShield))
             {
                 return true;
             }
 
-            if (ObjectManager.Player.HasBuffOfType(BuffType.SpellImmunity))
+            if (Player.Instance.HasBuffOfType(BuffType.SpellImmunity))
             {
                 return true;
             }

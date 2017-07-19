@@ -155,7 +155,7 @@ namespace Evade
                                          Config.TestOnAllies && h.Team != ObjectManager.Player.Team)))
                         {
                             var pred = FastPrediction(
-                                from, hero,
+                                from, Player.Instance,
                                 Math.Max(0, skillshot.SpellData.Delay - (Utils.TickCount - skillshot.StartTick)),
                                 skillshot.SpellData.MissileSpeed);
                             var pos = pred.PredictedPos;
@@ -169,7 +169,7 @@ namespace Evade
                                         Position =
                                             pos.ProjectOn(skillshot.End, skillshot.Start).LinePoint +
                                             skillshot.Direction * 30,
-                                        Unit = hero,
+                                        Unit = Player.Instance,
                                         Type = CollisionObjectTypes.Minion,
                                         Distance = pos.Distance(from),
                                         Diff = w,
@@ -187,8 +187,8 @@ namespace Evade
                             !ObjectManager.Get<AIHeroClient>()
                                 .Any(
                                     hero =>
-                                        hero.IsValidTarget(float.MaxValue, false) &&
-                                        hero.Team == ObjectManager.Player.Team && hero.ChampionName == "Yasuo"))
+                                        Player.Instance.IsValidTarget(float.MaxValue, false) &&
+                                        Player.Instance.Team == ObjectManager.Player.Team && Player.Instance.ChampionName == "Yasuo"))
                         {
                             break;
                         }

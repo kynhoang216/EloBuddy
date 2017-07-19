@@ -66,12 +66,12 @@ namespace Evade
                 return;
             }
 
-            TriggerOnDetectSkillshot(DetectionType.ProcessSpell, spellData, Utils.TickCount - Game.Ping / 2, sender.Position.To2D(), sender.Position.To2D(), sender.Position.To2D(), HeroManager.AllHeroes.MinOrDefault(h => h.IsAlly ? 1 : 0));
+            TriggerOnDetectSkillshot(DetectionType.ProcessSpell, spellData, Utils.TickCount - Game.Ping / 2, sender.Position.To2D(), sender.Position.To2D(), sender.Position.To2D(), EntityManager.Heroes.AllHeroes.MinOrDefault(h => h.IsAlly ? 1 : 0));
         }
 
         private static void GameObject_OnDelete(GameObject sender, EventArgs args)
         {
-            if (!sender.IsValid || !Config.TestOnAllies && sender.Team == ObjectManager.Player.Team)
+            if (!sender.IsValid || !Config.TestOnAllies && sender.Team == Player.Instance.Team)
             {
                 return;
             }
@@ -97,7 +97,7 @@ namespace Evade
 
             var unit = missile.SpellCaster as AIHeroClient;
 
-            if (unit == null || !unit.IsValid || (unit.Team == ObjectManager.Player.Team && !Config.TestOnAllies))
+            if (unit == null || !unit.IsValid || (unit.Team == Player.Instance.Team && !Config.TestOnAllies))
             {
                 return;
             }
@@ -130,7 +130,7 @@ namespace Evade
 
             var unit = missile.SpellCaster as AIHeroClient;
 
-            if (unit == null || !unit.IsValid || (unit.Team == ObjectManager.Player.Team && !Config.TestOnAllies))
+            if (unit == null || !unit.IsValid || (unit.Team == Player.Instance.Team && !Config.TestOnAllies))
             {
                 return;
             }
@@ -188,7 +188,7 @@ namespace Evade
 
             var caster = missile.SpellCaster as AIHeroClient;
 
-            if (caster == null || !caster.IsValid || (caster.Team == ObjectManager.Player.Team && !Config.TestOnAllies))
+            if (caster == null || !caster.IsValid || (caster.Team == Player.Instance.Team && !Config.TestOnAllies))
             {
                 return;
             }
@@ -275,7 +275,7 @@ namespace Evade
                     s => s.Unit.NetworkId == sender.NetworkId && s.SpellData.SpellName == "DravenRCast");
             }
 
-            if (!sender.IsValid || sender.Team == ObjectManager.Player.Team && !Config.TestOnAllies)
+            if (!sender.IsValid || sender.Team == Player.Instance.Team && !Config.TestOnAllies)
             {
                 return;
             }
@@ -383,7 +383,7 @@ namespace Evade
                 packet.Position = packet.Data.Length - 83;
 
                 var unit = ObjectManager.GetUnitByNetworkId<AIHeroClient>(packet.Read<uint>());
-                if ((!unit.IsValid || unit.Team == ObjectManager.Player.Team) && !Config.TestOnAllies)
+                if ((!unit.IsValid || unit.Team == Player.Instance.Team) && !Config.TestOnAllies)
                 {
                     return;
                 }
