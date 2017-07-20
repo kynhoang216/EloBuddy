@@ -12,7 +12,7 @@ namespace ezEvade
 {
     public class PositionInfo
     {
-        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
+        private static AIHeroClient myHero { get { return Player.Instance; } }
 
         public int posDangerLevel = 0;
         public int posDangerCount = 0;
@@ -122,7 +122,7 @@ namespace ezEvade
 
     public static class PositionInfoExtensions
     {
-        public static AIHeroClient myHero { get { return ObjectManager.Player; } }
+        public static AIHeroClient myHero { get { return Player.Instance; } }
 
         public static int GetHighestSpellID(this PositionInfo posInfo)
         {

@@ -18,7 +18,7 @@ namespace ezEvade
     {
         public static Menu menu;
 
-        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
+        private static AIHeroClient myHero { get { return Player.Instance; } }
 
 
         public SpellDrawer(Menu mainMenu)

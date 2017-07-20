@@ -49,7 +49,7 @@ namespace ezEvade
 
         private static int spellIDCount = 0;
 
-        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
+        private static AIHeroClient myHero { get { return Player.Instance; } }
 
         public static float lastCheckTime = 0;
         public static float lastCheckSpellCollisionTime = 0;

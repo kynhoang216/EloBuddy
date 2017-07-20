@@ -8,7 +8,7 @@ namespace ezEvade
 {
     public static class Situation
     {
-        private static AIHeroClient myHero => ObjectManager.Player;
+        private static AIHeroClient myHero => Player.Instance;
 
         static Situation()
         {
@@ -171,12 +171,12 @@ namespace ezEvade
         //from Evade by Esk0r
         public static bool HasSpellShield(AIHeroClient unit)
         {
-            if (ObjectManager.Player.HasBuffOfType(BuffType.SpellShield))
+            if (Player.Instance.HasBuffOfType(BuffType.SpellShield))
             {
                 return true;
             }
 
-            if (ObjectManager.Player.HasBuffOfType(BuffType.SpellImmunity))
+            if (Player.Instance.HasBuffOfType(BuffType.SpellImmunity))
             {
                 return true;
             }

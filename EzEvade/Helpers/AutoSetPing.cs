@@ -17,7 +17,7 @@ namespace ezEvade
 {
     class AutoSetPing
     {
-        public static AIHeroClient myHero { get { return ObjectManager.Player; } }
+        public static AIHeroClient myHero { get { return Player.Instance; } }
 
         private static float sumExtraDelayTime = 0;
         private static float avgExtraDelayTime = 0;

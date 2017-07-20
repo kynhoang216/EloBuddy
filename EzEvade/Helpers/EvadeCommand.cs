@@ -20,7 +20,7 @@ namespace ezEvade
 
     class EvadeCommand
     {
-        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
+        private static AIHeroClient myHero { get { return Player.Instance; } }
 
         public EvadeOrderCommand order;
         public Vector2 targetPosition;

@@ -15,7 +15,7 @@ namespace ezEvade
 {
     class EvadeHelper
     {
-        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
+        private static AIHeroClient myHero { get { return Player.Instance; } }
         public static bool fastEvadeMode;
 
         public static bool PlayerInSkillShot(Spell spell)
@@ -1188,7 +1188,7 @@ namespace ezEvade
         {
             const int segmentRadius = 55;
 
-            var myBoundingRadius = ObjectManager.Player.BoundingRadius;
+            var myBoundingRadius = Player.Instance.BoundingRadius;
             var segmentDir = (b1 - a1).Normalized().Perpendicular();
             var segmentStart = a1;
             var segmentEnd = b1;
