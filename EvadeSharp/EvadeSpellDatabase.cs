@@ -638,9 +638,9 @@ namespace Evade
             #endregion
 
             //Flash
-            if (Player.Instance.GetSpellSlotFromName("SummonerFlash") != SpellSlot.Unknown)
+            if (Player.Instance.GetSpellSlotFromName("summonerflash") != SpellSlot.Unknown)
             {
-                spell = new BlinkData("Flash", Player.Instance.GetSpellSlotFromName("SummonerFlash"), 400, 100, 5, true);
+                spell = new BlinkData("Flash", Player.Instance.GetSpellSlotFromName("summonerflash"), 400, 100, 5, true);
                 Spells.Add(spell);
             }
 
