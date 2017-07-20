@@ -29,7 +29,7 @@ namespace Evade.Pathfinding
 
                 if (Path.Count > 0)
                 {
-                    ObjectManager.Player.SendMovePacket(Path[0]);
+                    Player.Instance.SendMovePacket(Path[0]);
                 }
             }
         }

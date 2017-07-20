@@ -108,7 +108,7 @@ namespace Evade
 
             foreach (var hero in ObjectManager.Get<AIHeroClient>())
             {
-                if (hero.Team != ObjectManager.Player.Team || Config.TestOnAllies)
+                if (hero.Team != Player.Instance.Team || Config.TestOnAllies)
                 {
                     foreach (var spell in SpellDatabase.Spells)
                     {

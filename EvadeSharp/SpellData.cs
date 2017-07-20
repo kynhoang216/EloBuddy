@@ -107,7 +107,7 @@ namespace Evade
             {
                 return (!AddHitbox)
                     ? _radius + Config.SkillShotsExtraRadius
-                    : Config.SkillShotsExtraRadius + _radius + (int)ObjectManager.Player.BoundingRadius;
+                    : Config.SkillShotsExtraRadius + _radius + (int)Player.Instance.BoundingRadius;
             }
             set { _radius = value; }
         }

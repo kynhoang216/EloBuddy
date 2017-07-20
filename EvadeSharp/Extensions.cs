@@ -2070,6 +2070,7 @@ namespace Evade
         /// </summary>
         public class Circle : RenderObject
         {
+            
             /// <summary>
             ///     The vertices
             /// </summary>
@@ -2584,6 +2585,7 @@ namespace Evade
             /// <param name="zDeep">if set to <c>true</c> the circle will be drawn with depth buffering.</param>
             public static void DrawCircle(Vector3 position, float radius, Color color, int width = 5, bool zDeep = false)
             {
+
                 try
                 {
                     if (Device == null || Device.IsDisposed)
@@ -2626,11 +2628,13 @@ namespace Evade
 
                     Device.VertexDeclaration = olddec;
                 }
+
                 catch (Exception e)
                 {
                     _vertices = null;
                     Console.WriteLine(@"DrawCircle: " + e);
                 }
+
             }
         }
     }

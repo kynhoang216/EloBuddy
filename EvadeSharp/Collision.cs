@@ -64,7 +64,7 @@ namespace Evade
 
         private static void Obj_AI_Hero_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsValid && sender.Team == ObjectManager.Player.Team && args.SData.Name == "YasuoWMovingWall")
+            if (sender.IsValid && sender.Team == Player.Instance.Team && args.SData.Name == "YasuoWMovingWall")
 
             {
                 WallCastT = Utils.TickCount;
@@ -113,7 +113,7 @@ namespace Evade
                         foreach (var minion in
                             MinionManager.GetMinions(
                                 from.To3D(), 1200, MinionTypes.All,
-                                skillshot.Unit.Team == ObjectManager.Player.Team
+                                skillshot.Unit.Team == Player.Instance.Team
                                     ? MinionTeam.NotAlly
                                     : MinionTeam.NotAllyForEnemy))
                         {
@@ -151,8 +151,8 @@ namespace Evade
                             ObjectManager.Get<AIHeroClient>()
                                 .Where(
                                     h =>
-                                        (h.IsValidTarget(1200, false) && h.Team == ObjectManager.Player.Team && !h.IsMe ||
-                                         Config.TestOnAllies && h.Team != ObjectManager.Player.Team)))
+                                        (h.IsValidTarget(1200, false) && h.Team == Player.Instance.Team && !h.IsMe ||
+                                         Config.TestOnAllies && h.Team != Player.Instance.Team)))
                         {
                             var pred = FastPrediction(
                                 from, Player.Instance,
@@ -188,7 +188,7 @@ namespace Evade
                                 .Any(
                                     hero =>
                                         Player.Instance.IsValidTarget(float.MaxValue, false) &&
-                                        Player.Instance.Team == ObjectManager.Player.Team && Player.Instance.ChampionName == "Yasuo"))
+                                        Player.Instance.Team == Player.Instance.Team && Player.Instance.ChampionName == "Yasuo"))
                         {
                             break;
                         }
