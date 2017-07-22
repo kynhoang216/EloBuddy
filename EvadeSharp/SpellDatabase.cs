@@ -4388,28 +4388,10 @@ namespace Evade
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "XayahQMissile1",
+                    MissileSpellName = "XayahQMissile",
                     ExtraMissileNames = new[] { "XayahQMissile2" },
                     ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
                 });
-
-            /*Spells.Add(
-                new SpellData
-                {
-                    ChampionName = "Xayah",
-                    SpellName = "XayahW",
-                    Slot = SpellSlot.W,
-                    Delay = 250,
-                    Range = int.MaxValue,
-                    Radius = int.MaxValue,
-                    MissileSpeed = 1500,
-                    AddHitbox = true,
-                    FixedRange = true,
-                    DangerValue = 1,
-                    IsDangerous = false,
-                    MissileSpellName = "",
-                    ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
-                });*/
 
             Spells.Add(
                 new SpellData
@@ -4442,12 +4424,12 @@ namespace Evade
                     Delay = 1000,
                     Range = 1100,
                     Radius = 200,
-                    MissileSpeed = 4000,
+                    MissileSpeed = 2000,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 5,
                     IsDangerous = true,
-                    MissileSpellName = "",
+                    MissileSpellName = "XayahR",
                     MissileFollowsUnit = true,
                     ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
                 });
