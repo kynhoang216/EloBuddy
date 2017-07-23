@@ -4249,8 +4249,8 @@ namespace Evade
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
-                    Range = 1100,
-                    Radius = 50,
+                    Range = 1250,
+                    Radius = 55,
                     MissileSpeed = 1300,
                     FixedRange = true,
                     AddHitbox = true,
@@ -4295,11 +4295,12 @@ namespace Evade
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
                     Range = 1200,
-                    Radius = 88,
+                    Radius = 90,
                     MissileSpeed = 1700,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
+                    ExtraDuration = 1000,
                     IsDangerous = false,
                     MissileSpellName = "VelkozWMissile",
                 });
@@ -4360,12 +4361,31 @@ namespace Evade
                     Range = 1500,
                     Radius = 80,
                     MissileSpeed = 1350,
-                    FixedRange = false,
+                    FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
                     MissileSpellName = "ViktorDeathRayMissile",
-                    ExtraMissileNames = new[] { "viktoreaugmissile" },
+                    ExtraMissileNames = new[] { "ViktorEAugMissile" },
+                    CollisionObjects = new[] { CollisionObjectTypes.YasuoWall },
+                });
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Viktor",
+                    SpellName = "ViktorDeathRay3",
+                    Slot = SpellSlot.E,
+                    Type = SkillShotType.SkillshotMissileLine,
+                    Delay = 500,
+                    Range = 1500,
+                    Radius = 80,
+                    MissileSpeed = 1350,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 2,
+                    IsDangerous = false,
+                    MissileSpellName = "",
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall },
                 });
 
