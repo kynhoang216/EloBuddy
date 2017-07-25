@@ -1417,11 +1417,11 @@ namespace Evade
                     }
 
                     //Zhonyas
-                    if (evadeSpell.Name == "Zhonyas" && (Item.CanUseItem("Zhonya's Hourglass")))
+                    if (evadeSpell.Name == "Zhonyas" && (Item.CanUseItem("ZhonyasHourglass")))
                     {
                         if (IsAboutToHit(Player.Instance, 100))
                         {
-                            Item.UseItem("Zhonya's Hourglass");
+                            Item.UseItem("ZhonyasHourglass");
                         }
 
                         //Let the user move freely inside the skillshot.
