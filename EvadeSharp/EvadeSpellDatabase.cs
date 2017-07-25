@@ -638,18 +638,15 @@ namespace Evade
             #endregion
 
             //Flash
-            if (Player.Instance.GetSpellSlotFromName("SummonerFlash") != SpellSlot.Unknown)
+            if (Player.Instance.GetSpellSlotFromName("summonerflash") != SpellSlot.Unknown)
             {
                 spell = new BlinkData("Flash", Player.Instance.GetSpellSlotFromName("SummonerFlash"), 400, 50, 5, true);
                 Spells.Add(spell);
             }
 
             //Zhonyas
-            if (Player.Instance.GetSpellSlotFromName("ZhonyasHourglass") != SpellSlot.Unknown)
-            {
             spell = new EvadeSpellData("ZhonyasHourglass", 5);
             Spells.Add(spell);
-            }
             
             #region Champion Shields
 
