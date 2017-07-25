@@ -640,7 +640,7 @@ namespace Evade
             //Flash
             if (Player.Instance.GetSpellSlotFromName("summonerflash") != SpellSlot.Unknown)
             {
-                spell = new BlinkData("Flash", Player.Instance.GetSpellSlotFromName("summonerflash"), 400, 100, 5, true);
+                spell = new BlinkData("SummonerFlash", Player.Instance.GetSpellSlotFromName("summonerflash"), 400, 100, 5, true);
                 Spells.Add(spell);
             }
 
