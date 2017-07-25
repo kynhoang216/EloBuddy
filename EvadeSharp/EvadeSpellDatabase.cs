@@ -645,7 +645,7 @@ namespace Evade
             }
 
             //Zhonyas
-            spell = new EvadeSpellData("ZhonyasHourglass", 5);
+            spell = new EvadeSpellData("Zhonya", 5);
             Spells.Add(spell);
             
             #region Champion Shields
