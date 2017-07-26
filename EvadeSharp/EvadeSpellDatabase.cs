@@ -38,9 +38,9 @@ namespace Evade
 
             #region Sivir
 
-            if (Player.Instance.ChampionName == "Sivir")
+            if (ObjectManager.Player.ChampionName == "Sivir")
             {
-                spell = new ShieldData("Sivir E", SpellSlot.E, 100, 1, true);
+                spell = new ShieldData("SivirE", SpellSlot.E, 100, 1, true);
                 Spells.Add(spell);
             }
 
@@ -638,9 +638,9 @@ namespace Evade
             #endregion
 
             //Flash
-            if (Player.Instance.GetSpellSlotFromName("summonerflash") != SpellSlot.Unknown)
+            if (Player.Instance.FindSummonerSpellSlotFromName("summonerflash") != SpellSlot.Unknown)
             {
-                spell = new BlinkData("Flash", Player.Instance.GetSpellSlotFromName("SummonerFlash"), 400, 50, 5, true);
+                spell = new BlinkData("Flash", Player.Instance.FindSummonerSpellSlotFromName("summonerflash"), 400, 50, 5, true);
                 Spells.Add(spell);
             }
 
