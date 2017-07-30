@@ -1,4 +1,4 @@
-// Copyright 2014 - 2014 Esk0r
+﻿// Copyright 2014 - 2014 Esk0r
 // EvadeSpellData.cs is part of Evade.
 // 
 // Evade is free software: you can redistribute it and/or modify
@@ -107,9 +107,9 @@ namespace Evade
 
         public bool IsReady()
         {
-            return ((CheckSpellName == "" || Player.Instance.Spellbook.GetSpell(Slot).Name == CheckSpellName) &&
-                    ((IsSummonerSpell && Player.Instance.Spellbook.CanUseSpell(Slot) == SpellState.Ready) ||
-                     (!IsSummonerSpell && Player.Instance.Spellbook.CanUseSpell(Slot) == SpellState.Ready)));
+            return ((CheckSpellName == "" || ObjectManager.Player.Spellbook.GetSpell(Slot).Name == CheckSpellName) &&
+                    ((IsSummonerSpell && ObjectManager.Player.Spellbook.CanUseSpell(Slot) == SpellState.Ready) ||
+                     (!IsSummonerSpell && ObjectManager.Player.Spellbook.CanUseSpell(Slot) == SpellState.Ready)));
         }
     }
 
