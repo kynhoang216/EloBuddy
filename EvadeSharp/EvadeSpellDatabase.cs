@@ -1,4 +1,4 @@
-﻿// Copyright 2014 - 2014 Esk0r
+// Copyright 2014 - 2014 Esk0r
 // EvadeSpellDatabase.cs is part of Evade.
 // 
 // Evade is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@ namespace Evade
     internal class EvadeSpellDatabase
     {
         public static List<EvadeSpellData> Spells = new List<EvadeSpellData>();
+        public static List<EvadeSpellData> Items = new List<EvadeSpellData>();
 
         static EvadeSpellDatabase()
         {
@@ -38,9 +39,9 @@ namespace Evade
 
             #region Sivir
 
-            if (ObjectManager.Player.ChampionName == "Sivir")
+            if (Player.Instance.ChampionName == "Sivir")
             {
-                spell = new ShieldData("SivirE", SpellSlot.E, 100, 1, true);
+                spell = new ShieldData("Sivir E", SpellSlot.E, 0, 2, true);
                 Spells.Add(spell);
             }
 
@@ -48,7 +49,7 @@ namespace Evade
 
             #region Nocturne
 
-            if (ObjectManager.Player.ChampionName == "Nocturne")
+            if (Player.Instance.ChampionName == "Nocturne")
             {
                 spell = new ShieldData("Nocturne W", SpellSlot.W, 100, 1, true);
                 Spells.Add(spell);
@@ -66,13 +67,13 @@ namespace Evade
 
             #region Blitzcrank
 
-            if (ObjectManager.Player.ChampionName == "Blitzcrank")
+            if (Player.Instance.ChampionName == "Blitzcrank")
             {
                 spell = new MoveBuffData(
                     "Blitzcrank W", SpellSlot.W, 100, 3,
                     () =>
-                        ObjectManager.Player.MoveSpeed *
-                        (1 + 0.12f + 0.04f * ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).Level));
+                        Player.Instance.MoveSpeed *
+                        (1 + 0.12f + 0.04f * Player.Instance.Spellbook.GetSpell(SpellSlot.W).Level));
                 Spells.Add(spell);
             }
 
@@ -80,13 +81,13 @@ namespace Evade
 
             #region Draven
 
-            if (ObjectManager.Player.ChampionName == "Draven")
+            if (Player.Instance.ChampionName == "Draven")
             {
                 spell = new MoveBuffData(
                     "Draven W", SpellSlot.W, 100, 3,
                     () =>
-                        ObjectManager.Player.MoveSpeed *
-                        (1 + 0.35f + 0.05f * ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).Level));
+                        Player.Instance.MoveSpeed *
+                        (1 + 0.35f + 0.05f * Player.Instance.Spellbook.GetSpell(SpellSlot.W).Level));
                 Spells.Add(spell);
             }
 
@@ -94,13 +95,13 @@ namespace Evade
 
             #region Evelynn
 
-            if (ObjectManager.Player.ChampionName == "Evelynn")
+            if (Player.Instance.ChampionName == "Evelynn")
             {
                 spell = new MoveBuffData(
                     "Evelynn W", SpellSlot.W, 100, 3,
                     () =>
-                        ObjectManager.Player.MoveSpeed *
-                        (1 + 0.2f + 0.1f * ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).Level));
+                        Player.Instance.MoveSpeed *
+                        (1 + 0.2f + 0.1f * Player.Instance.Spellbook.GetSpell(SpellSlot.W).Level));
                 Spells.Add(spell);
             }
 
@@ -108,9 +109,9 @@ namespace Evade
 
             #region Garen
 
-            if (ObjectManager.Player.ChampionName == "Garen")
+            if (Player.Instance.ChampionName == "Garen")
             {
-                spell = new MoveBuffData("Garen Q", SpellSlot.Q, 100, 3, () => ObjectManager.Player.MoveSpeed * (1.35f));
+                spell = new MoveBuffData("Garen Q", SpellSlot.Q, 100, 3, () => Player.Instance.MoveSpeed * (1.35f));
                 Spells.Add(spell);
             }
 
@@ -118,14 +119,14 @@ namespace Evade
 
             #region Katarina
 
-            if (ObjectManager.Player.ChampionName == "Katarina")
+            if (Player.Instance.ChampionName == "Katarina")
             {
                 spell = new MoveBuffData(
                     "Katarina W", SpellSlot.W, 100, 3,
                     () =>
                         ObjectManager.Get<AIHeroClient>().Any(h => h.IsValidTarget(375))
-                            ? ObjectManager.Player.MoveSpeed *
-                              (1 + 0.10f + 0.05f * ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).Level)
+                            ? Player.Instance.MoveSpeed *
+                              (1 + 0.10f + 0.05f * Player.Instance.Spellbook.GetSpell(SpellSlot.W).Level)
                             : 0);
                 Spells.Add(spell);
             }
@@ -134,13 +135,13 @@ namespace Evade
 
             #region Karma 
 
-            if (ObjectManager.Player.ChampionName == "Karma")
+            if (Player.Instance.ChampionName == "Karma")
             {
                 spell = new MoveBuffData(
                     "Karma E", SpellSlot.E, 100, 3,
                     () =>
-                        ObjectManager.Player.MoveSpeed *
-                        (1 + 0.35f + 0.05f * ObjectManager.Player.Spellbook.GetSpell(SpellSlot.E).Level));
+                        Player.Instance.MoveSpeed *
+                        (1 + 0.35f + 0.05f * Player.Instance.Spellbook.GetSpell(SpellSlot.E).Level));
                 Spells.Add(spell);
             }
 
@@ -148,9 +149,9 @@ namespace Evade
 
             #region Kennen
 
-            if (ObjectManager.Player.ChampionName == "Kennen")
+            if (Player.Instance.ChampionName == "Kennen")
             {
-                spell = new MoveBuffData("Kennen E", SpellSlot.E, 100, 3, () => 200 + ObjectManager.Player.MoveSpeed);
+                spell = new MoveBuffData("Kennen E", SpellSlot.E, 100, 3, () => 200 + Player.Instance.MoveSpeed);
                 //Actually it should be +335 but ingame you only gain +230, rito plz
                 Spells.Add(spell);
             }
@@ -159,9 +160,9 @@ namespace Evade
 
             #region Khazix
 
-            if (ObjectManager.Player.ChampionName == "Khazix")
+            if (Player.Instance.ChampionName == "Khazix")
             {
-                spell = new MoveBuffData("Khazix R", SpellSlot.R, 100, 5, () => ObjectManager.Player.MoveSpeed * 1.4f);
+                spell = new MoveBuffData("Khazix R", SpellSlot.R, 100, 5, () => Player.Instance.MoveSpeed * 1.4f);
                 Spells.Add(spell);
             }
 
@@ -169,11 +170,11 @@ namespace Evade
 
             #region Lulu
 
-            if (ObjectManager.Player.ChampionName == "Lulu")
+            if (Player.Instance.ChampionName == "Lulu")
             {
                 spell = new MoveBuffData(
                     "Lulu W", SpellSlot.W, 100, 5,
-                    () => ObjectManager.Player.MoveSpeed * (1.3f + ObjectManager.Player.FlatMagicDamageMod / 100 * 0.1f));
+                    () => Player.Instance.MoveSpeed * (1.3f + Player.Instance.FlatMagicDamageMod / 100 * 0.1f));
                 Spells.Add(spell);
             }
 
@@ -181,13 +182,13 @@ namespace Evade
 
             #region Nunu
 
-            if (ObjectManager.Player.ChampionName == "Nunu")
+            if (Player.Instance.ChampionName == "Nunu")
             {
                 spell = new MoveBuffData(
                     "Nunu W", SpellSlot.W, 100, 3,
                     () =>
-                        ObjectManager.Player.MoveSpeed *
-                        (1 + 0.1f + 0.01f * ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).Level));
+                        Player.Instance.MoveSpeed *
+                        (1 + 0.1f + 0.01f * Player.Instance.Spellbook.GetSpell(SpellSlot.W).Level));
                 Spells.Add(spell);
             }
 
@@ -195,9 +196,9 @@ namespace Evade
 
             #region Ryze
 
-            if (ObjectManager.Player.ChampionName == "Ryze")
+            if (Player.Instance.ChampionName == "Ryze")
             {
-                spell = new MoveBuffData("Ryze R", SpellSlot.R, 100, 5, () => 80 + ObjectManager.Player.MoveSpeed);
+                spell = new MoveBuffData("Ryze R", SpellSlot.R, 100, 5, () => 80 + Player.Instance.MoveSpeed);
                 Spells.Add(spell);
             }
 
@@ -205,9 +206,9 @@ namespace Evade
 
             #region Shyvana
 
-            if (ObjectManager.Player.ChampionName == "Sivir")
+            if (Player.Instance.ChampionName == "Sivir")
             {
-                spell = new MoveBuffData("Sivir R", SpellSlot.R, 100, 5, () => ObjectManager.Player.MoveSpeed * (1.6f));
+                spell = new MoveBuffData("Sivir R", SpellSlot.R, 100, 5, () => Player.Instance.MoveSpeed * (1.6f));
                 Spells.Add(spell);
             }
 
@@ -215,13 +216,13 @@ namespace Evade
 
             #region Shyvana
 
-            if (ObjectManager.Player.ChampionName == "Shyvana")
+            if (Player.Instance.ChampionName == "Shyvana")
             {
                 spell = new MoveBuffData(
                     "Shyvana W", SpellSlot.W, 100, 4,
                     () =>
-                        ObjectManager.Player.MoveSpeed *
-                        (1 + 0.25f + 0.05f * ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).Level));
+                        Player.Instance.MoveSpeed *
+                        (1 + 0.25f + 0.05f * Player.Instance.Spellbook.GetSpell(SpellSlot.W).Level));
                 spell.CheckSpellName = "ShyvanaImmolationAura";
                 Spells.Add(spell);
             }
@@ -230,15 +231,15 @@ namespace Evade
 
             #region Sona
 
-            if (ObjectManager.Player.ChampionName == "Sona")
+            if (Player.Instance.ChampionName == "Sona")
             {
                 spell = new MoveBuffData(
                     "Sona E", SpellSlot.E, 100, 3,
                     () =>
-                        ObjectManager.Player.MoveSpeed *
-                        (1 + 0.12f + 0.01f * ObjectManager.Player.Spellbook.GetSpell(SpellSlot.E).Level +
-                         ObjectManager.Player.FlatMagicDamageMod / 100 * 0.075f +
-                         0.02f * ObjectManager.Player.Spellbook.GetSpell(SpellSlot.R).Level));
+                        Player.Instance.MoveSpeed *
+                        (1 + 0.12f + 0.01f * Player.Instance.Spellbook.GetSpell(SpellSlot.E).Level +
+                         Player.Instance.FlatMagicDamageMod / 100 * 0.075f +
+                         0.02f * Player.Instance.Spellbook.GetSpell(SpellSlot.R).Level));
                 Spells.Add(spell);
             }
 
@@ -246,13 +247,13 @@ namespace Evade
 
             #region Teemo ^_^
 
-            if (ObjectManager.Player.ChampionName == "Teemo")
+            if (Player.Instance.ChampionName == "Teemo")
             {
                 spell = new MoveBuffData(
                     "Teemo W", SpellSlot.W, 100, 3,
                     () =>
-                        ObjectManager.Player.MoveSpeed *
-                        (1 + 0.06f + 0.04f * ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).Level));
+                        Player.Instance.MoveSpeed *
+                        (1 + 0.06f + 0.04f * Player.Instance.Spellbook.GetSpell(SpellSlot.W).Level));
                 Spells.Add(spell);
             }
 
@@ -260,13 +261,13 @@ namespace Evade
 
             #region Udyr
 
-            if (ObjectManager.Player.ChampionName == "Udyr")
+            if (Player.Instance.ChampionName == "Udyr")
             {
                 spell = new MoveBuffData(
                     "Udyr E", SpellSlot.E, 100, 3,
                     () =>
-                        ObjectManager.Player.MoveSpeed *
-                        (1 + 0.1f + 0.05f * ObjectManager.Player.Spellbook.GetSpell(SpellSlot.E).Level));
+                        Player.Instance.MoveSpeed *
+                        (1 + 0.1f + 0.05f * Player.Instance.Spellbook.GetSpell(SpellSlot.E).Level));
                 Spells.Add(spell);
             }
 
@@ -274,9 +275,9 @@ namespace Evade
 
             #region Zilean
 
-            if (ObjectManager.Player.ChampionName == "Zilean")
+            if (Player.Instance.ChampionName == "Zilean")
             {
-                spell = new MoveBuffData("Zilean E", SpellSlot.E, 100, 3, () => ObjectManager.Player.MoveSpeed * 1.55f);
+                spell = new MoveBuffData("Zilean E", SpellSlot.E, 100, 3, () => Player.Instance.MoveSpeed * 1.55f);
                 Spells.Add(spell);
             }
 
@@ -288,7 +289,7 @@ namespace Evade
 
             #region Aatrox
 
-            if (ObjectManager.Player.ChampionName == "Aatrox")
+            if (Player.Instance.ChampionName == "Aatrox")
             {
                 spell = new DashData("Aatrox Q", SpellSlot.Q, 650, false, 400, 3000, 3);
                 spell.Invert = true;
@@ -299,7 +300,7 @@ namespace Evade
 
             #region Akali
 
-            if (ObjectManager.Player.ChampionName == "Akali")
+            if (Player.Instance.ChampionName == "Akali")
             {
                 spell = new DashData("Akali R", SpellSlot.R, 800, false, 100, 2461, 3);
                 spell.ValidTargets = new[] { SpellValidTargets.EnemyChampions, SpellValidTargets.EnemyMinions };
@@ -310,7 +311,7 @@ namespace Evade
 
             #region Alistar
 
-            if (ObjectManager.Player.ChampionName == "Alistar")
+            if (Player.Instance.ChampionName == "Alistar")
             {
                 spell = new DashData("Alistar W", SpellSlot.W, 650, false, 100, 1900, 3);
                 spell.ValidTargets = new[] { SpellValidTargets.EnemyChampions, SpellValidTargets.EnemyMinions };
@@ -321,7 +322,7 @@ namespace Evade
 
             #region Caitlyn
 
-            if (ObjectManager.Player.ChampionName == "Caitlyn")
+            if (Player.Instance.ChampionName == "Caitlyn")
             {
                 spell = new DashData("Caitlyn E", SpellSlot.E, 390, true, 250, 1000, 3);
                 spell.Invert = true;
@@ -332,7 +333,7 @@ namespace Evade
 
             #region Corki
 
-            if (ObjectManager.Player.ChampionName == "Corki")
+            if (Player.Instance.ChampionName == "Corki")
             {
                 spell = new DashData("Corki W", SpellSlot.W, 600, false, 250, 1044, 3);
                 Spells.Add(spell);
@@ -342,7 +343,7 @@ namespace Evade
 
             #region Fizz
 
-            if (ObjectManager.Player.ChampionName == "Fizz")
+            if (Player.Instance.ChampionName == "Fizz")
             {
                 spell = new DashData("Fizz Q", SpellSlot.Q, 550, true, 100, 1400, 4);
                 spell.ValidTargets = new[] { SpellValidTargets.EnemyMinions, SpellValidTargets.EnemyChampions };
@@ -353,7 +354,7 @@ namespace Evade
 
             #region Gragas
 
-            if (ObjectManager.Player.ChampionName == "Gragas")
+            if (Player.Instance.ChampionName == "Gragas")
             {
                 spell = new DashData("Gragas E", SpellSlot.E, 600, true, 250, 911, 3);
                 Spells.Add(spell);
@@ -363,7 +364,7 @@ namespace Evade
 
             #region Gnar
 
-            if (ObjectManager.Player.ChampionName == "Gnar")
+            if (Player.Instance.ChampionName == "Gnar")
             {
                 spell = new DashData("Gnar E", SpellSlot.E, 50, false, 0, 900, 3);
                 spell.CheckSpellName = "GnarE";
@@ -374,7 +375,7 @@ namespace Evade
 
             #region Graves
 
-            if (ObjectManager.Player.ChampionName == "Graves")
+            if (Player.Instance.ChampionName == "Graves")
             {
                 spell = new DashData("Graves E", SpellSlot.E, 425, true, 100, 1223, 3);
                 Spells.Add(spell);
@@ -384,7 +385,7 @@ namespace Evade
 
             #region Irelia
 
-            if (ObjectManager.Player.ChampionName == "Irelia")
+            if (Player.Instance.ChampionName == "Irelia")
             {
                 spell = new DashData("Irelia Q", SpellSlot.Q, 650, false, 100, 2200, 3);
                 spell.ValidTargets = new[] { SpellValidTargets.EnemyChampions, SpellValidTargets.EnemyMinions };
@@ -395,7 +396,7 @@ namespace Evade
 
             #region Jax
 
-            if (ObjectManager.Player.ChampionName == "Jax")
+            if (Player.Instance.ChampionName == "Jax")
             {
                 spell = new DashData("Jax Q", SpellSlot.Q, 700, false, 100, 1400, 3);
                 spell.ValidTargets = new[]
@@ -410,14 +411,14 @@ namespace Evade
 
             #region Leblanc
 
-            if (ObjectManager.Player.ChampionName == "Leblanc")
+            if (Player.Instance.ChampionName == "Leblanc")
             {
                 spell = new DashData("LeBlanc W1", SpellSlot.W, 600, false, 100, 1621, 3);
                 spell.CheckSpellName = "LeblancSlide";
                 Spells.Add(spell);
             }
 
-            if (ObjectManager.Player.ChampionName == "Leblanc")
+            if (Player.Instance.ChampionName == "Leblanc")
             {
                 spell = new DashData("LeBlanc RW", SpellSlot.R, 600, false, 100, 1621, 3);
                 spell.CheckSpellName = "LeblancSlideM";
@@ -428,7 +429,7 @@ namespace Evade
 
             #region LeeSin
 
-            if (ObjectManager.Player.ChampionName == "LeeSin")
+            if (Player.Instance.ChampionName == "LeeSin")
             {
                 spell = new DashData("LeeSin W", SpellSlot.W, 700, false, 250, 2000, 3);
                 spell.ValidTargets = new[]
@@ -441,7 +442,7 @@ namespace Evade
 
             #region Lucian
 
-            if (ObjectManager.Player.ChampionName == "Lucian")
+            if (Player.Instance.ChampionName == "Lucian")
             {
                 spell = new DashData("Lucian E", SpellSlot.E, 425, false, 100, 1350, 2);
                 Spells.Add(spell);
@@ -451,7 +452,7 @@ namespace Evade
 
             #region Nidalee
 
-            if (ObjectManager.Player.ChampionName == "Nidalee")
+            if (Player.Instance.ChampionName == "Nidalee")
             {
                 spell = new DashData("Nidalee W", SpellSlot.W, 375, true, 250, 943, 3);
                 spell.CheckSpellName = "Pounce";
@@ -462,7 +463,7 @@ namespace Evade
 
             #region Pantheon
 
-            if (ObjectManager.Player.ChampionName == "Pantheon")
+            if (Player.Instance.ChampionName == "Pantheon")
             {
                 spell = new DashData("Pantheon W", SpellSlot.W, 600, false, 100, 1000, 3);
                 spell.ValidTargets = new[] { SpellValidTargets.EnemyChampions, SpellValidTargets.EnemyMinions };
@@ -473,7 +474,7 @@ namespace Evade
 
             #region Riven
 
-            if (ObjectManager.Player.ChampionName == "Riven")
+            if (Player.Instance.ChampionName == "Riven")
             {
                 spell = new DashData("Riven Q", SpellSlot.Q, 222, true, 250, 560, 3);
                 spell.RequiresPreMove = true;
@@ -487,7 +488,7 @@ namespace Evade
 
             #region Tristana
 
-            if (ObjectManager.Player.ChampionName == "Tristana")
+            if (Player.Instance.ChampionName == "Tristana")
             {
                 spell = new DashData("Tristana W", SpellSlot.W, 900, true, 300, 800, 5);
                 Spells.Add(spell);
@@ -497,7 +498,7 @@ namespace Evade
 
             #region Tryndamare
 
-            if (ObjectManager.Player.ChampionName == "Tryndamere")
+            if (Player.Instance.ChampionName == "Tryndamere")
             {
                 spell = new DashData("Tryndamere E", SpellSlot.E, 650, true, 250, 900, 3);
                 Spells.Add(spell);
@@ -507,7 +508,7 @@ namespace Evade
 
             #region Vayne
 
-            if (ObjectManager.Player.ChampionName == "Vayne")
+            if (Player.Instance.ChampionName == "Vayne")
             {
                 spell = new DashData("Vayne Q", SpellSlot.Q, 300, true, 100, 910, 2);
                 Spells.Add(spell);
@@ -517,7 +518,7 @@ namespace Evade
 
             #region Wukong
 
-            if (ObjectManager.Player.ChampionName == "MonkeyKing")
+            if (Player.Instance.ChampionName == "MonkeyKing")
             {
                 spell = new DashData("Wukong E", SpellSlot.E, 650, false, 100, 1400, 3);
                 spell.ValidTargets = new[] { SpellValidTargets.EnemyChampions, SpellValidTargets.EnemyMinions };
@@ -532,7 +533,7 @@ namespace Evade
 
             #region Ezreal
 
-            if (ObjectManager.Player.ChampionName == "Ezreal")
+            if (Player.Instance.ChampionName == "Ezreal")
             {
                 spell = new BlinkData("Ezreal E", SpellSlot.E, 450, 350, 3);
                 Spells.Add(spell);
@@ -542,7 +543,7 @@ namespace Evade
 
             #region Kassadin
 
-            if (ObjectManager.Player.ChampionName == "Kassadin")
+            if (Player.Instance.ChampionName == "Kassadin")
             {
                 spell = new BlinkData("Kassadin R", SpellSlot.R, 700, 200, 5);
                 Spells.Add(spell);
@@ -552,7 +553,7 @@ namespace Evade
 
             #region Katarina
 
-            if (ObjectManager.Player.ChampionName == "Katarina")
+            if (Player.Instance.ChampionName == "Katarina")
             {
                 spell = new BlinkData("Katarina E", SpellSlot.E, 700, 200, 3);
                 spell.ValidTargets = new[]
@@ -567,7 +568,7 @@ namespace Evade
 
             #region Shaco
 
-            if (ObjectManager.Player.ChampionName == "Shaco")
+            if (Player.Instance.ChampionName == "Shaco")
             {
                 spell = new BlinkData("Shaco Q", SpellSlot.Q, 400, 350, 3);
                 Spells.Add(spell);
@@ -577,7 +578,7 @@ namespace Evade
 
             #region Talon
 
-            if (ObjectManager.Player.ChampionName == "Talon")
+            if (Player.Instance.ChampionName == "Talon")
             {
                 spell = new BlinkData("Talon E", SpellSlot.E, 700, 100, 3);
                 spell.ValidTargets = new[] { SpellValidTargets.EnemyChampions, SpellValidTargets.EnemyMinions };
@@ -592,7 +593,7 @@ namespace Evade
 
             #region Elise
 
-            if (ObjectManager.Player.ChampionName == "Elise")
+            if (Player.Instance.ChampionName == "Elise")
             {
                 spell = new InvulnerabilityData("Elise E", SpellSlot.E, 250, 3);
                 spell.CheckSpellName = "EliseSpiderEInitial";
@@ -604,7 +605,7 @@ namespace Evade
 
             #region Vladimir
 
-            if (ObjectManager.Player.ChampionName == "Vladimir")
+            if (Player.Instance.ChampionName == "Vladimir")
             {
                 spell = new InvulnerabilityData("Vladimir W", SpellSlot.W, 250, 3);
                 spell.SelfCast = true;
@@ -615,7 +616,7 @@ namespace Evade
 
             #region Fizz
 
-            if (ObjectManager.Player.ChampionName == "Fizz")
+            if (Player.Instance.ChampionName == "Fizz")
             {
                 spell = new InvulnerabilityData("Fizz E", SpellSlot.E, 250, 3);
                 Spells.Add(spell);
@@ -625,7 +626,7 @@ namespace Evade
 
             #region MasterYi
 
-            if (ObjectManager.Player.ChampionName == "MasterYi")
+            if (Player.Instance.ChampionName == "MasterYi")
             {
                 spell = new InvulnerabilityData("MasterYi Q", SpellSlot.Q, 250, 3);
                 spell.MaxRange = 600;
@@ -638,16 +639,29 @@ namespace Evade
             #endregion
 
             //Flash
-            if (Player.Instance.FindSummonerSpellSlotFromName("summonerflash") != SpellSlot.Unknown)
+            if (Player.Instance.GetSpellSlotFromName("summonerflash") != SpellSlot.Unknown)
             {
-                spell = new BlinkData("Flash", Player.Instance.FindSummonerSpellSlotFromName("summonerflash"), 400, 50, 5, true);
+                spell = new BlinkData("Flash", Player.Instance.GetSpellSlotFromName("summonerflash"), 400, 50, 5, true);
                 Spells.Add(spell);
             }
 
             //Zhonyas
-            spell = new EvadeSpellData("Zhonya", 5);
-            Spells.Add(spell);
-            
+            #region Zhonya
+            spell = new EvadeSpellData("Zhonya", 4);
+            Items.Add(spell);
+            #endregion;
+
+            #region Ghost
+            if (Player.Instance.GetSpellSlotFromName("summonerhaste") != SpellSlot.Unknown)
+            {
+                spell = new MoveBuffData("Ghost", Player.Instance.GetSpellSlotFromName("summonerhaste"), 0, 4, () =>
+                        Player.Instance.MoveSpeed *
+                        (27 + Player.Instance.Spellbook.GetSpell(SpellSlot.Unknown).Level));
+
+                Spells.Add(spell);
+            }
+            #endregion
+
             #region Champion Shields
 
             #region Tahm
@@ -704,7 +718,7 @@ namespace Evade
 
             #region Karma
 
-            if (ObjectManager.Player.ChampionName == "Karma")
+            if (Player.Instance.ChampionName == "Karma")
             {
                 spell = new ShieldData("Karma E", SpellSlot.E, 100, 2);
                 spell.CanShieldAllies = true;
@@ -716,7 +730,7 @@ namespace Evade
 
             #region Janna
 
-            if (ObjectManager.Player.ChampionName == "Janna")
+            if (Player.Instance.ChampionName == "Janna")
             {
                 spell = new ShieldData("Janna E", SpellSlot.E, 100, 1);
                 spell.CanShieldAllies = true;
@@ -728,7 +742,7 @@ namespace Evade
 
             #region Morgana
 
-            if (ObjectManager.Player.ChampionName == "Morgana")
+            if (Player.Instance.ChampionName == "Morgana")
             {
                 spell = new ShieldData("Morgana E", SpellSlot.E, 100, 3);
                 spell.CanShieldAllies = true;
