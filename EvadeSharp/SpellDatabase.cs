@@ -2559,6 +2559,7 @@ namespace Evade
                     TakeClosestPath = true,
                     MissileSpellName = "LeonaZenithBladeMissile",
                     DontCross = true,
+                    MissileFollowsUnit = true,
                     EarlyEvade = new[] { EarlyObjects.Allies },
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall },
                 });
@@ -3071,7 +3072,7 @@ namespace Evade
                     DangerValue = 2,
                     IsDangerous = false,
                     MissileSpellName = "OlafAxeThrow",
-                    CanBeRemoved = true,
+                    //CanBeRemoved = true,
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall }
                 });
 
