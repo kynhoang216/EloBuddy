@@ -2549,7 +2549,7 @@ namespace Evade
                     ChampionName = "Leona",
                     SpellName = "LeonaZenithBlade",
                     Slot = SpellSlot.E,
-                    Type = SkillShotType.SkillshotMissileLine,
+                    Type = SkillShotType.SkillshotLine,
                     Delay = 250,
                     Range = 905,
                     Radius = 70,
