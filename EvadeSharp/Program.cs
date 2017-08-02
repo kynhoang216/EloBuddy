@@ -39,6 +39,8 @@ namespace Evade
     {
         public static SpellList<Skillshot> DetectedSkillshots = new SpellList<Skillshot>();
 
+        public static Dictionary<string, SpellData> onProcessTraps = new Dictionary<string, SpellData>();
+
         private static bool _evading;
 
         private static Vector2 _evadePoint;
@@ -122,7 +124,7 @@ namespace Evade
             {
                 foreach (var hero in ObjectManager.Get<AIHeroClient>())
                 {
-                    foreach (var spell in hero.Spellbook.Spells.Where(s => s.SData.Name != "BaseSpell"))
+                    foreach (var spell in ObjectManager.Player.Spellbook.Spells.Where(s => s.SData.Name != "BaseSpell"))
                     {
                         Console.WriteLine("\n\n");
                         Console.WriteLine("SpellSlot: {0} Spell: {1}", spell.Slot, spell.SData.Name);
@@ -165,6 +167,7 @@ namespace Evade
                     }
                 }
             }
+            
         }
 
         private static void OnDetectSkillshot(Skillshot skillshot)
@@ -500,7 +503,7 @@ namespace Evade
                 return;
             }
 
-            if (PlayerChampionName == "Olaf" && Config.misc["DisableEvadeForOlafR"].Cast<CheckBox>().CurrentValue && ObjectManager.Player.HasBuff("OlafRagnarok"))
+            if (PlayerChampionName == "Olaf" && Config.Menu["DisableEvadeForOlafR"].Cast<CheckBox>().CurrentValue && ObjectManager.Player.HasBuff("OlafRagnarok"))
             {
                 Evading = false;
                 return;
@@ -522,7 +525,7 @@ namespace Evade
                 return;
             }
 
-            if (Player.Instance.Spellbook.IsAutoAttacking && !Orbwalker.IsAutoAttacking/*(Player.Instance.LastCastedSpellName())*/)
+            if (ObjectManager.Player.Spellbook.IsAutoAttacking && !Orbwalking.IsAutoAttack(ObjectManager.Player.LastCastedSpellName()))
             {
                 Evading = false;
                 return;
@@ -705,7 +708,7 @@ namespace Evade
 
                 if (Evading)
                 {
-                    var blockLevel = Config.misc["BlockSpells"].Cast<ComboBox>().CurrentValue;
+                    var blockLevel = Config.misc["BlockSpells"].Cast<Slider>().CurrentValue;
 
                     if (blockLevel == 0)
                     {
@@ -1197,8 +1200,13 @@ namespace Evade
                                         {
                                             ObjectManager.Player.SendMovePacket(EvadePoint);
                                             var theSpell = evadeSpell;
-                                            Core.DelayAction(() => ObjectManager.Player.Spellbook.CastSpell(
-                                                        theSpell.Slot, EvadePoint.To3D()), Game.Ping / 2 + 100);
+                                            DelayAction.Add(
+                                                Game.Ping / 2 + 100,
+                                                delegate
+                                                {
+                                                    ObjectManager.Player.Spellbook.CastSpell(
+                                                        theSpell.Slot, EvadePoint.To3D());
+                                                });
                                         }
                                         else
                                         {
