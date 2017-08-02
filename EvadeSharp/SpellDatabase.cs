@@ -2559,7 +2559,7 @@ namespace Evade
                     //TakeClosestPath = true,
                     MissileSpellName = "LeonaZenithBladeMissile",
                     //DontCross = true,
-                    MissileFollowsUnit = true,
+                    //MissileFollowsUnit = true,
                     EarlyEvade = new[] { EarlyObjects.Allies },
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall },
                 });
