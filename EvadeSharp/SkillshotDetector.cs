@@ -117,6 +117,8 @@ namespace Evade
             }
 
             Core.DelayAction(() => ObjSpellMissionOnOnCreateDelayed(sender, args), 0);
+
+
         }
 
         private static void ObjSpellMissionOnOnCreateDelayed(GameObject sender, EventArgs args)
@@ -130,7 +132,7 @@ namespace Evade
 
             var unit = missile.SpellCaster as AIHeroClient;
 
-            if (unit == null || !unit.IsValid || (unit.Team == Player.Instance.Team && !Config.TestOnAllies))
+            if (unit == null || !unit.IsValid || (unit.Team == ObjectManager.Player.Team && !Config.TestOnAllies))
             {
                 return;
             }
@@ -188,7 +190,7 @@ namespace Evade
 
             var caster = missile.SpellCaster as AIHeroClient;
 
-            if (caster == null || !caster.IsValid || (caster.Team == Player.Instance.Team && !Config.TestOnAllies))
+            if (caster == null || !caster.IsValid || (caster.Team == ObjectManager.Player.Team && !Config.TestOnAllies))
             {
                 return;
             }
@@ -275,7 +277,7 @@ namespace Evade
                     s => s.Unit.NetworkId == sender.NetworkId && s.SpellData.SpellName == "DravenRCast");
             }
 
-            if (!sender.IsValid || sender.Team == Player.Instance.Team && !Config.TestOnAllies)
+            if (!sender.IsValid || sender.Team == ObjectManager.Player.Team && !Config.TestOnAllies)
             {
                 return;
             }

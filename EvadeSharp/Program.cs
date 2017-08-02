@@ -329,32 +329,10 @@ namespace Evade
                         return;
                     }
 
-                    if (skillshot.SpellData.SpellName == "MalzaharQ")
+                    if (skillshot.SpellData.isPerpendicular)
                     {
-                        var start = skillshot.End - skillshot.Direction.Perpendicular() * 400;
-                        var end = skillshot.End + skillshot.Direction.Perpendicular() * 400;
-                        var skillshotToAdd = new Skillshot(
-                            skillshot.DetectionType, skillshot.SpellData, skillshot.StartTick, start, end,
-                            skillshot.Unit);
-                        DetectedSkillshots.Add(skillshotToAdd);
-                        return;
-                    }
-
-                    if (skillshot.SpellData.SpellName == "ZyraQ")
-                    {
-                        var start = skillshot.End - skillshot.Direction.Perpendicular() * 450;
-                        var end = skillshot.End + skillshot.Direction.Perpendicular() * 450;
-                        var skillshotToAdd = new Skillshot(
-                            skillshot.DetectionType, skillshot.SpellData, skillshot.StartTick, start, end,
-                            skillshot.Unit);
-                        DetectedSkillshots.Add(skillshotToAdd);
-                        return;
-                    }
-
-                    if (skillshot.SpellData.SpellName == "JinxE")
-                    {
-                        var start = skillshot.End - skillshot.Direction.Perpendicular() * 275;
-                        var end = skillshot.End + skillshot.Direction.Perpendicular() * 275;
+                        var start = skillshot.End - skillshot.Direction.Perpendicular() * skillshot.SpellData.secondaryRadius;
+                        var end = skillshot.End + skillshot.Direction.Perpendicular() * skillshot.SpellData.secondaryRadius;
                         var skillshotToAdd = new Skillshot(
                             skillshot.DetectionType, skillshot.SpellData, skillshot.StartTick, start, end,
                             skillshot.Unit);
@@ -1499,6 +1477,7 @@ namespace Evade
                 Drawing.DrawCircle(EvadePoint.To3D(), 300, Color.White);
                 Drawing.DrawCircle(EvadeToPoint.To3D(), 300, Color.Red);
             }
+
         }
 
         public struct IsSafeResult

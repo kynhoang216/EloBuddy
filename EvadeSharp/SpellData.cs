@@ -38,6 +38,8 @@ namespace Evade
         public bool DontCross = false;
         public bool DontRemove = false;
         public int ExtraDuration;
+        public bool isPerpendicular = false;
+        public float secondaryRadius;
         public string[] ExtraMissileNames = { };
         public int ExtraRange = -1;
         public string[] ExtraSpellNames = { };

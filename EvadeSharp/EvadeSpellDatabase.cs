@@ -638,22 +638,11 @@ namespace Evade
             #endregion
 
             //Flash
-            if (Player.Instance.GetSpellSlotFromName("summonerflash") != SpellSlot.Unknown)
+            if (ObjectManager.Player.GetSpellSlotFromName("summonerflash") != SpellSlot.Unknown)
             {
-                spell = new BlinkData("Flash", Player.Instance.GetSpellSlotFromName("summonerflash"), 400, 50, 5, true);
+                spell = new BlinkData("Flash", ObjectManager.Player.GetSpellSlotFromName("summonerflash"), 400, 50, 5, true);
                 Spells.Add(spell);
             }
-
-            #region Ghost
-            if (Player.Instance.GetSpellSlotFromName("summonerhaste") != SpellSlot.Unknown)
-            {
-                spell = new MoveBuffData("Ghost", Player.Instance.GetSpellSlotFromName("summonerhaste"), 0, 4, () =>
-                        Player.Instance.MoveSpeed *
-                        (27 + Player.Instance.Spellbook.GetSpell(SpellSlot.Unknown).Level));
-
-                Spells.Add(spell);
-            }
-            #endregion
 
             //Zhonyas
             spell = new EvadeSpellData("Zhonya", 5);

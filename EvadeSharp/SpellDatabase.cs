@@ -473,7 +473,7 @@ namespace Evade
                     SpellName = "RocketGrab",
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotMissileLine,
-                    Delay = 250 + 75,
+                    Delay = 250,
                     Range = 1050,
                     Radius = 80,
                     MissileSpeed = 1800,
@@ -483,7 +483,7 @@ namespace Evade
                     IsDangerous = true,
                     MissileSpellName = "RocketGrabMissile",
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
-                    //CanBeRemoved = true,
+                    CanBeRemoved = true,
                     CollisionObjects =
                         new[]
                         {CollisionObjectTypes.Champions, CollisionObjectTypes.Minion, CollisionObjectTypes.YasuoWall}
@@ -2062,7 +2062,9 @@ namespace Evade
                     DangerValue = 3,
                     IsDangerous = false,
                     MissileSpellName = "JinxEMissile",
+                    secondaryRadius = 275,
                     ExtraDuration = 5300,
+                    isPerpendicular = true,
                     DontCross = true,
                 });
 
@@ -2859,6 +2861,8 @@ namespace Evade
                     DangerValue = 2,
                     IsDangerous = false,
                     DontCross = true,
+                    isPerpendicular = true,
+                    secondaryRadius = 400,
                     MissileSpellName = "MalzaharQ",
                 });
 
@@ -4903,6 +4907,8 @@ namespace Evade
                     DangerValue = 2,
                     IsDangerous = false,
                     MissileSpellName = "ZyraQ",
+                    secondaryRadius = 450,
+                    isPerpendicular = true
                 });
 
             Spells.Add(
