@@ -1908,6 +1908,88 @@ namespace Evade
     ///     Gets information about dashes, and provides events.
     /// </summary>
     
+    public static class DelayAction
+    {
+        #region Static Fields
+
+        public static List<Action> ActionList = new List<Action>();
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        static DelayAction()
+        {
+            Game.OnUpdate += GameOnOnGameUpdate;
+        }
+
+        #endregion
+
+        #region Delegates
+
+        public delegate void Callback();
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        public static void Add(int time, Callback func)
+        {
+            var action = new Action(time, func);
+            ActionList.Add(action);
+        }
+
+        #endregion
+
+        #region Methods
+
+        private static void GameOnOnGameUpdate(EventArgs args)
+        {
+            for (var i = ActionList.Count - 1; i >= 0; i--)
+            {
+                if (ActionList[i].Time <= Utils.GameTimeTickCount)
+                {
+                    try
+                    {
+                        if (ActionList[i].CallbackObject != null)
+                        {
+                            ActionList[i].CallbackObject();
+                            //Will somehow result in calling ALL non-internal marked classes of the called assembly and causes NullReferenceExceptions.
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
+
+                    ActionList.RemoveAt(i);
+                }
+            }
+        }
+
+        #endregion
+
+        public struct Action
+        {
+            #region Fields
+
+            public Callback CallbackObject;
+
+            public int Time;
+
+            #endregion
+
+            #region Constructors and Destructors
+
+            public Action(int time, Callback callback)
+            {
+                this.Time = time + Utils.GameTimeTickCount;
+                this.CallbackObject = callback;
+            }
+
+            #endregion
+        }
+    }
 
     /// <summary>
     ///     Provides cached heroes.
