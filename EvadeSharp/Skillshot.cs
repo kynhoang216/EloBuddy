@@ -143,7 +143,7 @@ namespace Evade
                     Ring = new Geometry.Ring(CollisionEnd, spellData.Radius, spellData.RingRadius);
                     break;
                 case SkillShotType.SkillshotArc:
-                    Arc = new Geometry.Arc(start, end, Config.SkillShotsExtraRadius + (int)ObjectManager.Player.BoundingRadius);
+                    Arc = new Geometry.Arc(start, end, Config.SkillShotsExtraRadius + (int)Player.Instance.BoundingRadius);
                     break;
             }
 
@@ -168,7 +168,7 @@ namespace Evade
                 {
                     return GlobalGetMissilePosition(0) +
                            Direction * SpellData.MissileSpeed *
-                           (0.5f + SpellData.Radius * 2 / ObjectManager.Player.MoveSpeed);
+                           (0.5f + SpellData.Radius * 2 / Player.Instance.MoveSpeed);
                 }
 
                 return End;
@@ -328,7 +328,7 @@ namespace Evade
                         0,
                         !SpellData.AddHitbox
                             ? SpellData.Radius
-                            : (SpellData.Radius - ObjectManager.Player.BoundingRadius));
+                            : (SpellData.Radius - Player.Instance.BoundingRadius));
                     break;
                 case SkillShotType.SkillshotLine:
                     Polygon = Rectangle.ToPolygon();
@@ -336,7 +336,7 @@ namespace Evade
                         0,
                         !SpellData.AddHitbox
                             ? SpellData.Radius
-                            : (SpellData.Radius - ObjectManager.Player.BoundingRadius));
+                            : (SpellData.Radius - Player.Instance.BoundingRadius));
                     EvadePolygon = Rectangle.ToPolygon(Config.ExtraEvadeDistance);
                     PathFindingPolygon = Rectangle.ToPolygon(Config.PathFindingDistance);
                     PathFindingInnerPolygon = Rectangle.ToPolygon(Config.PathFindingDistance2);
@@ -347,7 +347,7 @@ namespace Evade
                         0,
                         !SpellData.AddHitbox
                             ? SpellData.Radius
-                            : (SpellData.Radius - ObjectManager.Player.BoundingRadius));
+                            : (SpellData.Radius - Player.Instance.BoundingRadius));
                     EvadePolygon = Rectangle.ToPolygon(Config.ExtraEvadeDistance);
                     PathFindingPolygon = Rectangle.ToPolygon(Config.PathFindingDistance);
                     PathFindingInnerPolygon = Rectangle.ToPolygon(Config.PathFindingDistance2);
@@ -477,11 +477,11 @@ namespace Evade
             var Distance = 0f;
             timeOffset += Game.Ping / 2;
 
-            speed = (speed == -1) ? (int)ObjectManager.Player.MoveSpeed : speed;
+            speed = (speed == -1) ? (int)Player.Instance.MoveSpeed : speed;
 
             if (unit == null)
             {
-                unit = ObjectManager.Player;
+                unit = Player.Instance;
             }
 
             var allIntersections = new List<FoundIntersection>();
@@ -546,7 +546,7 @@ namespace Evade
                                 new SafePathResult(
                                     (End.Distance(missilePositionOnIntersection) + 50 <=
                                      End.Distance(enterIntersectionProjection)) &&
-                                    ObjectManager.Player.MoveSpeed < SpellData.MissileSpeed, allIntersections[0]);
+                                    Player.Instance.MoveSpeed < SpellData.MissileSpeed, allIntersections[0]);
                         }
 
 
