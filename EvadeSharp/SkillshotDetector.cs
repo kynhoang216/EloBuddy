@@ -50,7 +50,7 @@ namespace Evade
 
         private static void GameObject_OnCreate(GameObject sender, EventArgs args)
         {
-            /*if (ObjectManager.Player.Distance(sender.Position) < 1000)
+            /*if (Player.Instance.Distance(sender.Position) < 1000)
             {
                 Console.WriteLine(Utils.TickCount + " " + sender.Name + " " + sender.IsAlly + " " + sender.Type);
             }*/
@@ -132,7 +132,7 @@ namespace Evade
 
             var unit = missile.SpellCaster as AIHeroClient;
 
-            if (unit == null || !unit.IsValid || (unit.Team == ObjectManager.Player.Team && !Config.TestOnAllies))
+            if (unit == null || !unit.IsValid || (unit.Team == Player.Instance.Team && !Config.TestOnAllies))
             {
                 return;
             }
@@ -190,7 +190,7 @@ namespace Evade
 
             var caster = missile.SpellCaster as AIHeroClient;
 
-            if (caster == null || !caster.IsValid || (caster.Team == ObjectManager.Player.Team && !Config.TestOnAllies))
+            if (caster == null || !caster.IsValid || (caster.Team == Player.Instance.Team && !Config.TestOnAllies))
             {
                 return;
             }
@@ -277,7 +277,7 @@ namespace Evade
                     s => s.Unit.NetworkId == sender.NetworkId && s.SpellData.SpellName == "DravenRCast");
             }
 
-            if (!sender.IsValid || sender.Team == ObjectManager.Player.Team && !Config.TestOnAllies)
+            if (!sender.IsValid || sender.Team == Player.Instance.Team && !Config.TestOnAllies)
             {
                 return;
             }
@@ -331,7 +331,7 @@ namespace Evade
             var endPos = args.End.To2D();
 
             /*if (spellData.SpellName == "LucianQ" && args.Target != null &&
-                args.Target.NetworkId == ObjectManager.Player.NetworkId)
+                args.Target.NetworkId == Player.Instance.NetworkId)
             {
                 return;
             }*/
