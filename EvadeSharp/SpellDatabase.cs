@@ -483,7 +483,7 @@ namespace Evade
                     IsDangerous = true,
                     MissileSpellName = "RocketGrabMissile",
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
-                    //CanBeRemoved = true,
+                    CanBeRemoved = true,
                     CollisionObjects =
                         new[]
                         {CollisionObjectTypes.Champions, CollisionObjectTypes.Minion, CollisionObjectTypes.YasuoWall}
@@ -501,8 +501,8 @@ namespace Evade
                     Radius = 600,
                     MissileSpeed = int.MaxValue,
                     FixedRange = true,
-                    AddHitbox = false,
-                    DangerValue = 2,
+                    AddHitbox = true,
+                    DangerValue = 5,
                     IsDangerous = false,
                     MissileSpellName = "",
                 });
@@ -592,7 +592,7 @@ namespace Evade
                     MissileSpeed = 1400,
                     FixedRange = true,
                     AddHitbox = true,
-                    DangerValue = 4,
+                    DangerValue = 5,
                     IsDangerous = true,
                     MissileSpellName = "braumrmissile",
                     CollisionObjects = new[] { CollisionObjectTypes.YasuoWall }
@@ -741,7 +741,7 @@ namespace Evade
                     Radius = 80,
                     MissileSpeed = int.MaxValue,
                     FixedRange = false,
-                    AddHitbox = false,
+                    AddHitbox = true,
                     DangerValue = 5,
                     IsDangerous = true,
                     MissileSpellName = "CassiopeiaR",
@@ -4856,7 +4856,7 @@ namespace Evade
                     FixedRange = false,
                     AddHitbox = true,
                     DangerValue = 5,
-                    IsDangerous = false,
+                    IsDangerous = true,
                     MissileSpellName = "ZiggsRBoom",
                     DisableFowDetection = false,
                 });
