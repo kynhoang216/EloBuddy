@@ -503,7 +503,7 @@ namespace Evade
                 return;
             }
 
-            if (Utility.PlayerWindingUp && !Orbwalker.IsAutoAttacking)
+            if (Player.Instance.Spellbook.IsAutoAttacking && !Orbwalker.IsAutoAttacking)
             {
                 Evading = true;
                 return;
