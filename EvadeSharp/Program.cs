@@ -71,7 +71,7 @@ namespace Evade
                 if (value == true)
                 {
                     ForcePathFollowing = true;
-                    LastSentMovePacketT = 0;
+                    LastSentMovePacketT = 9;
                     ObjectManager.Player.SendMovePacket(EvadePoint);
                 }
 
@@ -505,7 +505,7 @@ namespace Evade
 
             if (ObjectManager.Player.Spellbook.IsAutoAttacking && !Orbwalker.IsAutoAttacking)
             {
-                Evading = true;
+                Evading = false;
                 return;
             }
 
