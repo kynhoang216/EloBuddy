@@ -1968,9 +1968,8 @@ namespace Evade
                     IsDangerous = true,
                     MissileSpellName = "JhinWMissile",
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.AllyObjects },
-                    CanBeRemoved = true,
-                    CollisionObjects =
-                        new[] { CollisionObjectTypes.Champions, CollisionObjectTypes.YasuoWall },
+                    //CanBeRemoved = true,
+                    //CollisionObjects = new[] { CollisionObjectTypes.Champions, CollisionObjectTypes.YasuoWall },
                 });
 
             Spells.Add(
@@ -1990,7 +1989,7 @@ namespace Evade
                     IsDangerous = false,
                     MissileSpellName = "JhinEMiss",
                     DontCross = true,
-                    ExtraDuration = 120000,
+                    ExtraDuration = 5000,
                     DisabledByDefault = true,
                 });
 
@@ -2011,7 +2010,7 @@ namespace Evade
                     DangerValue = 3,
                     IsDangerous = true,
                     MissileSpellName = "JhinRShotMis",
-                    ExtraMissileNames = new[] { "JhinRShotMis4" },
+                    //ExtraMissileNames = new[] { "JhinRShotMis4" },
                     EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
                     CanBeRemoved = true,
                     CollisionObjects =

@@ -113,7 +113,7 @@ namespace Evade
             Drawing.OnDraw += Drawing_OnDraw;
 
             //Ondash event.
-            CustomEvents.Unit.OnDash += UnitOnOnDash;
+           Dash.OnDash += UnitOnOnDash;
 
             DetectedSkillshots.OnAdd += DetectedSkillshots_OnAdd;
 
@@ -126,14 +126,14 @@ namespace Evade
                 {
                     foreach (var spell in Player.Instance.Spellbook.Spells.Where(s => s.SData.Name != "BaseSpell"))
                     {
-                        Console.WriteLine("\n\n");
+                        /*Console.WriteLine("\n\n");
                         Console.WriteLine("SpellSlot: {0} Spell: {1}", spell.Slot, spell.SData.Name);
                         Console.WriteLine("=================================================================");
                         foreach (var prop in spell.SData.GetType().GetProperties())
                         {
                             if (prop.Name != "Entries")
                                 Console.WriteLine("\t{0} => '{1}'", prop.Name, prop.GetValue(spell.SData, null));
-                        }
+                        }*/
 
                     }
                 }
