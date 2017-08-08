@@ -1436,7 +1436,7 @@ namespace Evade
                 }
             }
 
-            var Border = Config.drawings["Border"].Cast<ComboBox>().CurrentValue;
+            var Border = Config.drawings["Border"].Cast<Slider>().CurrentValue;
             var missileColor = Config.MissileColor;
 
             //Draw the polygon for each skillshot.
