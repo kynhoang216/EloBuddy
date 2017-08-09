@@ -12,7 +12,7 @@ namespace ezEvade
 {
     class EvadeSpell
     {
-        private static AIHeroClient myHero { get { return Player.Instance; } }
+        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
         public delegate void Callback();
 

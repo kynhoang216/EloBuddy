@@ -13,7 +13,7 @@ namespace ezEvade
 {
     public static class Position
     {
-        private static AIHeroClient myHero { get { return Player.Instance; } }
+        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
         public static int CheckPosDangerLevel(this Vector2 pos, float extraBuffer)
         {
@@ -94,7 +94,7 @@ namespace ezEvade
                 var turret = entry.Value;
                 if (turret == null || !turret.IsValid || turret.IsDead)
                 {
-                    Core.DelayAction(() => ObjectCache.turrets.Remove(entry.Key), 1);
+                    DelayAction.Add(1, () => ObjectCache.turrets.Remove(entry.Key));
                     continue;
                 }
 
@@ -117,7 +117,7 @@ namespace ezEvade
 
             foreach (var hero in EntityManager.Heroes.Enemies)
             {
-                if (Player.Instance != null && Player.Instance.IsValid && !Player.Instance.IsDead && Player.Instance.IsVisible)
+                if (ObjectManager.Player != null && ObjectManager.Player.IsValid && !ObjectManager.Player.IsDead && ObjectManager.Player.IsVisible)
                 {
                     var heroPos = hero.ServerPosition.To2D();
                     var dist = heroPos.Distance(pos);
@@ -156,7 +156,7 @@ namespace ezEvade
 
                 foreach (var hero in EntityManager.Heroes.Enemies)
                 {
-                    if (Player.Instance != null && Player.Instance.IsValid && !Player.Instance.IsDead && Player.Instance.IsVisible)
+                    if (ObjectManager.Player != null && ObjectManager.Player.IsValid && !ObjectManager.Player.IsDead && ObjectManager.Player.IsVisible)
                     {
                         var heroPos = hero.ServerPosition.To2D();
                         var dist = heroPos.Distance(pos);

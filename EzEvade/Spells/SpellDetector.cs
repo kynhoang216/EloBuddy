@@ -49,7 +49,7 @@ namespace ezEvade
 
         private static int spellIDCount = 0;
 
-        private static AIHeroClient myHero { get { return Player.Instance; } }
+        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
         public static float lastCheckTime = 0;
         public static float lastCheckSpellCollisionTime = 0;
@@ -159,7 +159,7 @@ namespace ezEvade
             {
                 if (!spell.info.name.Contains("_trap"))
                 {
-                    Core.DelayAction(() => DeleteSpell(spell.spellID), 1);
+                    DelayAction.Add(1, () => DeleteSpell(spell.spellID));
                 }
             }
         }
@@ -231,7 +231,7 @@ namespace ezEvade
             foreach (var spell in spells.Values.ToList().Where(
                     s => (s.GetSpellDangerLevel() < 3)))
             {
-                Core.DelayAction(() => DeleteSpell(spell.spellID), 1);
+                DelayAction.Add(1, () => DeleteSpell(spell.spellID));
             }
         }
 
@@ -446,7 +446,7 @@ namespace ezEvade
 
                 if (extraEndTick != 1337f) // traps
                 {
-                    Core.DelayAction(() => DeleteSpell(spellID), (int)(endTick + spellData.extraEndTime));
+                    DelayAction.Add((int)(endTick + spellData.extraEndTime), () => DeleteSpell(spellID));
                 }
             }
         }
@@ -492,14 +492,14 @@ namespace ezEvade
                     if (hero.IsDead && spell.heroID == hero.NetworkId)
                     {
                         if (spell.spellObject == null)
-                            Core.DelayAction(() => DeleteSpell(entry.Key), 1);
+                            DelayAction.Add(1, () => DeleteSpell(entry.Key));
                     }
                 }
 
                 if (spell.endTime + spell.info.extraEndTime < EvadeUtils.TickCount
                     || CanHeroWalkIntoSpell(spell) == false)
                 {
-                    Core.DelayAction(() => DeleteSpell(entry.Key), 1);
+                    DelayAction.Add(1, () => DeleteSpell(entry.Key));
                 }
             }
         }
@@ -523,7 +523,7 @@ namespace ezEvade
                     if (spell.currentSpellPosition.Distance(collisionObject.ServerPosition) <
                         collisionObject.BoundingRadius + spell.radius)
                     {
-                        Core.DelayAction(() => DeleteSpell(entry.Key), 1);
+                        DelayAction.Add(1, () => DeleteSpell(entry.Key));
                     }
                 }
             }

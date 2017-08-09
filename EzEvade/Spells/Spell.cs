@@ -235,7 +235,7 @@ namespace ezEvade
             var moveBuff = EvadeSpell.evadeSpells.OrderBy(s => s.dangerlevel).FirstOrDefault(s => s.evadeType == EvadeType.MovementSpeedBuff);
             if (moveBuff != null && EvadeSpell.ShouldUseMovementBuff(spell))
             {
-                speed += speed * moveBuff.speedArray[Player.Instance.Spellbook.GetSpell(moveBuff.spellKey).Level - 1] / 100;
+                speed += speed * moveBuff.speedArray[ObjectManager.Player.Spellbook.GetSpell(moveBuff.spellKey).Level - 1] / 100;
                 delay += (moveBuff.spellDelay > 50 ? moveBuff.spellDelay : 0) + ObjectCache.gamePing;
             }
 
@@ -351,7 +351,7 @@ namespace ezEvade
 
         public static bool LineIntersectLinearSpell(this Spell spell, Vector2 a, Vector2 b)
         {
-            var myBoundingRadius = Player.Instance.BoundingRadius;
+            var myBoundingRadius = ObjectManager.Player.BoundingRadius;
             var spellDir = spell.direction;
             var pSpellDir = spell.direction.Perpendicular();
             var spellRadius = spell.radius;
@@ -378,7 +378,7 @@ namespace ezEvade
 
         public static bool LineIntersectLinearSpellEx(this Spell spell, Vector2 a, Vector2 b, out Vector2 intersection) //edited
         {
-            var myBoundingRadius = Player.Instance.BoundingRadius;
+            var myBoundingRadius = ObjectManager.Player.BoundingRadius;
             var spellDir = spell.direction;
             var pSpellDir = spell.direction.Perpendicular();
             var spellRadius = spell.radius;
@@ -391,7 +391,7 @@ namespace ezEvade
             var endLeftPos = endPos - pSpellDir * (spellRadius + myBoundingRadius);
 
             List<Geometry.IntersectionResult> intersects = new List<Geometry.IntersectionResult>();
-            Vector2 heroPos = Player.Instance.ServerPosition.To2D();
+            Vector2 heroPos = ObjectManager.Player.ServerPosition.To2D();
 
             intersects.Add(a.Intersection(b, startRightPos, startLeftPos));
             intersects.Add(a.Intersection(b, endRightPos, endLeftPos));

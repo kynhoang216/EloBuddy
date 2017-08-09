@@ -12,7 +12,7 @@ namespace ezEvade
 {
     public class PositionInfo
     {
-        private static AIHeroClient myHero { get { return Player.Instance; } }
+        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
         public int posDangerLevel = 0;
         public int posDangerCount = 0;
@@ -66,7 +66,7 @@ namespace ezEvade
 
         public static PositionInfo SetAllDodgeable()
         {
-            return SetAllDodgeable(Player.Instance.Position.To2D());
+            return SetAllDodgeable(ObjectManager.Player.Position.To2D());
         }
 
         public static PositionInfo SetAllDodgeable(Vector2 position)
@@ -110,7 +110,7 @@ namespace ezEvade
             }
 
             return new PositionInfo(
-                Player.Instance.Position.To2D(),
+                ObjectManager.Player.Position.To2D(),
                 posDangerLevel,
                 posDangerCount,
                 true,
@@ -122,7 +122,7 @@ namespace ezEvade
 
     public static class PositionInfoExtensions
     {
-        public static AIHeroClient myHero { get { return Player.Instance; } }
+        public static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
         public static int GetHighestSpellID(this PositionInfo posInfo)
         {
@@ -152,7 +152,7 @@ namespace ezEvade
         public static bool isBetterMovePos(this PositionInfo newPosInfo)
         {
             PositionInfo posInfo = null;
-            var path = Player.Instance.Path;
+            var path = ObjectManager.Player.Path;
             if (path.Length > 0)
             {
                 var movePos = path[path.Length - 1].To2D();
@@ -174,7 +174,7 @@ namespace ezEvade
         public static PositionInfo CompareLastMovePos(this PositionInfo newPosInfo)
         {
             PositionInfo posInfo = null;
-            var path = Player.Instance.Path;
+            var path = ObjectManager.Player.Path;
             if (path.Length > 0)
             {
                 var movePos = path[path.Length - 1].To2D();

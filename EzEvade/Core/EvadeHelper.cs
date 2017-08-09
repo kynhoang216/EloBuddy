@@ -15,7 +15,7 @@ namespace ezEvade
 {
     class EvadeHelper
     {
-        private static AIHeroClient myHero { get { return Player.Instance; } }
+        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
         public static bool fastEvadeMode;
 
         public static bool PlayerInSkillShot(Spell spell)
@@ -515,15 +515,15 @@ namespace ezEvade
                 if (spell.spellTargets.Contains(SpellTargets.EnemyMinions)
                     && spell.spellTargets.Contains(SpellTargets.AllyMinions))
                 {
-                    minionList = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Both, Player.Instance.ServerPosition, spell.range).ToList();
+                    minionList = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Both, ObjectManager.Player.ServerPosition, spell.range).ToList();
                 }
                 else if (spell.spellTargets.Contains(SpellTargets.EnemyMinions))
                 {
-                    minionList = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.Instance.ServerPosition, spell.range).ToList();
+                    minionList = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, ObjectManager.Player.ServerPosition, spell.range).ToList();
                 }
                 else if (spell.spellTargets.Contains(SpellTargets.AllyMinions))
                 {
-                    minionList = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Ally, Player.Instance.ServerPosition, spell.range).ToList();
+                    minionList = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Ally, ObjectManager.Player.ServerPosition, spell.range).ToList();
                 }
 
                 foreach (var minion in minionList.Where(h => h.IsValidTarget(spell.range)))
@@ -1188,7 +1188,7 @@ namespace ezEvade
         {
             const int segmentRadius = 55;
 
-            var myBoundingRadius = Player.Instance.BoundingRadius;
+            var myBoundingRadius = ObjectManager.Player.BoundingRadius;
             var segmentDir = (b1 - a1).Normalized().Perpendicular();
             var segmentStart = a1;
             var segmentEnd = b1;

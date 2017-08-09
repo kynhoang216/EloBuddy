@@ -37,7 +37,7 @@ namespace ezEvade
 
         public HeroInfo(AIHeroClient hero)
         {
-            this.hero = Player.Instance;
+            this.hero = ObjectManager.Player;
             Game.OnUpdate += Game_OnGameUpdate;
         }
 
@@ -50,14 +50,14 @@ namespace ezEvade
         {
             var extraDelayBuffer = 30;
 
-            serverPos2D = Player.Instance.ServerPosition.To2D(); //CalculatedPosition.GetPosition(hero, Game.Ping);
-            serverPos2DExtra = EvadeUtils.GetGamePosition(Player.Instance, Game.Ping + extraDelayBuffer);
-            serverPos2DPing = EvadeUtils.GetGamePosition(Player.Instance, Game.Ping);
+            serverPos2D = ObjectManager.Player.ServerPosition.To2D(); //CalculatedPosition.GetPosition(hero, Game.Ping);
+            serverPos2DExtra = EvadeUtils.GetGamePosition(ObjectManager.Player, Game.Ping + extraDelayBuffer);
+            serverPos2DPing = EvadeUtils.GetGamePosition(ObjectManager.Player, Game.Ping);
             //CalculatedPosition.GetPosition(hero, Game.Ping + extraDelayBuffer);            
-            currentPosition = Player.Instance.Position.To2D(); //CalculatedPosition.GetPosition(hero, 0); 
-            boundingRadius = Player.Instance.BoundingRadius;
-            moveSpeed = Player.Instance.MoveSpeed;
-            isMoving = Player.Instance.IsMoving;
+            currentPosition = ObjectManager.Player.Position.To2D(); //CalculatedPosition.GetPosition(hero, 0); 
+            boundingRadius = ObjectManager.Player.BoundingRadius;
+            moveSpeed = ObjectManager.Player.MoveSpeed;
+            isMoving = ObjectManager.Player.IsMoving;
         }
     }
 
@@ -154,7 +154,7 @@ namespace ezEvade
 
         private static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
-        public static HeroInfo myHeroCache = new HeroInfo(Player.Instance);
+        public static HeroInfo myHeroCache = new HeroInfo(ObjectManager.Player);
         public static MenuCache menuCache = new MenuCache(Evade.menu);
 
         public static float gamePing = 0;

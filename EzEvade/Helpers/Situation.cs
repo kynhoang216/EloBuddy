@@ -8,7 +8,7 @@ namespace ezEvade
 {
     public static class Situation
     {
-        private static AIHeroClient myHero => Player.Instance;
+        private static AIHeroClient myHero => ObjectManager.Player;
 
         static Situation()
         {
@@ -17,12 +17,12 @@ namespace ezEvade
 
         public static bool CheckTeam(this Obj_AI_Base unit)
         {
-            return unit.Team != Player.Instance.Team || Evade.devModeOn;
+            return unit.Team != ObjectManager.Player.Team || Evade.devModeOn;
         }
 
         public static bool CheckTeam(this GameObject unit)
         {
-            return unit.Team != Player.Instance.Team || Evade.devModeOn;
+            return unit.Team != ObjectManager.Player.Team || Evade.devModeOn;
         }
 
         public static bool CheckTeam(this Obj_GeneralParticleEmitter emitter)
@@ -82,7 +82,7 @@ namespace ezEvade
                 var turret = entry.Value;
                 if (turret == null || !turret.IsValid || turret.IsDead)
                 {
-                    Core.DelayAction(() => ObjectCache.turrets.Remove(entry.Key), 1);
+                    DelayAction.Add(1, () => ObjectCache.turrets.Remove(entry.Key));
                     continue;
                 }
 
@@ -146,9 +146,9 @@ namespace ezEvade
             return
 
                 Evade.isChanneling
-                || Player.Instance.IsDead
-                || Player.Instance.IsInvulnerable
-                || Player.Instance.IsTargetable == false
+                || ObjectManager.Player.IsDead
+                || ObjectManager.Player.IsInvulnerable
+                || ObjectManager.Player.IsTargetable == false
                 || HasSpellShield(myHero)
                 || ChampionSpecificChecks()
                 || Player.Instance.IsDashing()
@@ -157,7 +157,7 @@ namespace ezEvade
 
         public static bool ChampionSpecificChecks()
         {
-            return (Player.Instance.ChampionName == "Sion" && myHero.HasBuff("SionR"));
+            return (ObjectManager.Player.ChampionName == "Sion" && myHero.HasBuff("SionR"));
 
 
             //Untargetable
@@ -171,12 +171,12 @@ namespace ezEvade
         //from Evade by Esk0r
         public static bool HasSpellShield(AIHeroClient unit)
         {
-            if (Player.Instance.HasBuffOfType(BuffType.SpellShield))
+            if (ObjectManager.Player.HasBuffOfType(BuffType.SpellShield))
             {
                 return true;
             }
 
-            if (Player.Instance.HasBuffOfType(BuffType.SpellImmunity))
+            if (ObjectManager.Player.HasBuffOfType(BuffType.SpellImmunity))
             {
                 return true;
             }

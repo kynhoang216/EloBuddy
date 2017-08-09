@@ -20,7 +20,7 @@ namespace ezEvade
 
     class EvadeCommand
     {
-        private static AIHeroClient myHero { get { return Player.Instance; } }
+        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
         public EvadeOrderCommand order;
         public Vector2 targetPosition;
@@ -51,7 +51,7 @@ namespace ezEvade
             };
 
             Evade.lastMoveToPosition = movePos;
-            Evade.lastMoveToServerPos = Player.Instance.ServerPosition.To2D();
+            Evade.lastMoveToServerPos = ObjectManager.Player.ServerPosition.To2D();
 
             Player.IssueOrder(GameObjectOrder.MoveTo, movePos.To3D(), false);
         }

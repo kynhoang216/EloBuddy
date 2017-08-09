@@ -505,7 +505,7 @@ namespace ezEvade
 
         private void Game_OnProcessSpell(Obj_AI_Base hero, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!Player.Instance.IsMe)
+            if (!ObjectManager.Player.IsMe)
             {
                 return;
             }
@@ -522,7 +522,7 @@ namespace ezEvade
             if (SpellDetector.channeledSpells.TryGetValue(args.SData.Name, out name))
             {
                 Evade.isChanneling = true;
-                Evade.channelPosition = Player.Instance.ServerPosition.To2D();
+                Evade.channelPosition = ObjectManager.Player.ServerPosition.To2D();
             }
 
             if (ObjectCache.menuCache.cache["CalculateWindupDelay"].Cast<CheckBox>().CurrentValue)
