@@ -70,7 +70,7 @@ namespace Evade
             {
                 if (value == true)
                 {
-                    ForcePathFollowing = false;
+                    ForcePathFollowing = true;
                     LastSentMovePacketT = 0;
                     ObjectManager.Player.SendMovePacket(EvadePoint);
                 }
