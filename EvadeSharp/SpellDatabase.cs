@@ -2221,6 +2221,46 @@ namespace Evade
 
             #endregion Kassadin
 
+            #region Kayn
+            {
+                Spells.Add(
+                    new SpellData
+                    {
+                        ChampionName = "Kayn",
+                        SpellName = "KaynQ",
+                        Slot = SpellSlot.Q,
+                        Type = SkillShotType.SkillshotCircle,
+                        Delay = 250,
+                        Range = 400,
+                        Radius = 270,
+                        MissileSpeed = int.MaxValue,
+                        AddHitbox = true,
+                        DangerValue = 3,
+                        IsDangerous = true,
+                        MissileSpellName = "KaynQ",
+                    });
+
+                Spells.Add(
+                    new SpellData
+                    {
+                        ChampionName = "Kayn",
+                        SpellName = "KaynW",
+                        Slot = SpellSlot.W,
+                        Type = SkillShotType.SkillshotLine,
+                        Delay = 300,
+                        Range = 750,
+                        Radius = 100,
+                        MissileSpeed = 1700,
+                        FixedRange = true,
+                        AddHitbox = true,
+                        DangerValue = 3,
+                        IsDangerous = true,
+                        MissileSpellName = "KaynWMissile",
+                    });
+            }
+            #endregion Kayn
+
+
             #region Kennen
 
             Spells.Add(
@@ -3279,6 +3319,49 @@ namespace Evade
                 });
 
             #endregion Rengar
+
+            #region Rakan
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Rakan",
+                    SpellName = "RakanQ",
+                    Slot = SpellSlot.Q,
+                    Type = SkillShotType.SkillshotMissileLine,
+                    Delay = 250,
+                    Range = 1000,
+                    Radius = 70,
+                    MissileSpeed = 1800,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    IsDangerous = true,
+                    MissileSpellName = "RakanQMissile",
+                    CanBeRemoved = true,
+                    EarlyEvade = new[] {EarlyObjects.Allies, EarlyObjects.AllyObjects},
+                    CollisionObjects = new[] {CollisionObjectTypes.Champions}
+                    
+                });
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Rakan",
+                    SpellName = "RakanW",
+                    Slot = SpellSlot.W,
+                    Type = SkillShotType.SkillshotCircle,
+                    Delay = 550,
+                    Range = 650,
+                    Radius = 270,
+                    MissileSpeed = 1500,
+                    FixedRange = false,
+                    AddHitbox = true,
+                    IsDangerous = true,
+                    MissileSpellName = "RakanWCast",
+
+                });
+
+            #endregion Rakan
 
             #region RekSai
 
@@ -4405,7 +4488,7 @@ namespace Evade
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
-                    Range = 1100,
+                    Range = 1150,
                     Radius = 50,
                     MissileSpeed = 1400,
                     FixedRange = true,
@@ -4424,7 +4507,7 @@ namespace Evade
                     SpellName = "XayahE",
                     Slot = SpellSlot.E,
                     Type = SkillShotType.SkillshotMissileLine,
-                    Delay = 250,
+                    Delay = 300,
                     Range = 1100,
                     Radius = 60,
                     MissileSpeed = 1200,
@@ -4435,7 +4518,7 @@ namespace Evade
                     DangerValue = 2,
                     IsDangerous = true,
                     MissileSpellName = "XayahEMissileSFX",
-                    ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
+                    //ToggleParticleName = "Xayah_.+_Passive_Dagger_(Enemy|Ally)",
                 });
 
             Spells.Add(
@@ -4447,7 +4530,7 @@ namespace Evade
                     Type = SkillShotType.SkillshotCone,
                     Delay = 1000,
                     Range = 1100,
-                    Radius = 200,
+                    Radius = 10,
                     MissileSpeed = 2000,
                     FixedRange = true,
                     AddHitbox = true,
