@@ -87,7 +87,7 @@ namespace Evade
                         for (var j = -s; j <= s; j++)
                         {
                             var candidate = originalCandidate + j * Config.DiagonalEvadePointsStep * direction;
-                            var pathToPoint = Player.Instance.GetPath(candidate.To3D()).To2DList();
+                            var pathToPoint = ObjectManager.Player.GetPath(candidate.To3D()).To2DList();
 
                             if (!isBlink)
                             {
@@ -128,7 +128,7 @@ namespace Evade
                 {
                     goodCandidates = new List<Vector2>
                     {
-                        goodCandidates.MinOrDefault(vector2 => Player.Instance.Distance(vector2, true))
+                        goodCandidates.MinOrDefault(vector2 => ObjectManager.Player.Distance(vector2, true))
                     };
                 }
 
@@ -136,7 +136,7 @@ namespace Evade
                 {
                     badCandidates = new List<Vector2>
                     {
-                        badCandidates.MinOrDefault(vector2 => Player.Instance.Distance(vector2, true))
+                        badCandidates.MinOrDefault(vector2 => ObjectManager.Player.Distance(vector2, true))
                     };
                 }
             }
@@ -194,7 +194,7 @@ namespace Evade
                     case SpellValidTargets.AllyMinions:
                         allTargets.AddRange(
                             MinionManager.GetMinions(
-                                Player.Instance.Position, range, MinionTypes.All, MinionTeam.Ally));
+                                ObjectManager.Player.Position, range, MinionTypes.All, MinionTeam.Ally));
                         break;
 
                     case SpellValidTargets.AllyWards:
@@ -202,7 +202,7 @@ namespace Evade
                         foreach (var gameObject in ObjectManager.Get<Obj_AI_Minion>())
                         {
                             if (gameObject.Name.ToLower().Contains("ward") && gameObject.IsValidTarget(range, false) &&
-                                gameObject.Team == Player.Instance.Team)
+                                gameObject.Team == ObjectManager.Player.Team)
                             {
                                 allTargets.Add(gameObject);
                             }
@@ -223,7 +223,7 @@ namespace Evade
                     case SpellValidTargets.EnemyMinions:
                         allTargets.AddRange(
                             MinionManager.GetMinions(
-                                Player.Instance.Position, range, MinionTypes.All, MinionTeam.NotAlly));
+                                ObjectManager.Player.Position, range, MinionTypes.All, MinionTeam.NotAlly));
                         break;
 
                     case SpellValidTargets.EnemyWards:

@@ -340,6 +340,17 @@ namespace Evade
                         return;
                     }
 
+                    if (skillshot.SpellData.SpellName == "YorickE")
+                    {
+                        var start = skillshot.End - skillshot.Direction.Normalized() * 150;
+                        var end = skillshot.End + skillshot.Direction.Normalized() * 425;
+                        var skillshotToAdd = new Skillshot(
+                            skillshot.DetectionType, skillshot.SpellData, skillshot.StartTick, start, end,
+                            skillshot.Unit);
+                        DetectedSkillshots.Add(skillshotToAdd);
+                        return;
+                    }
+
                     if (skillshot.SpellData.SpellName == "DianaArc")
                     {
                         var skillshotToAdd = new Skillshot(
@@ -517,7 +528,7 @@ namespace Evade
             }
 
             /*Avoid evading while dashing.*/
-            if (ObjectManager.Player.IsDashing())
+            if (Player.Instance.IsDashing())
             {
                 Evading = false;
                 return;
@@ -1450,7 +1461,7 @@ namespace Evade
 
             if (Config.TestOnAllies)
             {
-                var myPath = ObjectManager.Player.GetWaypoints();
+                /*var myPath = ObjectManager.Player.GetWaypoints();
 
                 for (var i = 0; i < myPath.Count - 1; i++)
                 {
@@ -1475,7 +1486,7 @@ namespace Evade
 
 
                 Drawing.DrawCircle(EvadePoint.To3D(), 300, Color.White);
-                Drawing.DrawCircle(EvadeToPoint.To3D(), 300, Color.Red);
+                Drawing.DrawCircle(EvadeToPoint.To3D(), 300, Color.Red);*/
             }
 
         }

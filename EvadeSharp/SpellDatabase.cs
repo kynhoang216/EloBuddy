@@ -4164,39 +4164,59 @@ namespace Evade
                 new SpellData
                 {
                     ChampionName = "Urgot",
-                    SpellName = "UrgotHeatseekingLineMissile",
+                    SpellName = "UrgotQ",
                     Slot = SpellSlot.Q,
-                    Type = SkillShotType.SkillshotMissileLine,
-                    Delay = 125,
-                    Range = 1000,
-                    Radius = 60,
-                    MissileSpeed = 1600,
-                    FixedRange = true,
+                    Type = SkillShotType.SkillshotCircle,
+                    Delay = 700,
+                    Range = 2000,
+                    Radius = 170,
+                    MissileSpeed = 1000,
+                    FixedRange = false,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "UrgotHeatseekingLineMissile",
-                    EarlyEvade = new[] { EarlyObjects.Allies, EarlyObjects.Minions, EarlyObjects.AllyObjects },
-                    CanBeRemoved = true,
+                    MissileSpellName = "UrgotQ",
                 });
 
             Spells.Add(
                 new SpellData
                 {
                     ChampionName = "Urgot",
-                    SpellName = "UrgotPlasmaGrenade",
+                    SpellName = "UrgotE",
                     Slot = SpellSlot.E,
-                    Type = SkillShotType.SkillshotCircle,
-                    Delay = 250,
-                    Range = 1100,
-                    Radius = 210,
-                    MissileSpeed = 1500,
-                    FixedRange = false,
+                    Type = SkillShotType.SkillshotMissileLine,
+                    Delay = 500,
+                    Range = 700,
+                    Radius = 130,
+                    MissileSpeed = 1800,
+                    FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
                     IsDangerous = false,
-                    MissileSpellName = "UrgotPlasmaGrenadeBoom",
+                    MissileSpellName = "UrgotE",
+                    CollisionObjects = new[] {CollisionObjectTypes.Champions}
                 });
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Urgot",
+                    SpellName = "UrgotR",
+                    Slot = SpellSlot.R,
+                    Type = SkillShotType.SkillshotMissileLine,
+                    Delay = 250,
+                    Range = 1650,
+                    Radius = 85,
+                    MissileSpeed = 1875,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 5,
+                    IsDangerous = true,
+                    MissileSpellName = "UrgotR",
+                    CollisionObjects = new[] { CollisionObjectTypes.Champions }
+                });
+
+
 
             #endregion Urgot
 
@@ -4750,6 +4770,50 @@ namespace Evade
                 });
 
             #endregion Yasuo
+
+            #region Yorick
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Yorick",
+                    SpellName = "YorickW",
+                    Slot = SpellSlot.W,
+                    Type = SkillShotType.SkillshotCircle,
+                    Delay = 750,
+                    Range = 600,
+                    Radius = 250,
+                    MissileSpeed = int.MaxValue,
+                    FixedRange = false,
+                    AddHitbox = false,
+                    DangerValue = 2,
+                    IsDangerous = true,
+                    MissileSpellName = "YorickW",
+                    ExtraDuration = 4000,
+                    DontCross = true,
+                });
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Yorick",
+                    SpellName = "YorickE",
+                    Slot = SpellSlot.E,
+                    Type = SkillShotType.SkillshotLine,
+                    Delay = 500,
+                    Range = 0 + 1000,
+                    Radius = 150,
+                    MissileSpeed = 1300,
+                    FixedRange = false,
+                    AddHitbox = true,
+                    DangerValue = 2,
+                    IsDangerous = true,
+                    MissileSpellName = "YorickE",
+
+                });
+
+            #endregion Yorick
+
 
             #region Zac
 

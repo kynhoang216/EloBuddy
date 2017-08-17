@@ -64,7 +64,7 @@ namespace Evade
 
         private static void Obj_AI_Hero_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (sender.IsValid && sender.Team == Player.Instance.Team && args.SData.Name == "YasuoWMovingWall")
+            if (sender.IsValid && sender.Team == ObjectManager.Player.Team && args.SData.Name == "YasuoWMovingWall")
 
             {
                 WallCastT = Utils.TickCount;
@@ -113,7 +113,7 @@ namespace Evade
                         foreach (var minion in
                             MinionManager.GetMinions(
                                 from.To3D(), 1200, MinionTypes.All,
-                                skillshot.Unit.Team == Player.Instance.Team
+                                skillshot.Unit.Team == ObjectManager.Player.Team
                                     ? MinionTeam.NotAlly
                                     : MinionTeam.NotAllyForEnemy))
                         {
@@ -151,11 +151,11 @@ namespace Evade
                             ObjectManager.Get<AIHeroClient>()
                                 .Where(
                                     h =>
-                                        (h.IsValidTarget(1200, false) && h.Team == Player.Instance.Team && !h.IsMe ||
-                                         Config.TestOnAllies && h.Team != Player.Instance.Team)))
+                                        (h.IsValidTarget(1200, false) && h.Team == ObjectManager.Player.Team && !h.IsMe ||
+                                         Config.TestOnAllies && h.Team != ObjectManager.Player.Team)))
                         {
                             var pred = FastPrediction(
-                                from, Player.Instance,
+                                from, ObjectManager.Player,
                                 Math.Max(0, skillshot.SpellData.Delay - (Utils.TickCount - skillshot.StartTick)),
                                 skillshot.SpellData.MissileSpeed);
                             var pos = pred.PredictedPos;
@@ -169,7 +169,7 @@ namespace Evade
                                         Position =
                                             pos.ProjectOn(skillshot.End, skillshot.Start).LinePoint +
                                             skillshot.Direction * 30,
-                                        Unit = Player.Instance,
+                                        Unit = ObjectManager.Player,
                                         Type = CollisionObjectTypes.Minion,
                                         Distance = pos.Distance(from),
                                         Diff = w,
@@ -187,8 +187,8 @@ namespace Evade
                             !ObjectManager.Get<AIHeroClient>()
                                 .Any(
                                     hero =>
-                                        Player.Instance.IsValidTarget(float.MaxValue, false) &&
-                                        Player.Instance.Team == Player.Instance.Team && Player.Instance.ChampionName == "Yasuo"))
+                                        ObjectManager.Player.IsValidTarget(float.MaxValue, false) &&
+                                        ObjectManager.Player.Team == ObjectManager.Player.Team && ObjectManager.Player.ChampionName == "Yasuo"))
                         {
                             break;
                         }
