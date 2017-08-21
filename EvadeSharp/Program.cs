@@ -530,7 +530,7 @@ namespace Evade
             /*Avoid evading while dashing.*/
             if (Player.Instance.IsDashing())
             {
-                Evading = true;
+                Evading = false;
                 return;
             }
 
