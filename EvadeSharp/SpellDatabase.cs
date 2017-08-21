@@ -4869,7 +4869,7 @@ namespace Evade
                     Delay = 250,
                     Range = 900,
                     Radius = 50,
-                    MissileSpeed = 1300,
+                    MissileSpeed = 1700,
                     FixedRange = true,
                     AddHitbox = true,
                     DangerValue = 2,
