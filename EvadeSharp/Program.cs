@@ -516,7 +516,7 @@ namespace Evade
 
             if (ObjectManager.Player.Spellbook.IsAutoAttacking && !Orbwalker.IsAutoAttacking)
             {
-                Evading = true;
+                Evading = false;
                 return;
             }
 
@@ -528,7 +528,7 @@ namespace Evade
             }
 
             /*Avoid evading while dashing.*/
-            if (Player.Instance.IsDashing())
+            if (ObjectManager.Player.IsDashing())
             {
                 Evading = false;
                 return;
