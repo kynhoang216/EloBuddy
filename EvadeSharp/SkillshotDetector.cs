@@ -66,7 +66,7 @@ namespace Evade
                 return;
             }
 
-            TriggerOnDetectSkillshot(DetectionType.ProcessSpell, spellData, Utils.TickCount - Game.Ping / 2, sender.Position.To2D(), sender.Position.To2D(), sender.Position.To2D(), EntityManager.Heroes.AllHeroes.MinOrDefault(h => h.IsAlly ? 1 : 0));
+            TriggerOnDetectSkillshot(DetectionType.ProcessSpell, spellData, Environment.TickCount - Game.Ping / 2, sender.Position.To2D(), sender.Position.To2D(), sender.Position.To2D(), EntityManager.Heroes.AllHeroes.MinOrDefault(h => h.IsAlly ? 1 : 0));
         }
 
         private static void GameObject_OnDelete(GameObject sender, EventArgs args)
@@ -104,7 +104,7 @@ namespace Evade
 
 
             /*Console.WriteLine(
-                    Utils.TickCount + " Projectile Created: " + missile.SData.Name + " distance: " +
+                    Environment.TickCount + " Projectile Created: " + missile.SData.Name + " distance: " +
                     missile.SData.CastRange + "Radius: " +
                     missile.SData.LineWidth + " Speed: " + missile.SData.MissileSpeed);  */
 
@@ -139,7 +139,7 @@ namespace Evade
 
 
             /* Console.WriteLine(
-                    Utils.TickCount + " Projectile Created: " + missile.SData.Name + " distance: " +
+                    Environment.TickCount + " Projectile Created: " + missile.SData.Name + " distance: " +
                     missile.SData.CastRange + "Radius: " +
                     missile.SData.LineWidth + " Speed: " + missile.SData.MissileSpeed);  */
 
@@ -169,7 +169,7 @@ namespace Evade
                          Math.Min(spellData.ExtraRange, spellData.Range - endPos.Distance(unitPosition)) * direction;
             }
 
-            var castTime = Utils.TickCount - Game.Ping / 2 - (spellData.MissileDelayed ? 0 : spellData.Delay) -
+            var castTime = Environment.TickCount - Game.Ping / 2 - (spellData.MissileDelayed ? 0 : spellData.Delay) -
                            (int)(1000f * missilePosition.Distance(unitPosition) / spellData.MissileSpeed);
 
             //Trigger the skillshot detection callbacks.
@@ -267,8 +267,8 @@ namespace Evade
 
             if (Config.PrintSpellData && sender is AIHeroClient)
             {
-                Chat.Print(Utils.TickCount + " ProcessSpellCast: " + args.SData.Name);
-                Console.WriteLine(Utils.TickCount + " ProcessSpellCast: " + args.SData.Name);
+                Chat.Print(Environment.TickCount + " ProcessSpellCast: " + args.SData.Name);
+                Console.WriteLine(Environment.TickCount + " ProcessSpellCast: " + args.SData.Name);
             }
 
             if (args.SData.Name == "dravenrdoublecast")
@@ -317,7 +317,7 @@ namespace Evade
                         var start = obj.Position.To2D();
                         var end = start + spellData.Range * (args.End.To2D() - obj.Position.To2D()).Normalized();
                         TriggerOnDetectSkillshot(
-                            DetectionType.ProcessSpell, spellData, Utils.TickCount - Game.Ping / 2, start, end, end,
+                            DetectionType.ProcessSpell, spellData, Environment.TickCount - Game.Ping / 2, start, end, end,
                             sender);
                     }
                 }
@@ -352,7 +352,7 @@ namespace Evade
 
             //Trigger the skillshot detection callbacks.
             TriggerOnDetectSkillshot(
-                DetectionType.ProcessSpell, spellData, Utils.TickCount - Game.Ping / 2, startPos, endPos, args.End.To2D(), sender);
+                DetectionType.ProcessSpell, spellData, Environment.TickCount - Game.Ping / 2, startPos, endPos, args.End.To2D(), sender);
         }
 
         /// <summary>
@@ -400,7 +400,7 @@ namespace Evade
                 {
                     return;
                 }
-                var castTime = Utils.TickCount - Game.Ping / 2 - spellData.Delay -
+                var castTime = Environment.TickCount - Game.Ping / 2 - spellData.Delay -
                                (int)
                                    (1000 * missilePosition.SwitchYZ().To2D().Distance(unitPosition.SwitchYZ()) /
                                     spellData.MissileSpeed);

@@ -859,7 +859,6 @@ namespace Evade
                     IsDangerous = false,
                     MissileSpellName = "DariusCleave",
                     FollowCaster = true,
-                    DisabledByDefault = true,
                 });
 
             Spells.Add(
@@ -1416,6 +1415,31 @@ namespace Evade
 
             #endregion Galio
 
+            #region Garen
+
+            Spells.Add(
+                new SpellData
+                {
+                    ChampionName = "Garen",
+                    SpellName =  "GarenE",
+                    Slot = SpellSlot.E,
+                    Type = SkillShotType.SkillshotCircle,
+                    Delay = 250,
+                    Range = 0,
+                    Radius = 300,
+                    MissileSpeed = int.MaxValue,
+                    FixedRange = true,
+                    AddHitbox = true,
+                    DangerValue = 3,
+                    IsDangerous = true,
+                    MissileSpellName = "",
+                    FollowCaster = true,
+                    ExtraDuration = 3000,
+                    DontCross = true,
+                });
+
+            #endregion Garen
+
             #region Gnar
 
             Spells.Add(
@@ -1909,8 +1933,8 @@ namespace Evade
                     Slot = SpellSlot.Q,
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
-                    Range = 1050,
-                    Radius = 70,
+                    Range = 1050 + 50,
+                    Radius = 70 + 50,
                     MissileSpeed = 1450,
                     FixedRange = true,
                     AddHitbox = true,
@@ -1933,7 +1957,7 @@ namespace Evade
                     Type = SkillShotType.SkillshotMissileLine,
                     Delay = 250,
                     Range = 1470,
-                    Radius = 70,
+                    Radius = 70 + 50,
                     MissileSpeed = 1890,
                     FixedRange = true,
                     AddHitbox = true,

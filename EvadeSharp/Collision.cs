@@ -67,7 +67,7 @@ namespace Evade
             if (sender.IsValid && sender.Team == ObjectManager.Player.Team && args.SData.Name == "YasuoWMovingWall")
 
             {
-                WallCastT = Utils.TickCount;
+                WallCastT = Environment.TickCount;
                 YasuoWallCastedPos = sender.ServerPosition.To2D();
             }
         }
@@ -119,7 +119,7 @@ namespace Evade
                         {
                             var pred = FastPrediction(
                                 from, minion,
-                                Math.Max(0, skillshot.SpellData.Delay - (Utils.TickCount - skillshot.StartTick)),
+                                Math.Max(0, skillshot.SpellData.Delay - (Environment.TickCount - skillshot.StartTick)),
                                 skillshot.SpellData.MissileSpeed);
                             var pos = pred.PredictedPos;
                             var w = skillshot.SpellData.RawRadius + (!pred.IsMoving ? (minion.BoundingRadius - 15) : 0) -
@@ -156,7 +156,7 @@ namespace Evade
                         {
                             var pred = FastPrediction(
                                 from, ObjectManager.Player,
-                                Math.Max(0, skillshot.SpellData.Delay - (Utils.TickCount - skillshot.StartTick)),
+                                Math.Max(0, skillshot.SpellData.Delay - (Environment.TickCount - skillshot.StartTick)),
                                 skillshot.SpellData.MissileSpeed);
                             var pos = pred.PredictedPos;
 
@@ -233,11 +233,11 @@ namespace Evade
                         if (intersections.Count > 0)
                         {
                             intersection = intersections.OrderBy(item => item.Distance(from)).ToList()[0];
-                            var collisionT = Utils.TickCount +
+                            var collisionT = Environment.TickCount +
                                              Math.Max(
                                                  0,
                                                  skillshot.SpellData.Delay -
-                                                 (Utils.TickCount - skillshot.StartTick)) + 100 +
+                                                 (Environment.TickCount - skillshot.StartTick)) + 100 +
                                              (1000 * intersection.Distance(from)) / skillshot.SpellData.MissileSpeed;
                             if (collisionT - WallCastT < 4000)
                             {

@@ -245,13 +245,13 @@ namespace Evade
                 {
                     if (isBlink)
                     {
-                        if (Utils.TickCount - Program.LastWardJumpAttempt < 250 ||
+                        if (Environment.TickCount - Program.LastWardJumpAttempt < 250 ||
                             Program.IsSafeToBlink(target.ServerPosition.To2D(), Config.EvadingFirstTimeOffset, delay))
                         {
                             goodTargets.Add(target);
                         }
 
-                        if (Utils.TickCount - Program.LastWardJumpAttempt < 250 ||
+                        if (Environment.TickCount - Program.LastWardJumpAttempt < 250 ||
                             Program.IsSafeToBlink(target.ServerPosition.To2D(), Config.EvadingSecondTimeOffset, delay))
                         {
                             badTargets.Add(target);
@@ -263,13 +263,13 @@ namespace Evade
                         pathToTarget.Add(Program.PlayerPosition);
                         pathToTarget.Add(target.ServerPosition.To2D());
 
-                        if (Utils.TickCount - Program.LastWardJumpAttempt < 250 ||
+                        if (Environment.TickCount - Program.LastWardJumpAttempt < 250 ||
                             Program.IsSafePath(pathToTarget, Config.EvadingFirstTimeOffset, speed, delay).IsSafe)
                         {
                             goodTargets.Add(target);
                         }
 
-                        if (Utils.TickCount - Program.LastWardJumpAttempt < 250 ||
+                        if (Environment.TickCount - Program.LastWardJumpAttempt < 250 ||
                             Program.IsSafePath(pathToTarget, Config.EvadingSecondTimeOffset, speed, delay).IsSafe)
                         {
                             badTargets.Add(target);

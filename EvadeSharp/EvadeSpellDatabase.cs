@@ -509,7 +509,7 @@ namespace Evade
 
             if (ObjectManager.Player.ChampionName == "Vayne")
             {
-                spell = new DashData("Vayne Q", SpellSlot.Q, 300, true, 100, 910, 2);
+                spell = new DashData("Vayne Q", SpellSlot.Q, 300, true, 100, 910, 1);
                 Spells.Add(spell);
             }
 
