@@ -156,18 +156,13 @@ namespace Evade
             #region Drawings
 
             drawings = Menu.AddSubMenu("Drawings", "Drawings");
-            
-            drawings.AddLabel("Enabled Draw Color = White");
-            drawings.Add("EnabledDraw", new CheckBox("Draw Enabled"));
+
+            //drawings.Add("EnabledDraw", new CheckBox("Draw Enabled"));
             EnabledColor = Color.White;
-
-            drawings.AddLabel("Disabled Draw Color = Red");
-            drawings.Add("DisabledDraw", new CheckBox("Draw Disabled"));
+            //drawings.Add("DisabledDraw", new CheckBox("Draw Disabled"));
             DisabledColor = Color.Red;
-
-            drawings.AddLabel("Missile Draw Color= Lime");
-            drawings.Add("MissileDraw", new CheckBox("Draw Missile"));
-            MissileColor = Color.Lime;
+            //drawings.Add("MissileDraw", new CheckBox("Draw Missile"));
+            MissileColor = Color.White;
 
             //drawings.AddItem(new MenuItem("EnabledColor", "Enabled spell color").SetValue(Color.White));
             //drawings.AddItem(new MenuItem("DisabledColor", "Disabled spell color").SetValue(Color.Red));

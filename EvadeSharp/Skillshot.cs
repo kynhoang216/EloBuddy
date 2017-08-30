@@ -209,10 +209,10 @@ namespace Evade
         {
             if (SpellData.MissileAccel != 0)
             {
-                return Environment.TickCount <= StartTick + 5000;
+                return Utils.TickCount <= StartTick + 5000;
             }
 
-            return Environment.TickCount <=
+            return Utils.TickCount <=
                    StartTick + SpellData.Delay + SpellData.ExtraDuration +
                    1000 * (Start.Distance(End) / SpellData.MissileSpeed);
         }
@@ -224,7 +224,7 @@ namespace Evade
                 return false;
             }
 
-            if (Environment.TickCount - _cachedValueTick < 100)
+            if (Utils.TickCount - _cachedValueTick < 100)
             {
                 return _cachedValue;
             }
@@ -232,13 +232,13 @@ namespace Evade
             if (!GetCheckBoxValue("IsDangerous").CurrentValue && Config.Menu["OnlyDangerous"].Cast<KeyBind>().CurrentValue)
             {
                 _cachedValue = false;
-                _cachedValueTick = Environment.TickCount;
+                _cachedValueTick = Utils.TickCount;
                 return _cachedValue;
             }
 
 
             _cachedValue = GetCheckBoxValue("Enabled").CurrentValue;
-            _cachedValueTick = Environment.TickCount;
+            _cachedValueTick = Utils.TickCount;
 
             return _cachedValue;
         }
@@ -247,9 +247,9 @@ namespace Evade
         {
             //Even if it doesnt consume a lot of resources with 20 updatest second works k
             if (SpellData.CollisionObjects.Count() > 0 && SpellData.CollisionObjects != null &&
-                Environment.TickCount - _lastCollisionCalc > 50 && Config.collision["EnableCollision"].Cast<CheckBox>().CurrentValue)
+                Utils.TickCount - _lastCollisionCalc > 50 && Config.collision["EnableCollision"].Cast<CheckBox>().CurrentValue)
             {
-                _lastCollisionCalc = Environment.TickCount;
+                _lastCollisionCalc = Utils.TickCount;
                 _collisionEnd = Collision.GetCollisionPoint(this);
             }
 
@@ -289,13 +289,13 @@ namespace Evade
                 SpellData.MissileSpeed = (int)Unit.MoveSpeed;
                 if (Unit.IsValidTarget(float.MaxValue, false))
                 {
-                    if (!Unit.HasBuff("SionR") && Environment.TickCount - _helperTick > 600)
+                    if (!Unit.HasBuff("SionR") && Utils.TickCount - _helperTick > 600)
                     {
                         StartTick = 0;
                     }
                     else
                     {
-                        StartTick = Environment.TickCount - SpellData.Delay;
+                        StartTick = Utils.TickCount - SpellData.Delay;
                         Start = Unit.ServerPosition.To2D();
                         End = Unit.ServerPosition.To2D() + 1000 * Unit.Direction.To2D().Perpendicular();
                         Direction = (End - Start).Normalized();
@@ -381,7 +381,7 @@ namespace Evade
         /// </summary>
         public Vector2 GlobalGetMissilePosition(int time)
         {
-            var t = Math.Max(0, Environment.TickCount + time - StartTick - SpellData.Delay);
+            var t = Math.Max(0, Utils.TickCount + time - StartTick - SpellData.Delay);
             t = (int)Math.Max(0, Math.Min(End.Distance(Start), t * SpellData.MissileSpeed / 1000));
             return Start + Direction * t;
         }
@@ -391,7 +391,7 @@ namespace Evade
         /// </summary>
         public Vector2 GetMissilePosition(int time)
         {
-            var t = Math.Max(0, Environment.TickCount + time - StartTick - SpellData.Delay);
+            var t = Math.Max(0, Utils.TickCount + time - StartTick - SpellData.Delay);
 
 
             var x = 0;
@@ -460,7 +460,7 @@ namespace Evade
             //skillshots without missile
             var timeToExplode = SpellData.ExtraDuration + SpellData.Delay +
                                 (int)(1000 * Start.Distance(End) / SpellData.MissileSpeed) -
-                                (Environment.TickCount - StartTick);
+                                (Utils.TickCount - StartTick);
 
             return timeToExplode > timeOffset + delay;
         }
@@ -612,7 +612,7 @@ namespace Evade
 
             var timeToExplode = (SpellData.DontAddExtraDuration ? 0 : SpellData.ExtraDuration) + SpellData.Delay +
                                 (int)(1000 * Start.Distance(End) / SpellData.MissileSpeed) -
-                                (Environment.TickCount - StartTick);
+                                (Utils.TickCount - StartTick);
 
             var myPositionWhenExplodes = path.PositionAfter(timeToExplode, speed, delay);
 
@@ -659,7 +659,7 @@ namespace Evade
             {
                 var timeToExplode = SpellData.ExtraDuration + SpellData.Delay +
                                     (int)((1000 * Start.Distance(End)) / SpellData.MissileSpeed) -
-                                    (Environment.TickCount - StartTick);
+                                    (Utils.TickCount - StartTick);
                 if (timeToExplode <= time)
                 {
                     return true;

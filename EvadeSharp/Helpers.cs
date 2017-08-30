@@ -23,19 +23,19 @@ namespace Evade
             }
 
             //Sivir E
-            if (unit.LastCastedSpellName() == "SivirE" && (Environment.TickCount - unit.LastCastedSpellT()) < 300)
+            if (unit.LastCastedSpellName() == "SivirE" && (Utils.TickCount - unit.LastCastedSpellT()) < 300)
             {
                 return true;
             }
 
             //Morganas E
-            if (unit.LastCastedSpellName() == "BlackShield" && (Environment.TickCount - unit.LastCastedSpellT()) < 300)
+            if (unit.LastCastedSpellName() == "BlackShield" && (Utils.TickCount - unit.LastCastedSpellT()) < 300)
             {
                 return true;
             }
 
             //Nocturnes E
-            if (unit.LastCastedSpellName() == "NocturneShit" && (Environment.TickCount - unit.LastCastedSpellT()) < 300)
+            if (unit.LastCastedSpellName() == "NocturneShit" && (Utils.TickCount - unit.LastCastedSpellT()) < 300)
             {
                 return true;
             }
